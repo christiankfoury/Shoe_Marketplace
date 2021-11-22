@@ -5,7 +5,7 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <head>
-    <title>Document</title>
+    <title>Your Listings</title>
 </head>
 <body>
 <nav class="navbar navbar-light bg-light fixed-top">
@@ -22,10 +22,10 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Listing/index">Listings</a>
+            <a class="nav-link active" href="/Listing/index">Listings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Message/index">Messages</a>

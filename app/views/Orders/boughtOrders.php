@@ -22,23 +22,23 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Listing/index">Listings</a>
+            <a class="nav-link" href="#">Listings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Message/index">Messages</a>
+            <a class="nav-link" href="#">Messages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/User/settings">Settings</a>
+            <a class="nav-link" href="#">Settings</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Order history
             </a>
             <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-              <li><a class="dropdown-item" href="/Orders/boughtOrders">Bought order history</a></li>
+              <li><a class="dropdown-item active" href="/Orders/boughtOrders">Bought order history</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
