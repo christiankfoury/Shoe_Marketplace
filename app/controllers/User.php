@@ -3,6 +3,12 @@ namespace app\controllers;
 
 class User extends \app\core\Controller{
 
+	public function index(){
+		$user = new \app\models\User();
+		$user = $user->get($_SESSION['username']);
+		$this->view('User/index',$user);
+	}
+
 	public function login(){
 		//TODO: register session variables to stay logged in
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
