@@ -19,7 +19,7 @@ class Listing extends \app\core\Model{
         $SQL = 'SELECT * FROM listing';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute([]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Message');
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//returns an array of all the records
     }
 
@@ -27,29 +27,29 @@ class Listing extends \app\core\Model{
         $SQL = 'SELECT * FROM listing WHERE lising_id = :listing_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['listing_id'=>$listing_id]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Orders');
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetch();//return the record
     }
 
     public function getBySeller(){
         $SQL = 'SELECT * FROM listing WHERE seller_username = :seller_username';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['seller_username'=>$this->seller_id]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Orders');
+		$STMT->execute(['seller_username'=>$this->seller_username]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetch();//return the record
     }
 
     public function insert(){
 		//here we will have to add `` around field names
-		$SQL = 'INSERT INTO orders(seller_username, buyer_username, listing_id, quantity, timestamp) 
-        VALUES (:seller_username, :buyer_username, :listing_id, :quantity, UTC_TIMESTAMP())';
+		$SQL = 'INSERT INTO listing(shoe_id, seller_username, size, stock, price, filename) 
+        VALUES (:shoe_id, :seller_username, :size, :stock, :price, :filename)';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['seller_username'=>$this->seller_username, 'buyer_username'=>$this->buyer_username,'listing_id'=>$this->listing_id,'quantity'=>$this->quantity]);
+		$STMT->execute(['shoe_id'=>$this->shoe_id, 'seller_username'=>$this->seller_username, 'size'=>$this->size, 'stock'=>$this->stock, 'price'=>$this->price, 'filename'=>$this->filename]);
 	}
 
 	public function delete(){//delete a message record
-		$SQL = 'DELETE FROM `orders` WHERE order_id = :order_id';
+		$SQL = 'DELETE FROM `listing` WHERE listing_id = :listing_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['order_id'=>$this->order_id]);//associative array with key => value pairs
+		$STMT->execute(['listing_id'=>$this->listing_id]);//associative array with key => value pairs
 	}
 }
