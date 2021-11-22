@@ -64,15 +64,77 @@
 		h6 {
 			color: white;
 		}
+
+		span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		span:after {
+			content: '\00bb';
+			position: absolute;
+			opacity: 0;
+			top: 0;
+			right: -20px;
+			transition: 0.5s;
+			color: #3a3a3a;
+		}
+
+		a:hover span {
+			padding-right: 25px;
+			color: #3a3a3a;
+		}
+
+		a:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		.rainbow {
+			cursor: pointer;
+		}
+
+		.rainbow-5:hover {
+			background-image: linear-gradient(to right,
+					#2196f3,
+					#2196f3 16.65%,
+					white 16.65%,
+					white 33.3%,
+					#2196f3 33.3%,
+					#2196f3 49.95%,
+					white 49.95%,
+					white 66.6%,
+					#2196f3 66.6%,
+					#2196f3 83.25%,
+					white 83.25%,
+					white 100%,
+					#2196f3 100%);
+			animation: slidebg 2s linear infinite;
+			transition: 0.5s;
+			color: black;
+		}
+
+
+		@keyframes slidebg {
+			to {
+				background-position: 20vw;
+			}
+		}
 	</style>
-	<a href="/User/login">Login Here</a><br><br>
+	<a href="/User/login"><span>Login Here</span></a><br><br>
 	<h1>Register for new user!</h1>
 	<center>
 		<div class="box">
 			<?php
 			if ($data != null) {
-				echo "<h3>$data</h3>";
+				echo "<div class=\"alert alert-danger\" role=\"alert\" style=\"width: 400px; height: 50px;\">$data</div>";
+			} else {
+				// echo "<div class=\"alert alert-light\" role=\"alert\">Registration</div>";
+				echo "<br><br>";
 			}
+
 			?>
 			<form action='' method='post'>
 				<div style="text-align: left;">
@@ -98,7 +160,7 @@
 					Username: <br> <input type='text' name='username' /><br>
 					Password: <br> <input type='password' name='password' /><br>
 					Password confirmation: <br> <input type='password' name='password_confirm' /><br>
-					<input type='submit' name='action' value='Register' />
+					<input class="rainbow rainbow-5" type='submit' name='action' value='Register' />
 				</div>
 			</form>
 		</div>
