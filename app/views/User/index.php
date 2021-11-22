@@ -25,9 +25,6 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Orders</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">Listings</a>
           </li>
           <li class="nav-item">
@@ -35,6 +32,18 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Settings</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Order history
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+              <li><a class="dropdown-item" href="#">Bought order history</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Sold order history</a></li>
+            </ul>
           </li>
         </ul>
         <form class="d-flex">
