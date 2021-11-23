@@ -114,3 +114,8 @@ a:hover span:after {
         background-position: 20vw;
     }
 }
+
+#brown-box {
+    width: 85%;
+    margin-left: 7.5%;
+}

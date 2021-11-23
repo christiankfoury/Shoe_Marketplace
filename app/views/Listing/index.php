@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- <link href="/app/css/style.css" rel="stylesheet"> -->
 <head>
     <title>Your Listings</title>
 </head>
-<body>
+<body style="height: 100%;">
 <nav class="navbar navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand mx-auto" href="/User/index" style="margin-left: 50px;"><img src="/uploads/monkey.png" style="height: 100px"></a></a>
@@ -54,12 +55,14 @@
     </div>
   </div>
 </nav>
-<div style="margin-top:150px; height: 90%; width: 90%;">
-  <center><h1>Listings</h1></center>
-  <article style="background-color: #241414;">
-    <center> 
-      <a href="/Listing/createListing" style="color:white;">Create a new listing</a>
-      <?php
+<div id="brown-box" style="width: 85%; height: 90%; background: #241414; margin-left: 7.5%;">
+  <div style="margin-top:150px; height: 90%; width: 90%;">
+    <center><h1>Listings</h1></center>
+    <article style="background-color: white;">
+      <center> 
+        <a href="/Listing/createListing" style="color:black;">Create a new listing</a>
+        <br>
+        <?php
         $listing = new \app\models\Listing();
         $listing->seller_username;
         $listing = $listing->getBySeller();
@@ -75,10 +78,9 @@
               </table>"; 
         } 
       ?>
-      }
-    </center>
-  </article>
+      </center>
+    </article>
+  </div>
 </div>
-
 </body>
 </html>
