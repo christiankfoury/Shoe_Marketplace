@@ -5,7 +5,7 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <head>
-    <title>Your Listings</title>
+    <title>Create a Listing</title>
 </head>
 <body>
 <nav class="navbar navbar-light bg-light fixed-top">
@@ -22,7 +22,7 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="/User/index">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/Listing/index">Listings</a>
@@ -57,25 +57,41 @@
 <div style="margin-top:150px; height: 90%; width: 90%;">
   <center><h1>Listings</h1></center>
   <article style="background-color: #241414;">
-    <center> 
-      <a href="/Listing/createListing" style="color:white;">Create a new listing</a>
-      <?php
-        $listing = new \app\models\Listing();
-        $listing->seller_username;
-        $listing = $listing->getBySeller();
-        foreach($listing as $listings){
-          echo "<table border=1>
-              <tr>
-              <th>$listing->shoe_id</th>
-              <th>$listing->size</th>
-              <th>$listing->stock</th>
-              <th>$listing->price</th>
-              <th>$listing->filename</th>
-              </tr>
-              </table>"; 
-        } 
-      ?>
-      }
+    <center style="color:white;"> 
+        <form action='' method='post'>
+        Brand:<select name="brand">
+                    <option value="">Jordan</option>
+                    <option value="">Jordan</option>
+                    <option value="">Jordan</option>
+                    <option value="">Jordans</option>
+                </select>
+        Model:<select name="model">
+                    <option value="">1</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                </select>
+        Colour:<select name="colour">
+                    <option value="">red</option>
+                    <option value="">blue</option>
+                    <option value="">green</option>
+                    <option value="">yellow</option>
+                </select>
+        Size: <select name="size">
+                    <option value="">1.2</option>
+                    <option value="">2.1</option>
+                    <option value="">3.5</option>
+                    <option value="">4.6</option>
+                </select>
+        Stock: <select name="stock">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                </select>
+        Price: <input type='text' name='price'/><br>
+        Picture: <input type='text' name='picture'/><br>
+        <input type='submit' name='action' value='Create' />
     </center>
   </article>
 </div>

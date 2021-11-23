@@ -60,6 +60,12 @@ class User extends \app\core\Controller{
 			$this->view('User/register');
 	}
 
+	public function settings(){
+		$user = new \app\models\User();
+		$user = $user->get($_SESSION['username']);
+		$this->view('User/settings',$user);
+	}
+
 	// #[\app\filters\Login]
 	// public function changePassword() {
 	// 	$profile = new \app\models\Profile();

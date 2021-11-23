@@ -3,8 +3,12 @@ namespace app\controllers;
 
 class Message extends \app\core\Controller {
 
-    public function inbox(){
-        
+    public function index(){
+        $messagesReceived = new \app\models\Message();
+        $messagesReceived = $messagesReceived->getMessagesByReceiver($_SESSION["username"]);
+        $messagesSent = new \app\models\Message();
+        $messagesSent = $messagesSent->getMessagesBySender($_SESSION["username"]);
+        $this->view('Message/inbox',["inbox"=>$messagesReceived,"outbox"=>$messagesSent]);
     }
 
     #[\app\filters\Login]

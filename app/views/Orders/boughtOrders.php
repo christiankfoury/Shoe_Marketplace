@@ -78,6 +78,32 @@
   </div>
   </center> -->
   </nav>
+
+  <div style="margin-top:150px; height: 90%; width: 90%;">
+  <center><h1>Bought Orders</h1></center>
+  <article style="background-color: #241414;">
+    <center style="color:white;"> 
+        <?php
+            foreach($data['orders'] as $orders){
+                echo 
+                "
+                <table border=1>
+                <tr>
+                <th>$orders->seller_username</th>
+                <th>$orders->buyer_username</th>
+                <th>$orders->message</th>
+                <th>$orders->quantity</th>
+                <th>$orders->timestamp</th>
+                <th></th>
+                </tr>
+                </table>; 
+                ";
+            }
+        ?>
+    </center>
+  </article>
+</div>
+
 </body>
 
 </html>
