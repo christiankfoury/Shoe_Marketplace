@@ -36,7 +36,7 @@ class Listing extends \app\core\Model{
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['seller_username'=>$this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
-		return $STMT->fetch();//return the record
+		return $STMT->fetchAll();//return the record
     }
 
     public function insert(){

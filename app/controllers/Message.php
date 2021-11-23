@@ -3,6 +3,10 @@ namespace app\controllers;
 
 class Message extends \app\core\Controller {
 
+    public function inbox(){
+        
+    }
+
     #[\app\filters\Login]
     public function createMessage($receiver){
         if(isset($_POST['action'])){

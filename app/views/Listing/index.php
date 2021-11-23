@@ -54,5 +54,16 @@
     </div>
   </div>
 </nav>
+<div style="margin-top:150px; height: 90%; width: 90%;">
+  <center><h1>Listings</h1></center>
+  <article style="background-color: #241414;">
+    <center> 
+      <a href="" style="color:white;">Create a new listing</a>
+      <br>
+      
+    </center>
+  </article>
+</div>
+
 </body>
 </html>
