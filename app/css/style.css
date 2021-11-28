@@ -1,4 +1,4 @@
-
+/* 
 body {
     background: url(/uploads/background.jpg) no-repeat fixed center;
     top: 0;
@@ -118,4 +118,18 @@ a:hover span:after {
 #brown-box {
     width: 85%;
     margin-left: 7.5%;
+    width: 85%; 
+    height: 90%;
+    background: #241414;
+    margin-left: 7.5%;
+} */
+
+div.listingIndex {
+    margin-top:150px; 
+    height: 90%; 
+    width: 90%;
+}
+
+div.createListing {
+    margin-top:150px;
 }

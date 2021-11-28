@@ -4,6 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="/app/css/style.css" rel="stylesheet">
 
 <head>
   <title>Document</title>
@@ -55,7 +56,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- <article style="text-align: center; padding-left: 5%; padding-right: 5%; padding-top: 5%; background-color: #241414;">
       <section>
         
@@ -79,14 +80,16 @@
   </center> -->
   </nav>
 
-  <div style="margin-top:150px; height: 90%; width: 90%;">
-  <center><h1>Bought Orders</h1></center>
-  <article style="background-color: #241414;">
-    <center style="color:white;"> 
+  <div class="createListing">
+    <center>
+      <h1>Bought Orders</h1>
+    </center>
+    <article>
+      <center>
         <?php
-            foreach($data['orders'] as $orders){
-                echo 
-                "
+        foreach ($data['orders'] as $orders) {
+          echo
+          "
                 <table border=1>
                 <tr>
                 <th>$orders->seller_username</th>
@@ -98,11 +101,11 @@
                 </tr>
                 </table>; 
                 ";
-            }
+        }
         ?>
-    </center>
-  </article>
-</div>
+      </center>
+    </article>
+  </div>
 
 </body>
 
