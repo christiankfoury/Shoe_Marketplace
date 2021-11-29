@@ -43,10 +43,11 @@ class Listing extends \app\core\Model{
 
     public function insert(){
 		//here we will have to add `` around field names
-		$SQL = 'INSERT INTO listing(shoe_id, seller_username, size, stock, price, filename) 
-        VALUES (:shoe_id, :seller_username, :size, :stock, :price, :filename)';
+		$SQL = 'INSERT INTO listing(shoe_id, seller_username, size, stock, price, description, color, filename) 
+        VALUES (:shoe_id, :seller_username, :size, :stock, :price, :description, :color, :filename)';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['shoe_id'=>$this->shoe_id, 'seller_username'=>$this->seller_username, 'size'=>$this->size, 'stock'=>$this->stock, 'price'=>$this->price, 'filename'=>$this->filename]);
+		$STMT->execute(['shoe_id'=>$this->shoe_id, 'seller_username'=>$this->seller_username, 'size'=>$this->size, 
+			'stock'=>$this->stock, 'price'=>$this->price, 'description'=>$this->description, 'color'=>$this->color, 'filename'=>$this->filename]);
 	}
 
 	public function delete(){//delete a message record

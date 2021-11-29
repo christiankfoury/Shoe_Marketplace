@@ -60,13 +60,14 @@
   <h2>For You</h2>
 
   <h3>Here are some shoes you should look out for in the future. Based on your favorite color but not in your size.</h3>
-  <?php foreach($data['listingsColor'] as $shoe) : ?>
+  <?php foreach($data['listingsColor'] as $listing) : ?>
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="<?php echo $shoe['image_url'] ?>" alt="Card image cap">
+      <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title"><?php echo $shoe['name'] ?></h5>
-        <p class="card-text">$<?php echo $shoe['price'] ?></p>
-        <a href="/Listing/view/<?php echo $shoe['listing_id'] ?>" class="btn btn-primary">View</a>
+        <?php $shoe = new \app\models\Shoe; $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+        <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+        <p class="card-text">$<?php echo $listing->price ?></p>
+        <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
       </div>
     </div>
   <?php endforeach ?>

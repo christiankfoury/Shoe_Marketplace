@@ -1,42 +1,89 @@
 <?php
+
 namespace app\controllers;
 
-class Listing extends \app\core\Controller{
+class Listing extends \app\core\Controller
+{
+    private $folder='uploads/';
 
-   public function index(){
-       $user = new \app\models\User();
-       $user = $user->get($_SESSION['username']);
-       
-       $listing = new \app\models\Listing();
-       $listing->seller_username = $user->username;
-       $listing = $listing->getBySeller($user->username);
-       $this->view("Listing/index",["user"=>$user,"listings"=>$listing]);
-   }
-
-   public function getListingsByUsername(){
+    public function index()
+    {
         $user = new \app\models\User();
         $user = $user->get($_SESSION['username']);
 
-        $listing = new \app\model\Listing();
+        $listing = new \app\models\Listing();
+        $listing->seller_username = $user->username;
+        $listing = $listing->getBySeller($user->username);
+        $this->view("Listing/index", ["user" => $user, "listings" => $listing]);
+    }
+
+    public function getListingsByUsername()
+    {
+        $user = new \app\models\User();
+        $user = $user->get($_SESSION['username']);
+
+        $listing = new \app\models\Listing();
         $listing = $listing->getBySeller($user->username);
 
         header("Location:/Listing/index/$listing");
-   }
+    }
 
-   public function createListing(){
-       if(isset($_POST['action'])){
+    public function createListing()
+    {
+        if (isset($_POST['action'])) {
+            //get the form data and process it
+            if (isset($_FILES['newPicture'])) {
+                $check = getimagesize($_FILES['newPicture']['tmp_name']);
 
-       }
-       else{
-           $user = new \app\models\User();
-           $user = $user->get($_SESSION['username']);
-           $this->view('Listing/createListing',$user);
-       }
-   }
+                $mime_type_to_extension = [
+                    'image/jpeg' => '.jpg',
+                    'image/gif' => '.gif',
+                    'image/bmp' => '.bmp',
+                    'image/png' => '.png'
+                ];
 
-   public function viewListing($listing_id){
+                if ($check !== false && isset($mime_type_to_extension[$check['mime']])) {
+                    $extension = $mime_type_to_extension[$check['mime']];
+                } else {
+                    $this->view('Picture/newPost', ['error' => "Bad file type", 'pictures' => []]);
+                    return;
+                }
+
+                $filename = uniqid() . $extension;
+                $filepath = $this->folder . $filename;
+
+                if ($_FILES['newPicture']['size'] > 4000000) {
+                    $this->view('Picture/newPost', ['error' => "File too large", 'pictures' => []]);
+                    return;
+                }
+                if (move_uploaded_file($_FILES['newPicture']['tmp_name'], $filepath)) {
+                    $shoe = new \app\models\Shoe();
+                    $shoe_id = $shoe->getShoeByBrandModel($_POST['brand'], $_POST['model'])->shoe_id;
+                    $listing = new  \app\models\Listing();
+                    $listing->shoe_id = $shoe_id;
+                    $listing->seller_username = $_SESSION['username'];
+                    $listing->size = $_POST['size'];
+                    $listing->stock = $_POST['stock'];
+                    $listing->price = $_POST['price'];
+                    $listing->description = $_POST['description'];
+                    $listing->color = $_POST['color'];
+                    $listing->filename = $filename;
+                    $listing->insert();
+                    header("location:/Listing/index");
+                } else
+                    echo "There was an error";
+            }
+        } else {
+            $user = new \app\models\User();
+            $user = $user->get($_SESSION['username']);
+            $this->view('Listing/createListing', $user);
+        }
+    }
+
+    public function viewListing($listing_id)
+    {
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
-        $this->view('/Listing/viewListing',$listing);
-   }
+        $this->view('/Listing/viewListing', $listing);
+    }
 }

@@ -64,7 +64,7 @@
     </center>
     <article>
       <!-- <center> -->
-      <form action='' method='post'>
+      <form action='' method='post' enctype="multipart/form-data">
         Brand: <select name="brand" id="brand">
           <option value="Select a brand">Select a brand</option>
           <option value="jordan">Jordan</option>
@@ -78,7 +78,7 @@
           <option value="Select a brand" selected="selected">Select a brand first</option>
         </select>
         <br>
-        Colour:<select name="colour">
+        Color:<select name="color">
           <option value="yellow">Yellow</option>
           <option value="blue">Blue</option>
           <option value="red">Red</option>
@@ -86,19 +86,21 @@
           <option value="white">White</option>
         </select><br>
         Size: <select name="size">
-          <option value="">1.2</option>
-          <option value="">2.1</option>
-          <option value="">3.5</option>
-          <option value="">4.6</option>
-        </select><br>
+						<?php for ($i = 1; $i <= 35; $i++) { ?>
+							<option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
+							<?php if ($i != 35) { ?>
+								<option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
+							<?php } ?>
+						<?php } ?>
+					</select><br>
         Stock: <select name="stock">
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
-          <option value="">4</option>
+        <?php for ($i = 1; $i <= 9; $i++) { ?>
+							<option value="<?php echo $i; ?>"><?php echo $i ?></option>
+						<?php } ?>
         </select><br>
-        Price: <input type='text' name='price' /><br>
-        Picture: <input type='text' name='picture' /><br>
+        Price: <input type='number' name='price' step=".01" /><br>
+        Description <input type='textarea' name='description' /><br>
+        Picture: <input type='file' name='newPicture' /><br>
         <input type='submit' name='action' value='Create' />
         <!-- </center> -->
     </article>
