@@ -3,15 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Nov 29, 2021 at 07:29 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
-=======
 -- Generation Time: Nov 29, 2021 at 06:47 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
->>>>>>> 619007a2207d2bd3bd7a2228aa8a69ed8efa562c
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,12 +47,8 @@ CREATE TABLE `listing` (
 --
 
 INSERT INTO `listing` (`listing_id`, `shoe_id`, `seller_username`, `size`, `stock`, `price`, `description`, `color`, `filename`) VALUES
-<<<<<<< HEAD
-(1, 1, 'fet', 10, 3, 129, 'bebsi', 'bourgeouis', 'bob.png');
-=======
 (1, 1, 'fet', 10, 3, 129, 'bebsi', 'bourgeouis', 'bob.png'),
 (2, 3, 'ck', 10, 6, 50.5, 'Bebs', 'blue', '61a50dce9a6a3.jpg');
->>>>>>> 619007a2207d2bd3bd7a2228aa8a69ed8efa562c
 
 -- --------------------------------------------------------
 
@@ -132,9 +122,6 @@ CREATE TABLE `shoe` (
 --
 
 INSERT INTO `shoe` (`shoe_id`, `brand`, `name`, `previously_sold_price`) VALUES
-<<<<<<< HEAD
-(1, 'Nike', 'Air Force 1', 100);
-=======
 (1, 'Nike', 'Air Force 1', 100),
 (2, 'Jordan', 'Retro 1', NULL),
 (3, 'Jordan', 'Retro 11', NULL),
@@ -157,7 +144,6 @@ INSERT INTO `shoe` (`shoe_id`, `brand`, `name`, `previously_sold_price`) VALUES
 (20, 'New Balance', '993', NULL),
 (21, 'New Balance', '990', NULL),
 (22, 'New Balance', '574', NULL);
->>>>>>> 619007a2207d2bd3bd7a2228aa8a69ed8efa562c
 
 -- --------------------------------------------------------
 
@@ -180,10 +166,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `password_hash`, `favorite_color`, `size`) VALUES
-<<<<<<< HEAD
-=======
 ('cat', 'Cat', 'InTheHat', '$2y$10$B/r8vGQ8ZegUcgUxCTjl7ODkbmnBlTYYUp4jW1yTcx5eYrUckjV9m', 'Blue', 10),
->>>>>>> 619007a2207d2bd3bd7a2228aa8a69ed8efa562c
 ('ck', 'Christian', 'Kfour', '$2y$10$KjjgMhUoJNGMVz7Ph1.W2uBwycY0iyJodUiNXdyhnCvo7EuV6W2E.', 'yellow', 10),
 ('fet', 'Fet', 'TheFet', '$2y$10$4GNQP7t/Z2m8WweWdyhFnuIGjfG.WcnZRHpdn6YSsFBHT5rzTcU5i', 'red', 10);
 
@@ -265,11 +248,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
-<<<<<<< HEAD
-  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-=======
   MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> 619007a2207d2bd3bd7a2228aa8a69ed8efa562c
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -293,11 +272,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `shoe`
 --
 ALTER TABLE `shoe`
-<<<<<<< HEAD
-  MODIFY `shoe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-=======
   MODIFY `shoe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
->>>>>>> 619007a2207d2bd3bd7a2228aa8a69ed8efa562c
 
 --
 -- AUTO_INCREMENT for table `wishlist`
