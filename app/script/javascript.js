@@ -3,7 +3,7 @@ var brandSel;
 var brandObject = {
     "Jordan": [ "Retro 1", "Retro 11", "Retro 12", "Retro 13"],
     "Nike": ["Air Max 90", "Air Max 95", "Air Max 97", "Air Force 1", "Dunks"],
-    "Adidas": ["NMD", "Superstar", "Ultraboost", "Yeezy 350", "Yeezy Foam"],
+    "Adidas": ["NMD", "Ultraboost", "Yeezy 350", "Yeezy Foam"],
     "Vans": ["Sk8 Hi", "Old Skool", "Slip on", "Slide on"],
     "NewBalance": ["550", "993", "990", "574"],
     "SelectABrand": ["Select a brand"]
