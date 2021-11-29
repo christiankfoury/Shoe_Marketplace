@@ -80,7 +80,7 @@
               <th>Price</th>
               </tr>
               <tr>
-              <th><img src='$listing->filename'></img></th>
+              <th><img src='/uploads/$listing->filename' style='width: 100px'></img></th>
               <th>$listing->shoe_id</th>
               <th>$listing->size</th>
               <th>$listing->stock</th>
