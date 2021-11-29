@@ -9,6 +9,8 @@ class Listing extends \app\core\Model{
     public $size;
     public $stock;
     public $price;
+	public $description;
+	public $color;
     public $filename;
 
     public function __construct(){
@@ -51,5 +53,21 @@ class Listing extends \app\core\Model{
 		$SQL = 'DELETE FROM `listing` WHERE listing_id = :listing_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['listing_id'=>$this->listing_id]);//associative array with key => value pairs
+	}
+
+	public function getListingsByColor() {
+		$SQL = 'SELECT * FROM listing WHERE color = :color';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['color'=>$this->color]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
+		return $STMT->fetchAll();//return the record
+	}
+
+	public function getListingsByColorSize() {
+		$SQL = 'SELECT * FROM listing WHERE color = :color AND size = :size';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['color'=>$this->color, 'size'=>$this->size]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
+		return $STMT->fetchAll();//return the record	
 	}
 }

@@ -54,8 +54,34 @@
     </div>
   </div>
 </nav>
+<div style="margin-top: 150px;">
+<h1>Welcome <?php echo "{$data['user']->first_name} {$data['user']->last_name}" ?></h1>;
+</h1>
+  <h2>For You</h2>
 
-<h1>For You</h1>
+  <h3>Here are some shoes you should look out for in the future. Based on your favorite color but not in your size.</h3>
+  <?php foreach($data['listingsColor'] as $shoe) : ?>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<?php echo $shoe['image_url'] ?>" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><?php echo $shoe['name'] ?></h5>
+        <p class="card-text">$<?php echo $shoe['price'] ?></p>
+        <a href="/Listing/view/<?php echo $shoe['listing_id'] ?>" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  <?php endforeach ?>
+  <h3>Some listings based your favorite color and available in your size.</h3>
+  <?php foreach($data['listingsColorSize'] as $shoe) : ?>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<?php echo $shoe['image_url'] ?>" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><?php echo $shoe['name'] ?></h5>
+        <p class="card-text">$<?php echo $shoe['price'] ?></p>
+        <a href="/Listing/view/<?php echo $shoe['listing_id'] ?>" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  <?php endforeach ?>
+</div>
 
 </body>
 </html>

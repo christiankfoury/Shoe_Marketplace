@@ -6,7 +6,15 @@ class User extends \app\core\Controller{
 	public function index(){
 		$user = new \app\models\User();
 		$user = $user->get($_SESSION['username']);
-		$this->view('User/index',$user);
+
+		$listing = new \app\models\Listing();
+		$listing->color = $user->favorite_color;
+		$listing->size = $user->size;
+
+		$listingsColor = $listing->getListingsByColor();
+		$listingsColorSize = $listing->getListingsByColorSize();
+
+		$this->view('User/index',['user'=>$user,'listingsColor'=>$listingsColor,'listingsColorSize'=>$listingsColorSize]);
 	}
 
 	public function login(){
