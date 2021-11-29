@@ -5,6 +5,8 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="/app/css/style.css" rel="stylesheet">
+<script src="/app/script/javascript.js"></script>
+
 <head>
   <title>Create a Listing</title>
 </head>
@@ -62,41 +64,43 @@
     </center>
     <article>
       <!-- <center> -->
-        <form action='' method='post'>
-          Brand:<select name="brand">
-            <option value="">Jordan</option>
-            <option value="">Jordan</option>
-            <option value="">Jordan</option>
-            <option value="">Jordans</option>
-          </select><br>
-          Model:<select name="model">
-            <option value="">1</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-          </select><br>
-          Colour:<select name="colour">
-            <option value="">red</option>
-            <option value="">blue</option>
-            <option value="">green</option>
-            <option value="">yellow</option>
-          </select><br>
-          Size: <select name="size">
-            <option value="">1.2</option>
-            <option value="">2.1</option>
-            <option value="">3.5</option>
-            <option value="">4.6</option>
-          </select><br>
-          Stock: <select name="stock">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-          </select><br>
-          Price: <input type='text' name='price' /><br>
-          Picture: <input type='text' name='picture' /><br>
-          <input type='submit' name='action' value='Create' />
-      <!-- </center> -->
+      <form action='' method='post'>
+        Brand: <select name="brand" id="brand">
+          <option value="Select a brand">Select a brand</option>
+          <option value="jordan">Jordan</option>
+          <option value="nike">Nike</option>
+          <option value="adidas">Adidas</option>
+          <option value="vans">Vans</option>
+          <option value="new balance">New Balance</option>
+        </select>
+        <br>
+        Model: <select name="model" id="model">
+          <option value="Select a brand" selected="selected">Select a brand first</option>
+        </select>
+        <br>
+        Colour:<select name="colour">
+          <option value="yellow">Yellow</option>
+          <option value="blue">Blue</option>
+          <option value="red">Red</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+        </select><br>
+        Size: <select name="size">
+          <option value="">1.2</option>
+          <option value="">2.1</option>
+          <option value="">3.5</option>
+          <option value="">4.6</option>
+        </select><br>
+        Stock: <select name="stock">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+        </select><br>
+        Price: <input type='text' name='price' /><br>
+        Picture: <input type='text' name='picture' /><br>
+        <input type='submit' name='action' value='Create' />
+        <!-- </center> -->
     </article>
   </div>
 

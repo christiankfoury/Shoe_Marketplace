@@ -64,7 +64,6 @@
     <article>
       <!-- <center> -->
       <a href="/User/changePassword">Change Password</a><br>
-      <a href="/User/2fa">2-Factor Authentication</a>
       <!-- </center> -->
     </article>
   </div>
