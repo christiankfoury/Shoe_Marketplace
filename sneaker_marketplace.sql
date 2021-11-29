@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2021 at 10:51 PM
+-- Generation Time: Nov 29, 2021 at 07:29 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,8 +37,17 @@ CREATE TABLE `listing` (
   `size` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   `price` double NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(150) NOT NULL,
   `filename` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `listing`
+--
+
+INSERT INTO `listing` (`listing_id`, `shoe_id`, `seller_username`, `size`, `stock`, `price`, `description`, `color`, `filename`) VALUES
+(1, 1, 'fet', 10, 3, 129, 'bebsi', 'bourgeouis', 'bob.png');
 
 -- --------------------------------------------------------
 
@@ -54,6 +63,14 @@ CREATE TABLE `message` (
   `message` varchar(150) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `sender`, `receiver`, `message`, `timestamp`) VALUES
+(1, 'fet', 'ck', 'Hello', '2021-11-29 03:31:09'),
+(2, 'ck', 'fet', 'Hi', '2021-11-29 03:31:30');
 
 -- --------------------------------------------------------
 
@@ -96,10 +113,15 @@ CREATE TABLE `shoe` (
   `shoe_id` int(11) NOT NULL,
   `brand` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` varchar(150) NOT NULL,
-  `color` varchar(50) NOT NULL,
   `previously_sold_price` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shoe`
+--
+
+INSERT INTO `shoe` (`shoe_id`, `brand`, `name`, `previously_sold_price`) VALUES
+(1, 'Nike', 'Air Force 1', 100);
 
 -- --------------------------------------------------------
 
@@ -116,6 +138,14 @@ CREATE TABLE `user` (
   `favorite_color` varchar(50) NOT NULL,
   `size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `first_name`, `last_name`, `password_hash`, `favorite_color`, `size`) VALUES
+('ck', 'Christian', 'Kfour', '$2y$10$KjjgMhUoJNGMVz7Ph1.W2uBwycY0iyJodUiNXdyhnCvo7EuV6W2E.', 'yellow', 10),
+('fet', 'Fet', 'TheFet', '$2y$10$4GNQP7t/Z2m8WweWdyhFnuIGjfG.WcnZRHpdn6YSsFBHT5rzTcU5i', 'red', 10);
 
 -- --------------------------------------------------------
 
@@ -195,13 +225,13 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
-  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -219,7 +249,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `shoe`
 --
 ALTER TABLE `shoe`
-  MODIFY `shoe_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `shoe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
