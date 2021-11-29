@@ -71,13 +71,11 @@
                 <table border=1>
                 <tr>
                 <th>$messages->sender</th>
-                <th>$messages->receiver</th>
                 <th>$messages->message</th>
                 <th>$messages->timestamp</th>
-                <th>$messages->read_status</th>
-                <th></th>
+                <th><a href='\Message\createMessage\\$messages->receiver\\$messages->sender'>Send</a></th>
                 </tr>
-                </table>; 
+                </table>
                 ";
         }
         ?>
@@ -89,14 +87,12 @@
           "
                 <table border=1>
                 <tr>
-                <th>$messages->sender</th>
                 <th>$messages->receiver</th>
                 <th>$messages->message</th>
                 <th>$messages->timestamp</th>
-                <th>$messages->read_status</th>
-                <th></th>
+                <th><a href='\Message\createMessage\\$messages->sender\\$messages->receiver'>Send</a></th>
                 </tr>
-                </table>; 
+                </table>
                 ";
         }
         ?>

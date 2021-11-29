@@ -6,7 +6,7 @@ namespace app\filters;
 #[\Attribute]
 class Login	{
 	function execute(){
-		if (!isset($_SESSION['user_id'])) {
+		if (!isset($_SESSION['username'])) {
 			header('location:/Profile/login');
 			return true;
 		}

@@ -8,6 +8,7 @@ class Listing extends \app\core\Controller{
        $user = $user->get($_SESSION['username']);
        
        $listing = new \app\models\Listing();
+       $listing->seller_username = $user->username;
        $listing = $listing->getBySeller($user->username);
        $this->view("Listing/index",["user"=>$user,"listings"=>$listing]);
    }
@@ -31,5 +32,11 @@ class Listing extends \app\core\Controller{
            $user = $user->get($_SESSION['username']);
            $this->view('Listing/createListing',$user);
        }
+   }
+
+   public function viewListing($listing_id){
+        $listing = new \app\models\Listing();
+        $listing = $listing->get($listing_id);
+        $this->view('/Listing/viewListing',$listing);
    }
 }

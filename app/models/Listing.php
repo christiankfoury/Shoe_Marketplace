@@ -24,7 +24,7 @@ class Listing extends \app\core\Model{
     }
 
     public function get($listing_id){
-        $SQL = 'SELECT * FROM listing WHERE lising_id = :listing_id';
+        $SQL = 'SELECT * FROM listing WHERE listing_id = :listing_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['listing_id'=>$listing_id]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');

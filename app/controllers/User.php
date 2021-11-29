@@ -66,31 +66,27 @@ class User extends \app\core\Controller{
 		$this->view('User/settings',$user);
 	}
 
-	// #[\app\filters\Login]
-	// public function changePassword() {
-	// 	$profile = new \app\models\Profile();
-	// 	$profile = $profile->get($_SESSION['user_id']);
-	// 	$user = new \app\models\User();
-	// 	$user = $user->get($_SESSION['username']);
-
-
-	// 	if (isset($_POST['action'])) {
-	// 		if ($_POST['new_password'] == '' || $_POST['password_confirm'] == '') {
-	// 			$this->view('User/changePassword', ['profile' => $profile, 'error' => 'The new password must not be empty']);
-	// 			return;
-	// 		}
-	// 		if (password_verify($_POST['current_password'], $user->password_hash) && $_POST['new_password'] == $_POST['password_confirm']) { 
-	// 			$user->password = $_POST['new_password'];
-	// 			// echo $user->password_hash;
-	// 			$user->update();
-	// 			header("Location:/Profile/index");
-	// 		}
-	// 		else {
-	// 			$this->view('User/changePassword', ['profile' => $profile, 'error' => 'The password(s) do not correspond']);
-	// 		}
-	// 	}
-	// 	else {
-	// 		$this->view('User/changePassword', ['profile' => $profile]);
-	// 	}
-	// }
+	#[\app\filters\Login]
+	public function changePassword() {
+		$user = new \app\models\User();
+		$user = $user->get($_SESSION['username']);
+		if (isset($_POST['action'])) {
+			if ($_POST['new_password'] == '' || $_POST['password_confirm'] == '') {
+				$this->view('User/changePassword', ['user' => $user, 'error' => 'The new password must not be empty']);
+				return;
+			}
+			if (password_verify($_POST['current_password'], $user->password_hash) && $_POST['new_password'] == $_POST['password_confirm']) { 
+				$user->password = $_POST['new_password'];
+				// echo $user->password_hash;
+				$user->update();
+				header("Location:/Profile/index");
+			}
+			else {
+				$this->view('User/changePassword', ['user' => $user, 'error' => 'The password(s) do not correspond']);
+			}
+		}
+		else {
+			$this->view('User/changePassword', ['user' => $user]);
+		}
+	}
 }

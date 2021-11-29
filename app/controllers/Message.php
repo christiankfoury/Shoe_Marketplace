@@ -3,29 +3,32 @@ namespace app\controllers;
 
 class Message extends \app\core\Controller {
 
+    #[\app\filters\Login]
     public function index(){
         $messagesReceived = new \app\models\Message();
+        $messagesReceived->receiver = $_SESSION["username"];
         $messagesReceived = $messagesReceived->getMessagesByReceiver($_SESSION["username"]);
         $messagesSent = new \app\models\Message();
+        $messagesSent->sender = $_SESSION["username"];
         $messagesSent = $messagesSent->getMessagesBySender($_SESSION["username"]);
         $this->view('Message/inbox',["inbox"=>$messagesReceived,"outbox"=>$messagesSent]);
     }
 
     #[\app\filters\Login]
-    public function createMessage($receiver){
+    public function createMessage($sender,$receiver){
         if(isset($_POST['action'])){
             $message = new \app\models\Message();
-            $profile = new \app\models\Profile();
-            $profile = $profile->get($_SESSION['user_id']);
-            $message->sender = $profile->profile_id;
+            $message->sender = $sender;
             $message->receiver = $receiver;
             $message->message = $_POST['message'];
-            $message->private_status = $_POST['private_status'];
             $message->insert();
-            header("location:/Profile/wall/$receiver");
+            header("location:/Message/index");
         }
         else{
-            $this->view('Message/createMessage');
+            $message = new \app\models\Message();
+            $message->sender = $sender;
+            $message->receiver = $receiver;
+            $this->view('Message/sendMessage',$message);
         }
     }
 

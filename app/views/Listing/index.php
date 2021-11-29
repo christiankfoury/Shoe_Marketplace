@@ -67,20 +67,28 @@
           <a href="/Listing/createListing" style="color:black;">Create a new listing</a>
           <br>
           <?php
-          $listing = new \app\models\Listing();
-          $listing->seller_username;
-          $listings = $listing->getBySeller();
-          foreach ($listings as $listing) {
+          foreach ($data['listings'] as $listing) {
             // print_r($listing);
-            echo "<table border=1>
+            echo "
+              <center>
+              <table border=1>
               <tr>
+              <th>Image</th>
+              <th>Shoe</th>
+              <th>Size</th>
+              <th>Stock</th>
+              <th>Price</th>
+              </tr>
+              <tr>
+              <th><img src='$listing->filename'></img></th>
               <th>$listing->shoe_id</th>
               <th>$listing->size</th>
               <th>$listing->stock</th>
               <th>$listing->price</th>
-              <th>$listing->filename</th>
+              <th><a href='/Listing/viewListing/$listing->listing_id'>View</a>
               </tr>
-              </table>";
+              </table>
+              </center>";
           }
           ?>
         <!-- </center> -->
