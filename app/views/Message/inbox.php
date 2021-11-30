@@ -73,7 +73,7 @@
                 <th>$messages->sender</th>
                 <th>$messages->message</th>
                 <th>$messages->timestamp</th>
-                <th><a href='\Message\createMessage\\$messages->receiver\\$messages->sender'>Send</a></th>
+                <th><a href='\Message\createMessage\\$messages->receiver\\$messages->sender'>Reply</a></th>
                 </tr>
                 </table>
                 ";
@@ -90,7 +90,7 @@
                 <th>$messages->receiver</th>
                 <th>$messages->message</th>
                 <th>$messages->timestamp</th>
-                <th><a href='\Message\createMessage\\$messages->sender\\$messages->receiver'>Send</a></th>
+                <th><a href='\Message\createMessage\\$messages->sender\\$messages->receiver'>Send again</a></th>
                 </tr>
                 </table>
                 ";

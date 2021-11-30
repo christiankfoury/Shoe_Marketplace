@@ -49,7 +49,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" method="POST">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
@@ -60,14 +60,14 @@
   <div id="brown-box">
     <div class="listingIndex">
       <!-- <center> -->
-        <h1>Matched Listings</h1>
+      <h1>Matched Listings</h1>
       <!-- </center> -->
       <article style="background-color: white;">
         <!-- <center> -->
-          <?php
-          foreach ($data as $listing) {
-            // print_r($listing);
-            echo "
+        <?php
+        foreach ($data as $listing) {
+          // print_r($listing);
+          echo "
               <center>
               <table border=1>
               <tr>
@@ -87,8 +87,8 @@
               </tr>
               </table>
               </center>";
-          }
-          ?>
+        }
+        ?>
         <!-- </center> -->
       </article>
     </div>

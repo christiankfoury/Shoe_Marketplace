@@ -51,7 +51,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" method="post">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
             <button class="btn btn-outline-success" type="submit" name="action">Search</button>
           </form>

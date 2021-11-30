@@ -49,7 +49,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" method="POST">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
@@ -60,16 +60,16 @@
   <div id="brown-box">
     <div class="listingIndex">
       <!-- <center> -->
-        <h1>Listings</h1>
+      <h1>Listings</h1>
       <!-- </center> -->
       <article style="background-color: white;">
         <!-- <center> -->
-          <a href="/Listing/createListing" style="color:black;">Create a new listing</a>
-          <br>
-          <?php
-          foreach ($data['listings'] as $listing) {
-            // print_r($listing);
-            echo "
+        <a href="/Listing/createListing" style="color:black;">Create a new listing</a>
+        <br>
+        <?php
+        foreach ($data['listings'] as $listing) {
+          // print_r($listing);
+          echo "
               <center>
               <table border=1>
               <tr>
@@ -89,8 +89,8 @@
               </tr>
               </table>
               </center>";
-          }
-          ?>
+        }
+        ?>
         <!-- </center> -->
       </article>
     </div>

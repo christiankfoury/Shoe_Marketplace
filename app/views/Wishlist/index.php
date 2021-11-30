@@ -51,7 +51,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" method="POST">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
             <button class="btn btn-outline-success" type="submit" name="action">Search</button>
           </form>
@@ -61,13 +61,13 @@
   </nav>
   <div style="margin-top: 150px;">
     <h2>Wishlist</h2>
-    <?php 
-    
-    if($data == null){
+    <?php
+
+    if ($data == null) {
       echo "<h4>You have no wishlisted sneakers!";
-    }else{
-      foreach($data as $listing){
-        echo 
+    } else {
+      foreach ($data as $listing) {
+        echo
         "
         <h4>$listing->listing_id</h4>
         ";

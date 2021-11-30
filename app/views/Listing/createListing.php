@@ -50,7 +50,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" method="POST">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
@@ -86,17 +86,17 @@
           <option value="White">White</option>
         </select><br>
         Size: <select name="size">
-						<?php for ($i = 1; $i <= 35; $i++) { ?>
-							<option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
-							<?php if ($i != 35) { ?>
-								<option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
-							<?php } ?>
-						<?php } ?>
-					</select><br>
+          <?php for ($i = 1; $i <= 35; $i++) { ?>
+            <option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
+            <?php if ($i != 35) { ?>
+              <option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
+            <?php } ?>
+          <?php } ?>
+        </select><br>
         Stock: <select name="stock">
-        <?php for ($i = 1; $i <= 9; $i++) { ?>
-							<option value="<?php echo $i; ?>"><?php echo $i ?></option>
-						<?php } ?>
+          <?php for ($i = 1; $i <= 9; $i++) { ?>
+            <option value="<?php echo $i; ?>"><?php echo $i ?></option>
+          <?php } ?>
         </select><br>
         Price: <input type='number' name='price' step=".01" /><br>
         Description <input type='textarea' name='description' /><br>
