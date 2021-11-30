@@ -75,8 +75,19 @@
             $username = $_SESSION['username'];
             $count = count($data['reviews']);
             echo
-            "<h4><a href='/Message/createMessage/$username/{$data['listing']->seller_username}'>Contact Seller</a></h4>
-            <h4><a href=''>Purchase</a></h4>";
+            "<h4><a href='/Message/createMessage/$username/{$data['listing']->seller_username}'>Contact Seller</a></h4>";
+
+            $order = new \app\models\Orders();
+            $order->listing_id = $data['listing']->listing_id;
+            $order->buyer_username = $_SESSION['username'];
+            $order = $order->getByListingAndBuyer();
+            if($order != false){
+                echo "<h4><a href='/Orders/removeFromCart/$order->order_id/{$data['listing']->listing_id}'>Remove From Cart</a></h4>";
+            }
+            else{
+                echo "<h4><a href='/Orders/addToCart/{$data['listing']->listing_id}'>Add To Cart</a></h4>";
+            }
+
             $wishlist = new \app\models\Wishlist();
             $wishlist->shoe_id = $data['listing']->shoe_id;
             $wishlist->color = $data['listing']->color;

@@ -38,20 +38,28 @@ class Orders extends \app\core\Model{
 		return $STMT->fetchAll();//return the record
     }
 
-    public function getByBuyer(){
-        $SQL = 'SELECT * FROM orders WHERE buyer_username = :buyer_username';
+    public function getCart(){
+        $SQL = 'SELECT * FROM orders WHERE buyer_username = :buyer_username AND timestamp IS NULL';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['buyer_username'=>$this->buyer_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Orders');
 		return $STMT->fetchAll();//return the record
     }
 
+	public function getByListingAndBuyer(){
+		$SQL = 'SELECT * FROM orders WHERE listing_id = :listing_id AND buyer_username = :buyer_username AND timestamp IS NULL';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['listing_id'=>$this->listing_id,'buyer_username'=>$this->buyer_username]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Orders');
+		return $STMT->fetch();//return the record
+	}
+
     public function insert(){
 		//here we will have to add `` around field names
-		$SQL = 'INSERT INTO orders(seller_username, buyer_username, listing_id, quantity, timestamp) 
-        VALUES (:seller_username, :buyer_username, :listing_id, :quantity, UTC_TIMESTAMP())';
+		$SQL = 'INSERT INTO orders(seller_username, buyer_username, listing_id, quantity)  
+        VALUES (:seller_username, :buyer_username, :listing_id, :quantity)'; //TIMESTAMP IS NULL AS DEFAULT VALUE.
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['seller_username'=>$this->seller_username, 'buyer_username'=>$this->buyer_username,'listing_id'=>$this->listing_id,'quantity'=>$this->quantity]);
+		$STMT->execute(['seller_username' => $this->seller_username, 'buyer_username' => $this->buyer_username, 'listing_id' => $this->listing_id, 'quantity' => $this->quantity]);
 	}
 
 	public function delete(){//delete a message record
