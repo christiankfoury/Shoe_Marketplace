@@ -10,6 +10,7 @@ class User extends \app\core\Controller{
 		$listing = new \app\models\Listing();
 		$listing->color = $user->favorite_color;
 		$listing->size = $user->size;
+		$listing->seller_username = $_SESSION['username'];
 
 		$listingsColor = $listing->getListingsByColor();
 		$listingsColorSize = $listing->getListingsByColorSize();

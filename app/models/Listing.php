@@ -57,17 +57,17 @@ class Listing extends \app\core\Model{
 	}
 
 	public function getListingsByColor() {
-		$SQL = 'SELECT * FROM listing WHERE color = :color';
+		$SQL = 'SELECT * FROM listing WHERE color = :color AND seller_username != :seller_username';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['color'=>$this->color]);
+		$STMT->execute(['color'=>$this->color, 'seller_username'=>$this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
 
 	public function getListingsByColorSize() {
-		$SQL = 'SELECT * FROM listing WHERE color = :color AND size = :size';
+		$SQL = 'SELECT * FROM listing WHERE color = :color AND size = :size AND seller_username != :seller_username';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['color'=>$this->color, 'size'=>$this->size]);
+		$STMT->execute(['color'=>$this->color, 'size'=>$this->size, 'seller_username'=>$this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record	
 	}
