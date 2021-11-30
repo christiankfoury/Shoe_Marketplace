@@ -67,6 +67,9 @@ class Orders extends \app\core\Controller{
     public function checkout($order_id){
         $order = new \app\models\Orders();
         $order = $order->get($order_id);
+        $user = new \app\models\User();
+        $user = $user->get($_SESSION['username']);
+        $this->view('Orders/checkout',['order'=>$order,'user'=>$user]);
     }
 
     public function viewOrder(){

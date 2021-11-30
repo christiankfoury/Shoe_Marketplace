@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <head>
-  <title>Your Cart</title>
+  <title>Checkout</title>
 </head>
 
 <body>
@@ -60,25 +60,26 @@
     </div>
   </nav>
 
-  <h4 style='margin-top:150px;'>Your Cart Contents</h4>
+  <center><h4 style='margin-top:150px;'>Checkout</h4></center>
   <?php 
-
-    if($data == null){
-        echo "<h4>You have nothing in your cart!</h4>";
-    }
-    else{
         $listing = new \app\models\Listing();
-        foreach($data as $items){
-            $listing = $listing->get($items->listing_id);
-            echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
-            <h4>size: $listing->size</h4>
-            <h4>quantity: $items->quantity</h4>
-            <a href='/Orders/removeItemFromCart/$items->order_id/$items->listing_id'>Remove</a><br>
-            <a href='/Orders/checkout/$items->order_id'>Check out</a><br>";
-        }
-    }
-
+        $listing = $listing->get($data['order']->listing_id);
+        echo "<center><img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
+        <h4>size: $listing->size</h4>
+        <h4>quantity: {$data['order']->quantity}</h4></center>";
   ?>
+
+    <form method="post" action="">
+        Email: <input type="text" name="email"><br>
+        First Name: <input disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
+        Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
+        Address: <input type="text" name="address"><br>
+        Address 2: <input type="text" name="address2" placeholder="apt,suite,etc."><br>
+        Postal Code: <input type="text" name="postalCode"><br>
+        City: <input type="text" name="city"><br>
+        Province: <input type="text" name="province"><br>
+        Country: <input disabled value="Canada" type="text" name="country"><br>
+    </form>
 </body>
 
 </html>
