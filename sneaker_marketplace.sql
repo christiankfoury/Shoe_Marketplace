@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2021 at 06:47 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Nov 30, 2021 at 02:10 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,6 +39,7 @@ CREATE TABLE `listing` (
   `price` double NOT NULL,
   `description` text NOT NULL,
   `color` varchar(150) NOT NULL,
+  `available` enum('yes','no') NOT NULL DEFAULT 'yes',
   `filename` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -46,9 +47,9 @@ CREATE TABLE `listing` (
 -- Dumping data for table `listing`
 --
 
-INSERT INTO `listing` (`listing_id`, `shoe_id`, `seller_username`, `size`, `stock`, `price`, `description`, `color`, `filename`) VALUES
-(1, 1, 'fet', 10, 3, 129, 'bebsi', 'bourgeouis', 'bob.png'),
-(2, 3, 'ck', 10, 6, 50.5, 'Bebs', 'blue', '61a50dce9a6a3.jpg');
+INSERT INTO `listing` (`listing_id`, `shoe_id`, `seller_username`, `size`, `stock`, `price`, `description`, `color`, `available`, `filename`) VALUES
+(1, 1, 'fet', 10, 3, 129, 'bebsi', 'bourgeouis', 'yes', 'bob.png'),
+(2, 3, 'ck', 10, 6, 50.5, 'Bebs', 'Blue', 'yes', '61a50dce9a6a3.jpg');
 
 -- --------------------------------------------------------
 

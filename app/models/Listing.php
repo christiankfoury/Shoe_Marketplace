@@ -11,6 +11,7 @@ class Listing extends \app\core\Model{
     public $price;
 	public $description;
 	public $color;
+	public $available;
     public $filename;
 
     public function __construct(){
