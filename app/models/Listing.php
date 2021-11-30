@@ -90,9 +90,9 @@ class Listing extends \app\core\Model{
 	}
 
 	public function getByWishlist(){
-		$SQL = 'SELECT * FROM listing WHERE shoe_id = :shoe_id AND size = :size AND color = :color';
+		$SQL = 'SELECT * FROM listing WHERE shoe_id = :shoe_id AND size = :size AND color = :color AND seller_username != :seller_username';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['shoe_id'=>$this->shoe_id, 'size' => $this->size, 'color' => $this->color]);
+		$STMT->execute(['shoe_id'=>$this->shoe_id, 'size' => $this->size, 'color' => $this->color, 'seller_username' => $this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
