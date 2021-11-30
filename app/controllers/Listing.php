@@ -84,7 +84,20 @@ class Listing extends \app\core\Controller
     {
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
-        $this->view('Listing/viewListing', $listing);
+
+        $review = new \app\models\Review();
+        $reviews = $review->getByShoeId($listing->shoe_id);
+        if (isset($_POST['actionReview'])) {
+            $review = new \app\models\Review();
+            $review->username = $_SESSION['username'];
+            $review->shoe_id = $listing->shoe_id;  
+            $review->message = $_POST['message'];
+            $review->insert();
+            header("location:/Listing/viewListing/$listing_id");
+        }
+        else {
+            $this->view('Listing/viewListing', ['listing' => $listing, 'reviews' => $reviews]);
+        }
     }
 
     public function allListings() {

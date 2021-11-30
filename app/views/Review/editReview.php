@@ -7,7 +7,7 @@
 <link href="/app/css/style.css" rel="stylesheet">
 
 <head>
-    <title>View Listing</title>
+    <title>Edit Review</title>
 </head>
 
 <body>
@@ -58,51 +58,14 @@
         </div>
     </nav>
     <div class="listingIndex">
-        <a href="/User/index">Return to For You</a><br>
-        <a href="/Listing/allListings">Return to all listings</a>
-        <h1>Listing details</h1>
-        <?php
-        echo
-        "
-    <h4><img src='/uploads/{$data['listing']->filename}' style='width: 100px'></h4>
-    <h4>{$data['listing']->shoe_id}</h4>
-    <h4>{$data['listing']->seller_username}</h4>
-    <h4>{$data['listing']->size}</h4>
-    <h4>{$data['listing']->stock}</h4>
-    <h4>{$data['listing']->price}</h4>
-    ";
-        if ($_SESSION['username'] != $data['listing']->seller_username) {
-            $username = $_SESSION['username'];
-            $count = count($data['reviews']);
-            echo
-            "<h4><a href='/Message/createMessage/$username/{$data['listing']->seller_username}'>Contact Seller</a></h4>
-            <h4><a href=''>Purchase</a></h4>
-            <h4>Reviews ($count)<h4>";
-        }
-
-        foreach ($data['reviews'] as $review) {
-            echo
-            "
-            ___________________________
-            <h4>{$review->username}</h4>
-            <h4>{$review->message}</h4>
-            ";
-            if ($review->username == $_SESSION['username']) {
-                echo
-                "
-                <h4><a href='/Review/editReview/{$data['listing']->listing_id}/{$review->review_id}'>Edit</a></h4>
-                <h4><a href='/Review/deleteReview/{$data['listing']->listing_id}/{$review->review_id}'>Delete</a></h4>
-                ";
-            }
-            echo "___________________________";
-        }
-        ?>
-
-        <h4>Write a review</h4>
-        <form action="" method="post">
-            <textarea name="message" id="message" cols="30" rows="10"></textarea>
-            <input type="submit" name="actionReview" value="Submit">
-        </form>
+        <center>
+            <form action="" method="post">
+                <textarea name="message" id="message" cols="30" rows="10">
+                    <?php echo $data['review']->message; ?>
+                </textarea>
+                <input type="submit" name="actionReview" value="Submit">
+            </form>
+        </center>
     </div>
 </body>
 
