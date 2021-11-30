@@ -80,4 +80,12 @@ class Listing extends \app\core\Model{
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
+
+	public function getBySearch($search){
+		$SQL = 'SELECT * FROM listing WHERE seller_username LIKE :seller_username OR size LIKE :size OR price LIKE :price OR description LIKE :description OR color LIKE :color OR available LIKE :available';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['seller_username' => "%$search%", 'size'=> "%$search%", 'price'=> "%$search%", 'description' => "%$search%", 'color' => "%$search%", 'available' => "%$search%"]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
+		return $STMT->fetchAll();//return the record	
+	}
 }

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="/app/css/style.css" rel="stylesheet">
 
 <head>
-  <title>For You Page</title>
+  <title>Matched Listings</title>
 </head>
 
-<body>
+<body style="height: 100%;">
   <nav class="navbar navbar-light bg-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand mx-auto" href="/User/index" style="margin-left: 50px;"><img src="/uploads/monkey.png" style="height: 100px"></a></a>
@@ -24,10 +25,10 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="/User/index">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Listing/index">Listings</a>
+              <a class="nav-link active" href="/Listing/index">Listings</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Message/index">Messages</a>
@@ -49,46 +50,49 @@
             </li>
           </ul>
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
-            <button class="btn btn-outline-success" type="submit" name="action">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
       </div>
     </div>
   </nav>
-  <div style="margin-top: 150px;">
-    <h1>Welcome <?php echo "{$data['user']->first_name} {$data['user']->last_name}" ?></h1>
-    <a href="/Listing/allListings">Explore all listings</a>
-    <h2>For You</h2>
-
-    <h3>Here are some shoes you should look out for in the future. Based on your favorite color but not in your size.</h3>
-    <?php foreach ($data['listingsColor'] as $listing) : ?>
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-        <div class="card-body">
-          <?php $shoe = new \app\models\Shoe;
-          $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-          <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-          <p class="card-text">$<?php echo $listing->price ?></p>
-          <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
-        </div>
-      </div>
-    <?php endforeach ?>
-    <h3>Some listings based your favorite color and available in your size.</h3>
-    <?php foreach ($data['listingsColorSize'] as $listing) : ?>
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-        <div class="card-body">
-          <?php $shoe = new \app\models\Shoe;
-          $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-          <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-          <p class="card-text">$<?php echo $listing->price ?></p>
-          <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
-        </div>
-      </div>
-    <?php endforeach ?>
+  <div id="brown-box">
+    <div class="listingIndex">
+      <!-- <center> -->
+        <h1>Matched Listings</h1>
+      <!-- </center> -->
+      <article style="background-color: white;">
+        <!-- <center> -->
+          <?php
+          foreach ($data as $listing) {
+            // print_r($listing);
+            echo "
+              <center>
+              <table border=1>
+              <tr>
+              <th>Image</th>
+              <th>Shoe</th>
+              <th>Size</th>
+              <th>Stock</th>
+              <th>Price</th>
+              </tr>
+              <tr>
+              <th><img src='/uploads/$listing->filename' style='width: 100px'></img></th>
+              <th>$listing->shoe_id</th>
+              <th>$listing->size</th>
+              <th>$listing->stock</th>
+              <th>$listing->price</th>
+              <th><a href='/Listing/viewListing/$listing->listing_id'>View</a>
+              </tr>
+              </table>
+              </center>";
+          }
+          ?>
+        <!-- </center> -->
+      </article>
+    </div>
   </div>
-
 </body>
 
 </html>
