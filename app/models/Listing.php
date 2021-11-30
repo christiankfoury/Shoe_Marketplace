@@ -88,4 +88,12 @@ class Listing extends \app\core\Model{
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record	
 	}
+
+	public function getByWishlist(){
+		$SQL = 'SELECT * FROM listing WHERE shoe_id = :shoe_id AND size = :size AND color = :color';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['shoe_id'=>$this->shoe_id, 'size' => $this->size, 'color' => $this->color]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
+		return $STMT->fetchAll();//return the record
+	}
 }

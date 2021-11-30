@@ -76,8 +76,18 @@
             $count = count($data['reviews']);
             echo
             "<h4><a href='/Message/createMessage/$username/{$data['listing']->seller_username}'>Contact Seller</a></h4>
-            <h4><a href=''>Purchase</a></h4>
-            <h4>Reviews ($count)<h4>";
+            <h4><a href=''>Purchase</a></h4>";
+            $wishlist = new \app\models\Wishlist();
+            $wishlist->shoe_id = $data['listing']->shoe_id;
+            $wishlist->color = $data['listing']->color;
+            $wishlist->username = $_SESSION['username'];
+            $wishlist = $wishlist->getByShoeAndColor();
+            if ($wishlist == false) {
+                echo "<h4><a href='/Wishlist/add/{$data['listing']->shoe_id}/{$data['listing']->color}/{$data['listing']->listing_id}'>Add to Wishlist</a></h4>";
+            } else {
+                echo "<h4><a href='/Wishlist/remove/{$data['listing']->shoe_id}/{$data['listing']->color}/{$data['listing']->listing_id}'>Remove from Wishlist</a></h4>";
+            }
+            echo "<h4>Reviews ($count)<h4>";
         }
 
         foreach ($data['reviews'] as $review) {
@@ -95,6 +105,7 @@
                 ";
             }
             echo "___________________________";
+
         }
         ?>
 
