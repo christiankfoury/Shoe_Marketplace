@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <head>
-  <title>For You Page</title>
+  <title>Wishlist</title>
 </head>
 
 <body>
@@ -60,37 +60,21 @@
     </div>
   </nav>
   <div style="margin-top: 150px;">
-    <h1>Welcome <?php echo "{$data['user']->first_name} {$data['user']->last_name}" ?></h1>
-    <a href="/Listing/allListings">Explore all listings</a>
-    <h2>For You</h2>
+    <h2>Wishlist</h2>
+    <?php 
+    
+    if($data == null){
+      echo "<h4>You have no wishlisted sneakers!";
+    }else{
+      foreach($data as $listing){
+        echo 
+        "
+        <h4>$listing->listing_id</h4>
+        ";
+      }
+    }
 
-    <h3>Here are some shoes you should look out for in the future. Based on your favorite color but not in your size.</h3>
-    <?php foreach ($data['listingsColor'] as $listing) : ?>
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-        <div class="card-body">
-          <?php $shoe = new \app\models\Shoe;
-          $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-          <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-          <p class="card-text">$<?php echo $listing->price ?></p>
-          <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
-        </div>
-      </div>
-    <?php endforeach ?>
-    <h3>Some listings based your favorite color and available in your size.</h3>
-    <?php foreach ($data['listingsColorSize'] as $listing) : ?>
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-        <div class="card-body">
-          <?php $shoe = new \app\models\Shoe;
-          $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-          <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-          <p class="card-text">$<?php echo $listing->price ?></p>
-          <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
-        </div>
-      </div>
-    <?php endforeach ?>
-  </div>
+    ?>
 
 </body>
 

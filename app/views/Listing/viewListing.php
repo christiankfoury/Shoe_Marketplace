@@ -26,6 +26,18 @@
             "
         <h4><a href='/Message/createMessage/$username/$data->seller_username'>Contact Seller</a></h4>
         <h4><a href=''>Purchase</a></h4>";
+        
+        $wishlist = new \app\models\Wishlist();
+        $wishlist->shoe_id = $data->shoe_id;
+        $wishlist->color = $data->color;
+        $wishlist->username = $_SESSION['username'];
+        $wishlist = $wishlist->getByShoeAndColor();
+        if($wishlist == false){
+            echo "<h4><a href='/Wishlist/add/$data->shoe_id/$data->color/$data->listing_id'>Add to Wishlist</a></h4>";
+        }
+        else{
+            echo "<h4><a href='/Wishlist/remove/$data->shoe_id/$data->color/$data->listing_id'>Remove from Wishlist</a></h4>";
+        }
         }
         ?>
     </center>
