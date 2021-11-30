@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 02:10 AM
+-- Generation Time: Nov 30, 2021 at 02:52 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -48,8 +48,8 @@ CREATE TABLE `listing` (
 --
 
 INSERT INTO `listing` (`listing_id`, `shoe_id`, `seller_username`, `size`, `stock`, `price`, `description`, `color`, `available`, `filename`) VALUES
-(1, 1, 'fet', 10, 3, 129, 'bebsi', 'bourgeouis', 'yes', 'bob.png'),
-(2, 3, 'ck', 10, 6, 50.5, 'Bebs', 'Blue', 'yes', '61a50dce9a6a3.jpg');
+(2, 3, 'ck', 10, 6, 50.5, 'Bebs', 'Blue', 'yes', '61a50dce9a6a3.jpg'),
+(3, 2, 'cat', 1, 1, 120.2, 'Boby', 'Yellow', 'yes', '61a57dc29f304.png');
 
 -- --------------------------------------------------------
 
@@ -181,6 +181,7 @@ DROP TABLE IF EXISTS `wishlist`;
 CREATE TABLE `wishlist` (
   `wishlist_id` int(11) NOT NULL,
   `shoe_id` int(11) NOT NULL,
+  `color` varchar(150) NOT NULL,
   `username` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -249,7 +250,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
-  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `message`
