@@ -57,8 +57,8 @@
     </div>
   </nav>
   <div style="margin-top: 150px;">
-    <h1>Welcome <?php echo "{$data['user']->first_name} {$data['user']->last_name}" ?></h1>;
-    </h1>
+    <h1>Welcome <?php echo "{$data['user']->first_name} {$data['user']->last_name}" ?></h1>
+    <a href="/Listing/allListings">Explore all listings</a>
     <h2>For You</h2>
 
     <h3>Here are some shoes you should look out for in the future. Based on your favorite color but not in your size.</h3>

@@ -72,4 +72,12 @@ class Listing extends \app\core\Model{
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record	
 	}
+
+	public function getAllExceptUser() {
+		$SQL = 'SELECT * FROM listing WHERE seller_username != :seller_username';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['seller_username'=>$this->seller_username]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
+		return $STMT->fetchAll();//return the record
+	}
 }

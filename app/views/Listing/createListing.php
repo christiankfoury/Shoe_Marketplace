@@ -79,11 +79,11 @@
         </select>
         <br>
         Color:<select name="color">
-          <option value="yellow">Yellow</option>
-          <option value="blue">Blue</option>
-          <option value="red">Red</option>
-          <option value="black">Black</option>
-          <option value="white">White</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Blue">Blue</option>
+          <option value="Red">Red</option>
+          <option value="Black">Black</option>
+          <option value="White">White</option>
         </select><br>
         Size: <select name="size">
 						<?php for ($i = 1; $i <= 35; $i++) { ?>

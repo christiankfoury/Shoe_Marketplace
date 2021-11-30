@@ -84,6 +84,13 @@ class Listing extends \app\core\Controller
     {
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
-        $this->view('/Listing/viewListing', $listing);
+        $this->view('Listing/viewListing', $listing);
+    }
+
+    public function allListings() {
+        $listing = new \app\models\Listing();
+        $listing->seller_username = $_SESSION['username'];
+        $listings = $listing->getAllExceptUser();
+        $this->view('Listing/allListings', ['listings'=>$listings]);
     }
 }

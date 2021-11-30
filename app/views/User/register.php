@@ -28,9 +28,9 @@
 					Last Name: <br><input type='text' name='last_name' /><br>
 					Favorite Color: <br> <select name="favorite_color">
 						<?php
-						$colors = ['yellow', 'blue', 'red', 'black', 'white']; ?>
+						$colors = ['Yellow', 'Blue', 'Red', 'Black', 'White']; ?>
 						<?php foreach ($colors as $color) { ?>
-							<option value="<?php echo $color; ?>"><?php echo ucfirst($color); ?></option>
+							<option value="<?php echo $color; ?>"><?php echo $color; ?></option>
 						<?php } ?>
 					</select><br>
 
