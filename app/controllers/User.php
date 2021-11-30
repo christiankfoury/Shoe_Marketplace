@@ -4,18 +4,29 @@ namespace app\controllers;
 class User extends \app\core\Controller{
 
 	public function index(){
-		$user = new \app\models\User();
-		$user = $user->get($_SESSION['username']);
+		if(isset($_POST['action'])){
+			if($_POST['searchBox'] == ""){
+				header("Location:/User/index");
+			}
+			else{
+				$search = $_POST['searchBox'];
+				header("Location:/User/search/$search");
+			}
+		}
+		else{
+			$user = new \app\models\User();
+			$user = $user->get($_SESSION['username']);
 
-		$listing = new \app\models\Listing();
-		$listing->color = $user->favorite_color;
-		$listing->size = $user->size;
-		$listing->seller_username = $_SESSION['username'];
+			$listing = new \app\models\Listing();
+			$listing->color = $user->favorite_color;
+			$listing->size = $user->size;
+			$listing->seller_username = $_SESSION['username'];
 
-		$listingsColor = $listing->getListingsByColor();
-		$listingsColorSize = $listing->getListingsByColorSize();
+			$listingsColor = $listing->getListingsByColor();
+			$listingsColorSize = $listing->getListingsByColorSize();
 
-		$this->view('User/index',['user'=>$user,'listingsColor'=>$listingsColor,'listingsColorSize'=>$listingsColorSize]);
+			$this->view('User/index',['user'=>$user,'listingsColor'=>$listingsColor,'listingsColorSize'=>$listingsColorSize]);
+		}
 	}
 
 	public function login(){
@@ -97,5 +108,11 @@ class User extends \app\core\Controller{
 		else {
 			$this->view('User/changePassword', ['user' => $user]);
 		}
+	}
+
+	public function search($search){
+		$listing = new \app\models\Listing();
+		$listing = $listing->getBySearch($search);
+		$this->view('Listing/searchResults',$listing);
 	}
 }
