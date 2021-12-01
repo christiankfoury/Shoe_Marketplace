@@ -34,7 +34,7 @@ class Orders extends \app\core\Controller{
 
         $orders = new \app\models\Orders();
         $orders->buyer_username = $user->username;
-        $orders = $orders->getByBuyer();
+        $orders = $orders->getBoughtOrders();
 
         $this->view("\Orders\boughtOrders",["user"=>$user,"orders"=>$orders]);
     }
@@ -65,11 +65,36 @@ class Orders extends \app\core\Controller{
     }
 
     public function checkout($order_id){
-        $order = new \app\models\Orders();
-        $order = $order->get($order_id);
-        $user = new \app\models\User();
-        $user = $user->get($_SESSION['username']);
-        $this->view('Orders/checkout',['order'=>$order,'user'=>$user]);
+        if(isset($_POST['action'])){
+            // if($_POST['email'] == "" || $_POST['address'] == "" || $_POST['postal_code'] == "" 
+            //  || $_POST['province'] == "" || $_POST['card_number'] == "" 
+            //  || $_POST['card_name'] == "" || $_POST['expiration'] == "" || $_POST['security_code'] == ""){
+            //     header("Location:/Orders/checkout/$order_id");
+            // }
+            // else{
+                $order = new \app\models\Orders();
+                $order = $order->get($order_id);
+                $order->email = $_POST['email'];
+                $order->address = $_POST['address'];
+                $order->address2 = $_POST['address2'];
+                $order->postal_code = $_POST['postal_code'];
+                $order->province = $_POST['province'];
+                $order->city = $_POST['city'];
+                $order->update();
+                header("Location:/Orders/boughtOrders");
+            // }
+        }
+        else{
+            $order = new \app\models\Orders();
+            $order = $order->get($order_id);
+            $user = new \app\models\User();
+            $user = $user->get($_SESSION['username']);
+            $this->view('/Orders/checkout',['order'=>$order,'user'=>$user]);
+        }
+    }
+
+    public function createOrder(){
+
     }
 
     public function viewOrder(){

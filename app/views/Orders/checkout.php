@@ -70,15 +70,22 @@
   ?>
 
     <form method="post" action="">
+        <h4>Shipping information</h4>
         Email: <input type="text" name="email"><br>
         First Name: <input disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
         Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
         Address: <input type="text" name="address"><br>
         Address 2: <input type="text" name="address2" placeholder="apt,suite,etc."><br>
-        Postal Code: <input type="text" name="postalCode"><br>
+        Postal Code: <input type="text" name="postal_code"><br>
         City: <input type="text" name="city"><br>
         Province: <input type="text" name="province"><br>
         Country: <input disabled value="Canada" type="text" name="country"><br>
+        <h4>Payment Information</h4>
+        Card Number: <input type="text" name="card_number" placeholder="1111 2222 3333 4444">
+        Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed">
+        Expiration Date: <input type="text" name="expiration" placeholder="MM/YY">
+        Security Code: <input type="text" name="security_code" placeholder="999"><br>
+        <input type="submit" name="action" value="Place Order">
     </form>
 </body>
 
