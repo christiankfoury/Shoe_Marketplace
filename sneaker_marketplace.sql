@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 02:52 AM
+-- Generation Time: Dec 01, 2021 at 01:42 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -87,8 +87,23 @@ CREATE TABLE `orders` (
   `buyer_username` varchar(50) NOT NULL,
   `listing_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `email` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `address2` text DEFAULT NULL,
+  `postal_code` text DEFAULT NULL,
+  `city` text DEFAULT NULL,
+  `province` text DEFAULT NULL,
+  `country` text NOT NULL DEFAULT 'Canada',
+  `timestamp` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `seller_username`, `buyer_username`, `listing_id`, `quantity`, `email`, `address`, `address2`, `postal_code`, `city`, `province`, `country`, `timestamp`) VALUES
+(10, 'ck', 'fet', 2, 1, '123@funnystreet.com', '1234 Elmo Road', '', 'H1J 2A2', 'Elmo Town', 'Elmoland', 'Canada', '2021-12-01 05:25:03'),
+(11, 'cat', 'fet', 3, 1, '123', '132', '132', '123', '132', '123', 'Canada', '2021-12-01 05:35:23');
 
 -- --------------------------------------------------------
 
@@ -262,7 +277,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `review`
