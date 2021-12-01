@@ -84,8 +84,8 @@ class Orders extends \app\core\Model{
 	}
 
 	public function update(){//update an picture record but don't hange the FK value and don't change the picture filename either....
-		$SQL = 'UPDATE `orders` SET `email`=:email,`address`=:address,`address2`=:address2,`postal_code`=:postal_code,`city`=:city,province=:province,timestamp = UTC_TIMESTAMP() WHERE order_id = :order_id';//always use the PK in the where clause
+		$SQL = 'UPDATE `orders` SET `quantity`=:quantity, `email`=:email,`address`=:address,`address2`=:address2,`postal_code`=:postal_code,`city`=:city,province=:province,timestamp = UTC_TIMESTAMP() WHERE order_id = :order_id';//always use the PK in the where clause
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['email'=>$this->email,'address'=>$this->address,'address2'=>$this->address2,'postal_code'=>$this->postal_code,'city'=>$this->city,'province'=>$this->province,'order_id'=>$this->order_id]);//associative array with key => value pairs
+		$STMT->execute(['quantity'=>$this->quantity, 'email'=>$this->email,'address'=>$this->address,'address2'=>$this->address2,'postal_code'=>$this->postal_code,'city'=>$this->city,'province'=>$this->province,'order_id'=>$this->order_id]);//associative array with key => value pairs
 	}
 }

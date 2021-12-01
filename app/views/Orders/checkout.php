@@ -60,33 +60,45 @@
     </div>
   </nav>
 
-  <center><h4 style='margin-top:150px;'>Checkout</h4></center>
-  <?php 
-        $listing = new \app\models\Listing();
-        $listing = $listing->get($data['order']->listing_id);
-        echo "<center><img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
-        <h4>size: $listing->size</h4>
-        <h4>quantity: {$data['order']->quantity}</h4></center>";
+  
+    <h4 style='margin-top:150px;'>Checkout</h4>
+  <?php
+  $listing = new \app\models\Listing();
+  $listing = $listing->get($data['order']->listing_id);
+  echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
+        <h4>size: $listing->size</h4>";
   ?>
-
-    <form method="post" action="">
-        <h4>Shipping information</h4>
-        Email: <input type="text" name="email"><br>
-        First Name: <input disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
-        Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
-        Address: <input type="text" name="address"><br>
-        Address 2: <input type="text" name="address2" placeholder="apt,suite,etc."><br>
-        Postal Code: <input type="text" name="postal_code"><br>
-        City: <input type="text" name="city"><br>
-        Province: <input type="text" name="province"><br>
-        Country: <input disabled value="Canada" type="text" name="country"><br>
-        <h4>Payment Information</h4>
-        Card Number: <input type="text" name="card_number" placeholder="1111 2222 3333 4444">
-        Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed">
-        Expiration Date: <input type="text" name="expiration" placeholder="MM/YY">
-        Security Code: <input type="text" name="security_code" placeholder="999"><br>
-        <input type="submit" name="action" value="Place Order">
-    </form>
+  
+  <?php
+  if (isset($data['error'])) {
+    echo "<h4>{$data['error']}</h4>";
+  }
+  ?>
+  <form method="post" action="">
+    <h4>Shipping information</h4>
+    <?php
+    echo "Quantity: <select name='quantity'>";
+    for ($i = 1; $i <= $listing->stock; $i++) {
+      echo "<option value='$i'>$i</option>";
+    }
+    echo "</select><br>";
+    ?>
+    Email: <input type="text" name="email"><br>
+    First Name: <input disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
+    Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
+    Address: <input type="text" name="address"><br>
+    Address 2: <input type="text" name="address2" placeholder="apt,suite,etc."><br>
+    Postal Code: <input type="text" name="postal_code"><br>
+    City: <input type="text" name="city"><br>
+    Province: <input type="text" name="province"><br>
+    Country: <input disabled value="Canada" type="text" name="country"><br>
+    <h4>Payment Information</h4>
+    Card Number: <input type="text" name="card_number" placeholder="1111 2222 3333 4444">
+    Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed">
+    Expiration Date: <input type="month" name="expiration" placeholder="MM/YY">
+    Security Code: <input type="text" name="security_code" placeholder="999"><br>
+    <input type="submit" name="action" value="Place Order">
+  </form>
 </body>
 
 </html>

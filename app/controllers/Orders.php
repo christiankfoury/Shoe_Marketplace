@@ -44,8 +44,9 @@ class Orders extends \app\core\Controller{
         $user = $user->get($_SESSION['username']);
 
         $orders = new \app\models\Orders();
-        $orders->buyer_username = $_SESSION['username'];
+        $orders->seller_username = $_SESSION['username'];
         $orders = $orders->getBySeller();
+        print_r($orders);
 
         $this->view("\Orders\soldOrders",["user"=>$user,"orders"=>$orders]);
     }
@@ -65,15 +66,20 @@ class Orders extends \app\core\Controller{
     }
 
     public function checkout($order_id){
+        $order = new \app\models\Orders();
+        $order = $order->get($order_id);
+        $user = new \app\models\User();
+        $user = $user->get($_SESSION['username']);
         if(isset($_POST['action'])){
-            // if($_POST['email'] == "" || $_POST['address'] == "" || $_POST['postal_code'] == "" 
-            //  || $_POST['province'] == "" || $_POST['card_number'] == "" 
-            //  || $_POST['card_name'] == "" || $_POST['expiration'] == "" || $_POST['security_code'] == ""){
-            //     header("Location:/Orders/checkout/$order_id");
-            // }
-            // else{
+            if($_POST['email'] == "" || $_POST['address'] == "" || $_POST['postal_code'] == "" 
+             || $_POST['province'] == "" || $_POST['card_number'] == "" 
+             || $_POST['card_name'] == "" || $_POST['expiration'] == "" || $_POST['security_code'] == ""){
+                $this->view("\Orders\checkout",['order' => $order, 'user' => $user,"error"=>"Please fill out all fields"]);
+            }
+            else{
                 $order = new \app\models\Orders();
                 $order = $order->get($order_id);
+                $order->quantity = $_POST['quantity'];
                 $order->email = $_POST['email'];
                 $order->address = $_POST['address'];
                 $order->address2 = $_POST['address2'];
@@ -81,14 +87,21 @@ class Orders extends \app\core\Controller{
                 $order->province = $_POST['province'];
                 $order->city = $_POST['city'];
                 $order->update();
+
+                $listing = new \app\models\Listing();
+                $listing = $listing->get($order->listing_id);
+                $listing->stock = $listing->stock - $order->quantity;
+                $listing->update();
+
+                $shoe = new \app\models\Shoe();
+                $shoe->shoe_id = $listing->shoe_id;
+                $shoe->previously_sold_price = $listing->price;
+                $shoe->updatePreviouslySoldPrice($listing->shoe_id, $listing->price);
+
                 header("Location:/Orders/boughtOrders");
-            // }
+            }
         }
         else{
-            $order = new \app\models\Orders();
-            $order = $order->get($order_id);
-            $user = new \app\models\User();
-            $user = $user->get($_SESSION['username']);
             $this->view('/Orders/checkout',['order'=>$order,'user'=>$user]);
         }
     }

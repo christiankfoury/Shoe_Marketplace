@@ -35,9 +35,9 @@ class Listing extends \app\core\Model{
     }
 
     public function getBySeller(){
-        $SQL = 'SELECT * FROM listing WHERE seller_username = :seller_username';
+        $SQL = 'SELECT * FROM listing WHERE seller_username = :seller_username AND available = :available';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['seller_username'=>$this->seller_username]);
+		$STMT->execute(['seller_username'=>$this->seller_username, 'available'=>'yes']);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
     }
@@ -58,33 +58,33 @@ class Listing extends \app\core\Model{
 	}
 
 	public function getListingsByColor() {
-		$SQL = 'SELECT * FROM listing WHERE color = :color AND size != :size AND seller_username != :seller_username';
+		$SQL = 'SELECT * FROM listing WHERE color = :color AND size != :size AND seller_username != :seller_username AND available = :available';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['color'=>$this->color, 'size'=>$this->size, 'seller_username'=>$this->seller_username]);
+		$STMT->execute(['color'=>$this->color, 'size'=>$this->size, 'seller_username'=>$this->seller_username, 'available'=>'yes']);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
 
 	public function getListingsByColorSize() {
-		$SQL = 'SELECT * FROM listing WHERE color = :color AND size = :size AND seller_username != :seller_username';
+		$SQL = 'SELECT * FROM listing WHERE color = :color AND size = :size AND seller_username != :seller_username AND available = :available';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['color'=>$this->color, 'size'=>$this->size, 'seller_username'=>$this->seller_username]);
+		$STMT->execute(['color'=>$this->color, 'size'=>$this->size, 'seller_username'=>$this->seller_username, 'available'=>'yes']);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record	
 	}
 
 	public function getAllExceptUser() {
-		$SQL = 'SELECT * FROM listing WHERE seller_username != :seller_username';
+		$SQL = 'SELECT * FROM listing WHERE seller_username != :seller_username AND available = :available';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['seller_username'=>$this->seller_username]);
+		$STMT->execute(['seller_username'=>$this->seller_username , 'available'=>'yes']);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
 
 	public function getBySearch($search){
-		$SQL = 'SELECT * FROM listing WHERE seller_username LIKE :seller_username OR size LIKE :size OR price LIKE :price OR description LIKE :description OR color LIKE :color OR available LIKE :available';
+		$SQL = 'SELECT * FROM listing WHERE seller_username LIKE :seller_username OR size LIKE :size OR price LIKE :price OR description LIKE :description OR color LIKE :color AND available = :available';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['seller_username' => "%$search%", 'size'=> "%$search%", 'price'=> "%$search%", 'description' => "%$search%", 'color' => "%$search%", 'available' => "%$search%"]);
+		$STMT->execute(['seller_username' => "%$search%", 'size'=> "%$search%", 'price'=> "%$search%", 'description' => "%$search%", 'color' => "%$search%", 'available' => "yes"]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record	
 	}
@@ -95,5 +95,17 @@ class Listing extends \app\core\Model{
 		$STMT->execute(['shoe_id'=>$this->shoe_id, 'size' => $this->size, 'color' => $this->color, 'seller_username' => $this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
+	}
+
+	public function update() {
+		$SQL = 'UPDATE listing SET stock = :stock WHERE listing_id = :listing_id';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['stock'=>$this->stock, 'listing_id'=>$this->listing_id]);
+
+		if ($this->stock == 0) {
+			$SQL = 'UPDATE listing SET available = :available WHERE listing_id = :listing_id';
+			$STMT = self::$_connection->prepare($SQL);
+			$STMT->execute(['available'=>'no', 'listing_id'=>$this->listing_id]);
+		}
 	}
 }

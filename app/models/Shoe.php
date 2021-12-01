@@ -28,4 +28,10 @@ class Shoe extends \app\core\Model{
         $STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Shoe');
         return $STMT->fetch();//return the record
     }
+
+    public function updatePreviouslySoldPrice($shoe_id, $previously_sold_price){
+        $SQL = 'UPDATE shoe SET previously_sold_price = :previously_sold_price WHERE shoe_id = :shoe_id';
+        $STMT = self::$_connection->prepare($SQL);
+        $STMT->execute(['shoe_id'=>$shoe_id, 'previously_sold_price'=>$previously_sold_price]);
+    }
 }

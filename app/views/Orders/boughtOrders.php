@@ -91,6 +91,7 @@
 
           $listing = new \app\models\Listing();
           $listing = $listing->get($orders->listing_id);
+          $time = new \app\controllers\Time();
           echo
           "
                 <table border=1>
@@ -105,7 +106,7 @@
                 <th>City: $orders->city</th>
                 <th>Province: $orders->province</th>
                 <th>Country: $orders->country</th>
-                <th>$orders->timestamp</th>
+                <th>{$time::convertDateTime($orders->timestamp)}</th>
                 </tr>
                 </table>; 
                 ";
