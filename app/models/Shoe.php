@@ -34,4 +34,12 @@ class Shoe extends \app\core\Model{
         $STMT = self::$_connection->prepare($SQL);
         $STMT->execute(['shoe_id'=>$shoe_id, 'previously_sold_price'=>$previously_sold_price]);
     }
+
+    public function getByBrand($brand) {
+        $SQL = 'SELECT * FROM shoe WHERE brand = :brand';
+        $STMT = self::$_connection->prepare($SQL);
+        $STMT->execute(['brand'=>$brand]);
+        $STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Shoe');
+        return $STMT->fetchAll();//return the record
+	}
 }

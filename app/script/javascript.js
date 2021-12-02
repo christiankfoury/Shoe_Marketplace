@@ -14,23 +14,23 @@ window.onload = function () {
     var modelSel = document.getElementById("model");
     brandSel.onchange = function () {
         modelSel.options.length = 1;
-        if (brandSel.value === "jordan") {
+        if (brandSel.value === "Jordan") {
             for (var i = 0; i < brandObject.Jordan.length; i++) {
                 modelSel.options[i] = new Option(brandObject.Jordan[i], brandObject.Jordan[i]);
             }
-        } else if (brandSel.value === "nike") {
+        } else if (brandSel.value === "Nike") {
             for (var i = 0; i < brandObject.Nike.length; i++) {
                 modelSel.options[i] = new Option(brandObject.Nike[i], brandObject.Nike[i]);
             }
-        } else if (brandSel.value === "adidas") {
+        } else if (brandSel.value === "Adidas") {
             for (var i = 0; i < brandObject.Adidas.length; i++) {
                 modelSel.options[i] = new Option(brandObject.Adidas[i], brandObject.Adidas[i]);
             }
-        } else if (brandSel.value === "vans") {
+        } else if (brandSel.value === "Vans") {
             for (var i = 0; i < brandObject.Vans.length; i++) {
                 modelSel.options[i] = new Option(brandObject.Vans[i], brandObject.Vans[i]);
             }
-        } else if (brandSel.value === "new balance") {
+        } else if (brandSel.value === "New Balance") {
             console.log(brandSel.value);
             for (var i = 0; i < brandObject.NewBalance.length; i++) {
                 modelSel.options[i] = new Option(brandObject.NewBalance[i], brandObject.NewBalance[i]);

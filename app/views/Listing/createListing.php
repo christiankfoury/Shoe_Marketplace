@@ -76,11 +76,11 @@
       <form action='' method='post' enctype="multipart/form-data">
         Brand: <select name="brand" id="brand">
           <option value="Select a brand">Select a brand</option>
-          <option value="jordan">Jordan</option>
-          <option value="nike">Nike</option>
-          <option value="adidas">Adidas</option>
-          <option value="vans">Vans</option>
-          <option value="new balance">New Balance</option>
+          <option value="Jordan">Jordan</option>
+          <option value="Nike">Nike</option>
+          <option value="Adidas">Adidas</option>
+          <option value="Vans">Vans</option>
+          <option value="New Balance">New Balance</option>
         </select>
         <br>
         Model: <select name="model" id="model">
