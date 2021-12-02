@@ -70,6 +70,7 @@
         <a href="/User/index">Return to For You</a><br>
         <a href="/Listing/allListings">Return to all listings</a>
         <h1>Edit your listing</h1>
+        <?php if(isset($data['error'])){echo "<h4 style='color:red;'>{$data['error']}</h4>";} ?>
         <form method="post" action="" enctype="multipart/form-data">
             <img src="/uploads/<?php echo $data['listing']->filename; ?>"><br>
             Picture: <input type='file' name='newPicture' /><br>

@@ -48,7 +48,8 @@ class Listing extends \app\core\Controller
             }
         } else if (isset($_POST['action'])) {
             //get the form data and process it
-            if (isset($_FILES['newPicture'])) {
+            if (isset($_FILES['newPicture']) && $_FILES['newPicture']['size'] != 0 && trim($_POST['size']) != "" && trim($_POST['stock']) != "" && trim($_POST['price']) != "" 
+                 && trim($_POST['price']) >= 0 && trim($_POST['description']) != "" && trim($_POST['color']) != "") {
                 $check = getimagesize($_FILES['newPicture']['tmp_name']);
 
                 $mime_type_to_extension = [
@@ -89,10 +90,15 @@ class Listing extends \app\core\Controller
                 } else
                     echo "There was an error";
             }
+            else{
+                $user = new \app\models\User();
+            $user = $user->get($_SESSION['username']);
+            $this->view('Listing/createListing', ['user'=>$user,'error'=>'Make sure that everything is filled out!']);
+            }
         } else {
             $user = new \app\models\User();
             $user = $user->get($_SESSION['username']);
-            $this->view('Listing/createListing', $user);
+            $this->view('Listing/createListing', ['user'=>$user]);
         }
     }
 
@@ -142,8 +148,19 @@ class Listing extends \app\core\Controller
     }
 
     public function editListing($listing_id){
+
+        $listing = new \app\models\Listing();
+        $listing = $listing->get($listing_id);
+        $shoe = new \app\models\Shoe();
+        $shoe = $shoe->getShoeByShoeId($listing->shoe_id);
+
         if(isset($_POST['edit'])){
+            if(trim($_POST['price']) <= 0 || trim($_POST['description']) == ""){
+                 $this->view('Listing/editListing', ['listing'=>$listing,'shoe'=>$shoe,'error'=>'Make sure that everything is filled out!']);
+                 return;
+            }
             if (isset($_FILES['newPicture']) && $_FILES['newPicture']['size'] != 0) {
+
                 $check = getimagesize($_FILES['newPicture']['tmp_name']);
 
                 $mime_type_to_extension = [
@@ -182,7 +199,11 @@ class Listing extends \app\core\Controller
                     echo "There was an error";
             }
             else{
-                $listing = new \app\models\Listing();
+                if(trim($_POST['price']) <= 0 || trim($_POST['description']) == ""){
+                    $this->view('Listing/editListing', ['listing'=>$listing,'shoe'=>$shoe,'error'=>'Make sure that everything is filled out!']);
+                }
+                else{
+                    $listing = new \app\models\Listing();
                     $listing = $listing->get($listing_id);
                     $listing->size = $_POST['size'];
                     $listing->stock = $_POST['stock'];
@@ -190,13 +211,10 @@ class Listing extends \app\core\Controller
                     $listing->description = $_POST['description'];;
                     $listing->updateListing();
                     header("Location:/Listing/index");
+                }
             }
         }
         else{
-            $listing = new \app\models\Listing();
-            $listing = $listing->get($listing_id);
-            $shoe = new \app\models\Shoe();
-            $shoe = $shoe->getShoeByShoeId($listing->shoe_id);
             $this->view('Listing/editListing', ['listing'=>$listing,'shoe'=>$shoe]);
         }
     }

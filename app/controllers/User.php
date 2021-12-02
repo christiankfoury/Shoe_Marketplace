@@ -37,17 +37,23 @@ class User extends \app\core\Controller
 		//TODO: register session variables to stay logged in
 		if (isset($_POST['action'])) { //verify that the user clicked the submit button
 			$user = new \app\models\User();
-			$user = $user->get($_POST['username']);
 
-			if ($user != false && password_verify($_POST['password'], $user->password_hash)) {
-				$_SESSION['username'] = $user->username;
-
-				$username = new \app\models\User();
-				$username = $username->get($_SESSION['username']);
-				header("Location:/User/index");
-			} else {
-				$this->view('User/login', 'Wrong username and password combination!');
+			if(trim($_POST['password']) == '' || trim($_POST['username']) == ''){
+				$this->view('User/login', 'Username and Password can not be empty!');
+				return;
 			}
+
+				$user = $user->get($_POST['username']);
+
+				if ($user != false && password_verify($_POST['password'], $user->password_hash)) {
+					$_SESSION['username'] = $user->username;
+
+					$username = new \app\models\User();
+					$username = $username->get($_SESSION['username']);
+					header("Location:/User/index");
+				} else {
+					$this->view('User/login', 'Wrong username and password combination!');
+				}
 		} else //1 present a form to the user
 			$this->view('User/login');
 	}

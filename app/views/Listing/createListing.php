@@ -71,6 +71,7 @@
     <center>
       <h1>Listings</h1>
     </center>
+    <?php if(isset($data['error'])){echo "<h4 style='color:red;'>{$data['error']}</h4>";} ?>
     <article>
       <!-- <center> -->
       <form action='' method='post' enctype="multipart/form-data">
