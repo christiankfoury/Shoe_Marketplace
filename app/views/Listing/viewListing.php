@@ -28,13 +28,22 @@
                             <a class="nav-link" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/Listing/index">Listings</a>
+                            <a class="nav-link" href="/Listing/index">Listings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Wishlist/index">Wishlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Orders/viewCart">Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/Message/index">Messages</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/User/settings">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/User/logout">Logout</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,9 +58,9 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" method="POST">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex" method="post">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
+                        <button class="btn btn-outline-success" type="submit" name="search">Search</button>
                     </form>
                 </div>
             </div>
@@ -81,10 +90,9 @@
             $order->listing_id = $data['listing']->listing_id;
             $order->buyer_username = $_SESSION['username'];
             $order = $order->getByListingAndBuyer();
-            if($order != false){
+            if ($order != false) {
                 echo "<h4><a href='/Orders/removeFromCart/$order->order_id/{$data['listing']->listing_id}'>Remove From Cart</a></h4>";
-            }
-            else{
+            } else {
                 echo "<h4><a href='/Orders/addToCart/{$data['listing']->listing_id}'>Add To Cart</a></h4>";
             }
 

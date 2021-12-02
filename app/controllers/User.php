@@ -4,7 +4,7 @@ namespace app\controllers;
 class User extends \app\core\Controller{
 
 	public function index(){
-		if(isset($_POST['action'])){
+		if(isset($_POST['search'])){
 			if($_POST['searchBox'] == ""){
 				header("Location:/User/index");
 			}
@@ -81,16 +81,33 @@ class User extends \app\core\Controller{
 	}
 
 	public function settings(){
-		$user = new \app\models\User();
-		$user = $user->get($_SESSION['username']);
-		$this->view('User/settings',$user);
+		if (isset($_POST['search'])) {
+			if ($_POST['searchBox'] == "") {
+				header("Location:/User/index");
+			} else {
+				$search = $_POST['searchBox'];
+				header("Location:/User/search/$search");
+			}
+		} else {
+			$user = new \app\models\User();
+			$user = $user->get($_SESSION['username']);
+			$this->view('User/settings', $user);
+		}
+		
 	}
 
 	#[\app\filters\Login]
 	public function changePassword() {
 		$user = new \app\models\User();
 		$user = $user->get($_SESSION['username']);
-		if (isset($_POST['action'])) {
+		if (isset($_POST['search'])) {
+			if ($_POST['searchBox'] == "") {
+				header("Location:/User/index");
+			} else {
+				$search = $_POST['searchBox'];
+				header("Location:/User/search/$search");
+			}
+		} else if (isset($_POST['action'])) {
 			if ($_POST['new_password'] == '' || $_POST['password_confirm'] == '') {
 				$this->view('User/changePassword', ['user' => $user, 'error' => 'The new password must not be empty']);
 				return;
@@ -114,5 +131,10 @@ class User extends \app\core\Controller{
 		$listing = new \app\models\Listing();
 		$listing = $listing->getBySearch($search);
 		$this->view('Listing/searchResults',$listing);
+	}
+
+	public function logout() {
+		session_destroy();
+		header("Location:/User/login");
 	}
 }

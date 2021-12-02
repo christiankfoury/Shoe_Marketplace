@@ -4,33 +4,49 @@ namespace app\controllers;
 
 class Listing extends \app\core\Controller
 {
-    private $folder='uploads/';
+    private $folder = 'uploads/';
 
     public function index()
     {
-        $user = new \app\models\User();
-        $user = $user->get($_SESSION['username']);
+        if (isset($_POST['search'])) {
+            if ($_POST['searchBox'] == "") {
+                header("Location:/User/index");
+            } else {
+                $search = $_POST['searchBox'];
+                header("Location:/User/search/$search");
+            }
+        } else {
+            $user = new \app\models\User();
+            $user = $user->get($_SESSION['username']);
 
-        $listing = new \app\models\Listing();
-        $listing->seller_username = $user->username;
-        $listing = $listing->getBySeller($user->username);
-        $this->view("Listing/index", ["user" => $user, "listings" => $listing]);
+            $listing = new \app\models\Listing();
+            $listing->seller_username = $user->username;
+            $listing = $listing->getBySeller($user->username);
+            $this->view("Listing/index", ["user" => $user, "listings" => $listing]);
+        }
     }
 
-    public function getListingsByUsername()
-    {
-        $user = new \app\models\User();
-        $user = $user->get($_SESSION['username']);
+    // public function getListingsByUsername()
+    // {
+    //     $user = new \app\models\User();
+    //     $user = $user->get($_SESSION['username']);
 
-        $listing = new \app\models\Listing();
-        $listing = $listing->getBySeller($user->username);
+    //     $listing = new \app\models\Listing();
+    //     $listing = $listing->getBySeller($user->username);
 
-        header("Location:/Listing/index/$listing");
-    }
+    //     header("Location:/Listing/index/$listing");
+    // }
 
     public function createListing()
     {
-        if (isset($_POST['action'])) {
+        if (isset($_POST['search'])) {
+            if ($_POST['searchBox'] == "") {
+                header("Location:/User/index");
+            } else {
+                $search = $_POST['searchBox'];
+                header("Location:/User/search/$search");
+            }
+        } else if (isset($_POST['action'])) {
             //get the form data and process it
             if (isset($_FILES['newPicture'])) {
                 $check = getimagesize($_FILES['newPicture']['tmp_name']);
@@ -82,28 +98,46 @@ class Listing extends \app\core\Controller
 
     public function viewListing($listing_id)
     {
-        $listing = new \app\models\Listing();
-        $listing = $listing->get($listing_id);
+        if (isset($_POST['search'])) {
+            if ($_POST['searchBox'] == "") {
+                header("Location:/User/index");
+            } else {
+                $search = $_POST['searchBox'];
+                header("Location:/User/search/$search");
+            }
+        } else {
+            $listing = new \app\models\Listing();
+            $listing = $listing->get($listing_id);
 
-        $review = new \app\models\Review();
-        $reviews = $review->getByShoeId($listing->shoe_id);
-        if (isset($_POST['actionReview'])) {
             $review = new \app\models\Review();
-            $review->username = $_SESSION['username'];
-            $review->shoe_id = $listing->shoe_id;  
-            $review->message = $_POST['message'];
-            $review->insert();
-            header("location:/Listing/viewListing/$listing_id");
-        }
-        else {
-            $this->view('Listing/viewListing', ['listing' => $listing, 'reviews' => $reviews]);
+            $reviews = $review->getByShoeId($listing->shoe_id);
+            if (isset($_POST['actionReview'])) {
+                $review = new \app\models\Review();
+                $review->username = $_SESSION['username'];
+                $review->shoe_id = $listing->shoe_id;
+                $review->message = $_POST['message'];
+                $review->insert();
+                header("location:/Listing/viewListing/$listing_id");
+            } else {
+                $this->view('Listing/viewListing', ['listing' => $listing, 'reviews' => $reviews]);
+            }
         }
     }
 
-    public function allListings() {
-        $listing = new \app\models\Listing();
-        $listing->seller_username = $_SESSION['username'];
-        $listings = $listing->getAllExceptUser();
-        $this->view('Listing/allListings', ['listings'=>$listings]);
+    public function allListings()
+    {
+        if (isset($_POST['search'])) {
+            if ($_POST['searchBox'] == "") {
+                header("Location:/User/index");
+            } else {
+                $search = $_POST['searchBox'];
+                header("Location:/User/search/$search");
+            }
+        } else {
+            $listing = new \app\models\Listing();
+            $listing->seller_username = $_SESSION['username'];
+            $listings = $listing->getAllExceptUser();
+            $this->view('Listing/allListings', ['listings' => $listings]);
+        }
     }
 }

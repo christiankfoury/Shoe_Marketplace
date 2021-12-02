@@ -24,7 +24,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Listing/index">Listings</a>
@@ -33,10 +33,16 @@
               <a class="nav-link" href="/Wishlist/index">Wishlist</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active" href="/Orders/viewCart">Cart</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/Message/index">Messages</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/User/settings">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/User/logout">Logout</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,7 +59,7 @@
           </ul>
           <form class="d-flex" method="post">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
-            <button class="btn btn-outline-success" type="submit" name="action">Search</button>
+            <button class="btn btn-outline-success" type="submit" name="search">Search</button>
           </form>
         </div>
       </div>
@@ -61,22 +67,21 @@
   </nav>
 
   <h4 style='margin-top:150px;'>Your Cart Contents</h4>
-  <?php 
+  <?php
 
-    if($data == null){
-        echo "<h4>You have nothing in your cart!</h4>";
-    }
-    else{
-        $listing = new \app\models\Listing();
-        foreach($data as $items){
-            $listing = $listing->get($items->listing_id);
-            echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
+  if ($data == null) {
+    echo "<h4>You have nothing in your cart!</h4>";
+  } else {
+    $listing = new \app\models\Listing();
+    foreach ($data as $items) {
+      $listing = $listing->get($items->listing_id);
+      echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
             <h4>size: $listing->size</h4>
             <h4>quantity: $items->quantity</h4>
             <a href='/Orders/removeItemFromCart/$items->order_id/$items->listing_id'>Remove</a><br>
             <a href='/Orders/checkout/$items->order_id'>Check out</a><br>";
-        }
     }
+  }
 
   ?>
 </body>

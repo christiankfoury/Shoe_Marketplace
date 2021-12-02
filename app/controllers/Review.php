@@ -4,18 +4,25 @@ namespace app\controllers;
 
 class Review extends \app\core\Controller
 {
-    public function viewReviews($shoe_id) {
-        $user = new \app\models\User();
-        $user = $user->get($_SESSION['username']);
+    // public function viewReviews($shoe_id) {
+    //     $user = new \app\models\User();
+    //     $user = $user->get($_SESSION['username']);
 
-        $review = new \app\models\Review();
-        $reviews = $review->getByShoeId($shoe_id);
+    //     $review = new \app\models\Review();
+    //     $reviews = $review->getByShoeId($shoe_id);
 
-        $this->view('Review/viewReviews', ['reviews' => $reviews]);
-    }
+    //     $this->view('Review/viewReviews', ['reviews' => $reviews]);
+    // }
 
     public function editReview($listing_id, $review_id) {
-        if (isset($_POST['actionReview'])) {
+        if (isset($_POST['search'])) {
+            if ($_POST['searchBox'] == "") {
+                header("Location:/User/index");
+            } else {
+                $search = $_POST['searchBox'];
+                header("Location:/User/search/$search");
+            }
+        } else if (isset($_POST['actionReview'])) {
             $review = new \app\models\Review();
             $review->review_id = $review_id;
             $review->message = $_POST['message'];
