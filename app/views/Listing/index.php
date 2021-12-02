@@ -66,7 +66,8 @@
       </div>
     </div>
   </nav>
-  <div id="brown-box">
+  <!-- id="brown-box" -->
+  <div>
     <div class="listingIndex">
       <!-- <center> -->
       <h1>Listings</h1>
