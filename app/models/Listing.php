@@ -108,4 +108,18 @@ class Listing extends \app\core\Model{
 			$STMT->execute(['available'=>'no', 'listing_id'=>$this->listing_id]);
 		}
 	}
+
+	public function updateListing(){
+		$SQL = 'UPDATE listing SET size = :size, stock = :stock, price = :price, description = :description, filename = :filename WHERE listing_id = :listing_id';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['size'=>$this->size, 'stock'=>$this->stock, 'price'=>$this->price, 'description'=>$this->description, 'filename'=>$this->filename,'listing_id'=>$this->listing_id]);
+	}
+
+	public function getByShoeId($shoe_id) {
+        $SQL = 'SELECT * FROM listing WHERE shoe_id = :shoe_id AND available = :available';
+        $STMT = self::$_connection->prepare($SQL);
+        $STMT->execute(['shoe_id'=>$shoe_id, 'available'=>'yes']);
+        $STMT->setFetchMode(\PDO::FETCH_CLASS,'app\models\Listing');
+        return $STMT->fetchAll();//return the record
+    }
 }

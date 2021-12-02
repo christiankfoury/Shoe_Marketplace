@@ -95,6 +95,8 @@
               <th>$listing->stock</th>
               <th>$listing->price</th>
               <th><a href='/Listing/viewListing/$listing->listing_id'>View</a>
+              <th><a href='/Listing/editListing/$listing->listing_id'>Edit</a>
+              <th><a href='/Listing/deleteListing/$listing->listing_id'>Delete</a>
               </tr>
               </table>
               </center>";

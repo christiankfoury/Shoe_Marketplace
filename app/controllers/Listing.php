@@ -140,4 +140,71 @@ class Listing extends \app\core\Controller
             $this->view('Listing/allListings', ['listings' => $listings]);
         }
     }
+
+    public function editListing($listing_id){
+        if(isset($_POST['edit'])){
+            if (isset($_FILES['newPicture']) && $_FILES['newPicture']['size'] != 0) {
+                $check = getimagesize($_FILES['newPicture']['tmp_name']);
+
+                $mime_type_to_extension = [
+                    'image/jpeg' => '.jpg',
+                    'image/gif' => '.gif',
+                    'image/bmp' => '.bmp',
+                    'image/png' => '.png'
+                ];
+
+                if ($check !== false && isset($mime_type_to_extension[$check['mime']])) {
+                    $extension = $mime_type_to_extension[$check['mime']];
+                } else {
+                    $this->view('Picture/newPost', ['error' => "Bad file type", 'pictures' => []]);
+                    return;
+                }
+
+                $filename = uniqid() . $extension;
+                $filepath = $this->folder . $filename;
+
+                if ($_FILES['newPicture']['size'] > 4000000) {
+                    $this->view('Picture/newPost', ['error' => "File too large", 'pictures' => []]);
+                    return;
+                }
+                if (move_uploaded_file($_FILES['newPicture']['tmp_name'], $filepath)) {
+                    $listing = new \app\models\Listing();
+                    $listing = $listing->get($listing_id);
+                    $listing->size = $_POST['size'];
+                    $listing->stock = $_POST['stock'];
+                    $listing->price = $_POST['price'];
+                    $listing->description = $_POST['description'];;
+                    $listing->filename = $filename;
+                    $listing->updateListing();
+                    header("Location:/Listing/index");
+
+                } else
+                    echo "There was an error";
+            }
+            else{
+                $listing = new \app\models\Listing();
+                    $listing = $listing->get($listing_id);
+                    $listing->size = $_POST['size'];
+                    $listing->stock = $_POST['stock'];
+                    $listing->price = $_POST['price'];
+                    $listing->description = $_POST['description'];;
+                    $listing->updateListing();
+                    header("Location:/Listing/index");
+            }
+        }
+        else{
+            $listing = new \app\models\Listing();
+            $listing = $listing->get($listing_id);
+            $shoe = new \app\models\Shoe();
+            $shoe = $shoe->getShoeByShoeId($listing->shoe_id);
+            $this->view('Listing/editListing', ['listing'=>$listing,'shoe'=>$shoe]);
+        }
+    }
+
+    public function deleteListing($listing_id){
+        $listing = new \app\models\Listing();
+        $listing = $listing->get($listing_id);
+        $listing->delete();
+        header("Location:/Listing/index");
+    }
 }
