@@ -78,7 +78,7 @@
             $listing = new \app\models\Listing();
             $listing = $listing->get($data['order']->listing_id);
             echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
-                  <h4>size: $listing->size</h4>";
+                  <h4>size: $listing->size</h4>"; 
             ?>
 
             <?php
