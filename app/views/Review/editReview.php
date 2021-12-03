@@ -67,15 +67,18 @@
             </div>
         </div>
     </nav>
-    <div class="listingIndex">
-        <center>
-            <form action="" method="post">
-                <textarea name="message" id="message" cols="30" rows="10">
-                    <?php echo $data['review']->message; ?>
-                </textarea>
-                <input type="submit" name="actionReview" value="Submit">
-            </form>
-        </center>
+    <div class="main">
+        <div style="padding: 20px;">
+        <h1 class="welcome" style="margin-top:15px;">Edit your review</h1>
+            <div class="innie">
+                <div class="gray-flex-box">
+                    <form action="" method="post" style="margin-top:10px;margin-bottom:10px;">
+                        <textarea name="message" id="message" cols="30" rows="10"><?php echo $data['review']->message;?></textarea><br>
+                        <input class="button" type="submit" name="actionReview" value="Submit" style="margin-top:15px;">
+                    </form>
+                </div>
+            </div>      
+        </div>
     </div>
 </body>
 
