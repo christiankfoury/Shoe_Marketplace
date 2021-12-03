@@ -4,6 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="/app/css/style.css" rel="stylesheet">
 
 <head>
@@ -66,17 +67,26 @@
             </div>
         </div>
     </nav>
-    <div style="margin-top: 150px;">
-        <h1>Create a Message</h1>
-        <form action="" method="post">
-            <label>Sender</label>
-            <input disabled type="text" name="sender" value="<?php echo $data->sender; ?>"> </input><br>
-            <label>Receiver</label>
-            <input disabled type="text" name="sender" value="<?php echo $data->receiver; ?>"> </input><br>
-            <label>Message</label>
-            <textarea name="message" placeholder="Type your message here..."></textarea><br>
-            <input type="submit" name="action" value="Send"></input>
-        </form>
+
+    <div class="main">
+        <div style="padding: 20px;">
+            <h1 class="welcome">Create a Message</h1>
+            <center>
+                <div class="login-register-box" style="margin-bottom: 20px;">
+                    <div style="text-align: left;">
+                        <form action="" method="post">
+                            <label>Sender</label><br>
+                            <input class="login-register" disabled type="text" name="sender" value="<?php echo $data->sender; ?>"> </input><br>
+                            <label>Receiver</label><br>
+                            <input class="login-register" disabled type="text" name="sender" value="<?php echo $data->receiver; ?>"> </input><br>
+                            <label>Message</label><br>
+                            <textarea style="resize: both; max-width: 500px;" name="message" placeholder="Type your message here..."></textarea><br>
+                            <input class="login-register-button" type="submit" name="action" value="Send"></input>
+                        </form>
+                    </div>
+                </div>
+            </center>
+        </div>
     </div>
 </body>
 

@@ -165,7 +165,7 @@ a.button {
 }
 
 a.button:hover {
-    background: #0b5ed7;
+    background: #0a4eb3;
 }
 
 span.small {
@@ -191,6 +191,7 @@ span.small {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    border-radius: 50px;
 }
 /*     position: relative;
     display: flex;
@@ -201,3 +202,38 @@ span.small {
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0.25rem; */
+
+.picture-left {
+    width: fit-content;
+    float: left;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+textarea.textarea-review {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    margin-top: 10px;
+    font-size: 1.25rem;
+}
+
+.reviews-list {
+    margin-top: 150px;
+}
+
+.review {
+    background: gray;
+    border-radius: 50px;
+    padding: 5px 50px 5px 50px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.text-right {
+    margin-top: 150px;
+}
+
+.margin-bottom-button {
+    margin-bottom: 15px;
+}
