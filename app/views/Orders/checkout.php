@@ -84,7 +84,6 @@
           }
           ?>
           <form method="post" action="" style="margin-top:50px;margin-bottom:10px;">
-            <h4>Shipping information</h4>
             <?php
             echo "<div style='margin-bottom:20px; margin-top:20px;'><img src='/uploads/$listing->filename' style='width:150px;height:150px;'>
                     <div style='display:inline-block;'> 
@@ -98,6 +97,7 @@
             }
             echo "</select><br>";
             ?>
+            <h4 style="margin-top:25px;">Shipping information</h4>
             Email: <input class='listing' type="email" name="email" placeholder="bob@gmail.com" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"><br>
             First Name: <input class='listing' disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
             Last Name: <input class='listing' disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
