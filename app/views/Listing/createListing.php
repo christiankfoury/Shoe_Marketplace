@@ -77,7 +77,7 @@
     } ?>
     <div class="innie">
       <div class="gray-flex-box">
-      <form action='' method='post' enctype="multipart/form-data">
+      <form action='' method='post' enctype="multipart/form-data" style="margin-top:10px;margin-bottom:10px;">
         Brand: <select class="listing" name="brand" id="brand">
           <option value="Select a brand">Select a brand</option>
           <option value="Jordan">Jordan</option>

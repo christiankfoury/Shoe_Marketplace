@@ -67,36 +67,43 @@
             </div>
         </div>
     </nav>
-    <div class="listingIndex">
-        <a href="/User/index">Return to For You</a><br>
-        <a href="/Listing/allListings">Return to all listings</a>
-        <h1>Edit your listing</h1>
-        <?php if (isset($data['error'])) {
-            echo "<h4 style='color:red;'>{$data['error']}</h4>";
-        } ?>
-        <form method="post" action="" enctype="multipart/form-data">
-            <img src="/uploads/<?php echo $data['listing']->filename; ?>"><br>
-            Picture: <input type='file' name='newPicture' /><br>
-            Brand: <input disabled type="text" value="<?php echo $data['shoe']->brand ?>"><br>
-            Model: <input disabled type="text" value="<?php echo $data['shoe']->name ?>"><br>
-            Color: <input disabled type="text" value="<?php echo $data['listing']->color ?>"><br>
-            Size: <select name="size">
-                <?php for ($i = 1; $i <= 35; $i++) { ?>
-                    <option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
-                    <?php if ($i != 35) { ?>
-                        <option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
-                    <?php } ?>
-                <?php } ?>
-            </select><br>
-            Stock: <select name="stock">
-                <?php for ($i = 1; $i <= 9; $i++) { ?>
-                    <option value="<?php echo $i; ?>"><?php echo $i ?></option>
-                <?php } ?>
-            </select><br>
-            Price: <input type='number' name='price' step=".01" value="<?php echo $data['listing']->price ?>>" /><br>
-            Description <input type='textarea' name='description' value="<?php echo $data['listing']->description ?>" /><br>
-            <input type="submit" name="edit" value="Save">
-        </form>
+
+    <div class="main">
+        <div style="padding: 20px;">
+        <a class="button" href="/User/index" >Return to For You</a>
+        <a class="button" href="/Listing/allListings" >Return to all listings</a>
+        <h1 class="welcome" style="margin-top:15px;">Edit your listing</h1>
+            <div class="innie">
+                <div class="gray-flex-box">
+                    <?php if (isset($data['error'])) {
+                        echo "<h4 style='color:red;'>{$data['error']}</h4>";
+                    } ?>
+                    <form method="post" action="" enctype="multipart/form-data" style="margin-top:10px;margin-bottom:10px;">
+                        <img src="/uploads/<?php echo $data['listing']->filename; ?>"><br>
+                        Picture: <input type='file' name='newPicture' style="margin-top:15px;"/><br>
+                        Brand: <input class="listing" disabled type="text" value="<?php echo $data['shoe']->brand ?>"><br>
+                        Model: <input class="listing" disabled type="text" value="<?php echo $data['shoe']->name ?>"><br>
+                        Color: <input class="listing" disabled type="text" value="<?php echo $data['listing']->color ?>"><br>
+                        Size: <select class="listing" name="size">
+                            <?php for ($i = 1; $i <= 35; $i++) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
+                                <?php if ($i != 35) { ?>
+                                    <option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
+                                <?php } ?>
+                            <?php } ?>
+                        </select><br>
+                        Stock: <select class="listing" name="stock">
+                            <?php for ($i = 1; $i <= 9; $i++) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i ?></option>
+                            <?php } ?>
+                        </select><br>
+                        Price: <input class="listing" type='number' name='price' step=".01" value="<?php echo $data['listing']->price ?>>" /><br>
+                        Description <input class="listing" type='textarea' name='description' value="<?php echo $data['listing']->description ?>" /><br>
+                        <input class="button" type="submit" name="edit" value="Save" style="margin-top:15px;">
+                    </form>
+                </div>
+            </div>
+        </div> 
     </div>
 </body>
 
