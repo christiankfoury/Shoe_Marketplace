@@ -67,41 +67,25 @@
       </div>
     </div>
   </nav>
-  <!-- id="brown-box" -->
-  <div>
-    <div class="listingIndex">
-      <!-- <center> -->
-      <h1>Matched Listings</h1>
-      <!-- </center> -->
-      <article style="background-color: white;">
-        <!-- <center> -->
-        <?php
-        foreach ($data as $listing) {
-          // print_r($listing);
-          echo "
-              <center>
-              <table border=1>
-              <tr>
-              <th>Image</th>
-              <th>Shoe</th>
-              <th>Size</th>
-              <th>Stock</th>
-              <th>Price</th>
-              </tr>
-              <tr>
-              <th><img src='/uploads/$listing->filename' style='width: 100px'></img></th>
-              <th>$listing->shoe_id</th>
-              <th>$listing->size</th>
-              <th>$listing->stock</th>
-              <th>$listing->price</th>
-              <th><a href='/Listing/viewListing/$listing->listing_id'>View</a>
-              </tr>
-              </table>
-              </center>";
-        }
-        ?>
-        <!-- </center> -->
-      </article>
+  <div class="main">
+    <div style="padding: 20px;">
+      <h1 class="welcome">Matched listings</h1>
+      <div class="innie">
+        <div class="gray-flex-box">
+        <?php foreach ($data as $listing) : ?>
+               <div class="card" style="width: 18rem;">
+               <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+               <div class="card-body">
+               <?php $shoe = new \app\models\Shoe;
+               $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+               <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+               <p class="card-text">$<?php echo $listing->price ?></p>
+               <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          <?php endforeach ?>
+        </div>
+      </div>
     </div>
   </div>
 </body>

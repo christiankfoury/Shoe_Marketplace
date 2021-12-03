@@ -67,23 +67,28 @@
       </div>
     </div>
   </nav>
-  <div style="margin-top: 150px;">
-    <h2>Wishlist</h2>
-    <?php
-
-    if ($data == null) {
-      echo "<h4>You have no wishlisted sneakers!";
-    } else {
-      foreach ($data as $listing) {
-        echo
-        "
-        <h4>$listing->listing_id</h4>
-        ";
-      }
-    }
-
-    ?>
-
+  <div class="main">
+        <div style="padding: 20px;">
+            <h1 class="welcome">Wishlist</h1>
+            <div class="innie">
+              <?php echo "<h4>There are no listings matching your wishlist!";?>
+                <div class="gray-flex-box">
+                    <?php foreach ($data as $listing) : ?>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+                            <div class="card-body">
+                                <?php $shoe = new \app\models\Shoe;
+                                $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+                                <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+                                <p class="card-text">$<?php echo $listing->price ?></p>
+                                <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

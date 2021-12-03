@@ -67,45 +67,29 @@
       </div>
     </div>
   </nav>
-  <!-- id="brown-box" -->
-  <div>
-    <div class="listingIndex">
-      <!-- <center> -->
-      <h1>Listings</h1>
-      <!-- </center> -->
-      <article style="background-color: white;">
-        <!-- <center> -->
-        <a href="/Listing/createListing" style="color:black;">Create a new listing</a>
-        <br>
+  <div class="main">
+    <div style="padding: 20px;">
+      <h1 class="welcome">Listings</h1>
+      <div class="innie">
+        <a href="/Listing/createListing" style="" class="button">Create a new listing</a><br>
+        <div class="gray-flex-box">
         <?php
-        foreach ($data['listings'] as $listing) {
-          // print_r($listing);
-          echo "
-              <center>
-              <table border=1>
-              <tr>
-              <th>Image</th>
-              <th>Shoe</th>
-              <th>Size</th>
-              <th>Stock</th>
-              <th>Price</th>
-              </tr>
-              <tr>
-              <th><img src='/uploads/$listing->filename' style='width: 100px'></img></th>
-              <th>$listing->shoe_id</th>
-              <th>$listing->size</th>
-              <th>$listing->stock</th>
-              <th>$listing->price</th>
-              <th><a href='/Listing/viewListing/$listing->listing_id'>View</a>
-              <th><a href='/Listing/editListing/$listing->listing_id'>Edit</a>
-              <th><a href='/Listing/deleteListing/$listing->listing_id'>Delete</a>
-              </tr>
-              </table>
-              </center>";
-        }
-        ?>
-        <!-- </center> -->
-      </article>
+        foreach ($data['listings'] as $listing) : ?>
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+            <div class="card-body">
+              <?php $shoe = new \app\models\Shoe;
+              $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+              <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+              <p class="card-text">$<?php echo $listing->price ?></p>
+              <a class="button" href='/Listing/viewListing/<?php echo $listing->listing_id?>'>View</a>
+              <a class="button" href='/Listing/editListing/<?php echo $listing->listing_id?>'>Edit</a>
+              <a class="button" href='/Listing/deleteListing/<?php echo $listing->listing_id?>'>Delete</a>
+            </div>
+        </div>
+        <?php endforeach ?>
+        </div>
+      </div>
     </div>
   </div>
 </body>
