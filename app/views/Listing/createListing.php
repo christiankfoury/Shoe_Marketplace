@@ -68,17 +68,17 @@
       </div>
     </div>
   </nav>
-  <div class="createListing">
-    <center>
-      <h1>Listings</h1>
-    </center>
+  <div class="main">
+    <div style="padding: 20px;">
+      <h1 class="welcome">Create a Listing</h1>
+      <div class="innie">
     <?php if (isset($data['error'])) {
       echo "<h4 style='color:red;'>{$data['error']}</h4>";
     } ?>
-    <article>
-      <!-- <center> -->
+    <div class="innie">
+      <div class="gray-flex-box">
       <form action='' method='post' enctype="multipart/form-data">
-        Brand: <select name="brand" id="brand">
+        Brand: <select class="listing" name="brand" id="brand">
           <option value="Select a brand">Select a brand</option>
           <option value="Jordan">Jordan</option>
           <option value="Nike">Nike</option>
@@ -87,18 +87,20 @@
           <option value="New Balance">New Balance</option>
         </select>
         <br>
-        Model: <select name="model" id="model">
+        Model: <select class="listing" name="model" id="model">
           <option value="Select a brand" selected="selected">Select a brand first</option>
         </select>
         <br>
-        Color:<select name="color">
+        Color:<select id="header-container" class="listing" name="color">
+          <option disabled>What's the color? </option> 
           <option value="Yellow">Yellow</option>
           <option value="Blue">Blue</option>
           <option value="Red">Red</option>
           <option value="Black">Black</option>
           <option value="White">White</option>
         </select><br>
-        Size: <select name="size">
+        Size: <select id="header-container" class="listing" name="size" >
+          <option disabled>What's the size? </option> 
           <?php for ($i = 1; $i <= 35; $i++) { ?>
             <option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
             <?php if ($i != 35) { ?>
@@ -106,17 +108,20 @@
             <?php } ?>
           <?php } ?>
         </select><br>
-        Stock: <select name="stock">
+        Stock: <select id="header-container" class="listing" name="stock">
+          <option disabled>How many are you selling? </option> 
           <?php for ($i = 1; $i <= 9; $i++) { ?>
             <option value="<?php echo $i; ?>"><?php echo $i ?></option>
           <?php } ?>
         </select><br>
-        Price: <input type='number' name='price' step=".01" /><br>
-        Description <input type='textarea' name='description' /><br>
-        Picture: <input type='file' name='newPicture' /><br>
-        <input type='submit' name='action' value='Create' />
-        <!-- </center> -->
-    </article>
+        Price: <input class="listing" type='number' name='price' step=".01" /><br>
+        Description <input class="listing" type='textarea' name='description' /><br>
+        Picture: <input type='file' name='newPicture' style="margin-top:15px;"/><br>
+        <input type='submit' class="button" name='action' value='Create' style="margin-top:15px;"/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </body>
