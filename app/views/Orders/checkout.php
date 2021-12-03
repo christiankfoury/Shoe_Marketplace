@@ -95,7 +95,7 @@
     Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
     Address: <input type="text" name="address" maxlength="50"><br>
     Address 2: <input type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
-    Postal Code: <input id="postal_code" type="text" name="postal_code" placeholder="A1A1A1" minlength="6" maxlength="7"><br>
+    Postal Code: <input id="postal_code" type="text" name="postal_code" placeholder="A1A 1A1" minlength="6" maxlength="7"><br>
     City: <input type="text" name="city"><br>
     <?php 
     $provinces = ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'];
