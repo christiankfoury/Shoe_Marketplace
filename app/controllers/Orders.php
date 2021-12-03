@@ -122,20 +122,20 @@ class Orders extends \app\core\Controller
             $validPostalCode = (bool) preg_match($regexPostalCode,$postal_code);
             $card_number = (bool) preg_match($regexCardNumber,$card_number);
 
-            if($validPostalCode == false){
-                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the postal code is in the right format! (EX: A1A 1A1)"]);
-                return;
-            }
-            else if($card_number == false){
-                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the card number only contains digits and that it is a real card! (EX: 1111 2222 3333 4444)"]);
-                return;
-            }
-            else if (
+            if (
                 $_POST['email'] == "" || $_POST['address'] == "" || $_POST['postal_code'] == ""
                 || $_POST['province'] == "" || $_POST['card_number'] == ""
                 || $_POST['card_name'] == "" || $_POST['expiration'] == "" || $_POST['security_code'] == ""
             ) {
                 $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please fill out all fields"]);
+            }
+            else if($validPostalCode == false){
+                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the postal code is in the right format! (EX: A1A 1A1)"]);
+                return;
+            }
+            else if($card_number == false){
+                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the card number only contains digits and that it is the correct format! (EX: 1111 2222 3333 4444)"]);
+                return;
             } else {
                 $order = new \app\models\Orders();
                 $order = $order->get($order_id);

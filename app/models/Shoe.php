@@ -5,7 +5,7 @@ namespace app\models;
 class Shoe extends \app\core\Model{
     public $shoe_id;
     public $brand;
-    public $name;
+    public $model;
     public $color;
     public $previously_sold_price;
 
@@ -13,10 +13,10 @@ class Shoe extends \app\core\Model{
         parent::__construct();
     }
 
-    public function getShoeByBrandModel($brand, $name){
+    public function getShoeByBrandModel($brand, $model){
         $SQL = 'SELECT * FROM shoe WHERE brand = :brand AND name = :name';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['brand'=>$brand, 'name'=>$name]);
+		$STMT->execute(['brand'=>$brand, 'name'=>$model]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Shoe');
 		return $STMT->fetch();//return the record	
     }
