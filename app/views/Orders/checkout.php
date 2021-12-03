@@ -4,6 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="/app/script/checkout.js"></script>
 
 <head>
   <title>Checkout</title>
@@ -89,20 +90,35 @@
     }
     echo "</select><br>";
     ?>
-    Email: <input type="text" name="email"><br>
+    Email: <input type="email" name="email" placeholder="bob@gmail.com" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"><br>
     First Name: <input disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
     Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
-    Address: <input type="text" name="address"><br>
-    Address 2: <input type="text" name="address2" placeholder="apt,suite,etc."><br>
-    Postal Code: <input type="text" name="postal_code"><br>
+    Address: <input type="text" name="address" maxlength="50"><br>
+    Address 2: <input type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
+    Postal Code: <input id="postal_code" type="text" name="postal_code" placeholder="A1A1A1" minlength="6" maxlength="7"><br>
     City: <input type="text" name="city"><br>
-    Province: <input type="text" name="province"><br>
+    <?php 
+    $provinces = ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'];
+    echo
+    "
+    Province:
+    <select name='province'>";
+
+    foreach($provinces as $province){
+      echo "<option value='$province'>$province</option>";
+    }
+
+    echo
+    "
+    </select><br>
+    ";
+    ?>
     Country: <input disabled value="Canada" type="text" name="country"><br>
     <h4>Payment Information</h4>
-    Card Number: <input type="text" name="card_number" placeholder="1111 2222 3333 4444">
-    Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed">
-    Expiration Date: <input type="month" name="expiration" placeholder="MM/YY">
-    Security Code: <input type="text" name="security_code" placeholder="999"><br>
+    Card Number: <input id="card_number" type="text" name="card_number" placeholder="1111 2222 3333 4444" maxlength="19">
+    Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed"><br>
+    Expiration: <input type="month" name="expiration" placeholder="MM/YY">
+    Security Code: <input type="text" pattern="^[0-9]*$" name="security_code" placeholder="999" maxlength="3"><br>
     <input type="submit" name="action" value="Place Order">
   </form>
 </body>

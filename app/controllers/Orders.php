@@ -113,7 +113,24 @@ class Orders extends \app\core\Controller
                 header("Location:/User/search/$search");
             }
         } else if (isset($_POST['action'])) {
-            if (
+
+            
+            $postal_code = preg_replace('/\s+/', '', $_POST['postal_code']);
+            $card_number = preg_replace('/\s+/', '', $_POST['card_number']);
+            $regexPostalCode = '/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/';
+            $regexCardNumber = '/^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/';
+            $validPostalCode = (bool) preg_match($regexPostalCode,$postal_code);
+            $card_number = (bool) preg_match($regexCardNumber,$card_number);
+
+            if($validPostalCode == false){
+                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the postal code is in the right format! (EX: A1A 1A1)"]);
+                return;
+            }
+            else if($card_number == false){
+                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the card number only contains digits and that it is a real card! (EX: 1111 2222 3333 4444)"]);
+                return;
+            }
+            else if (
                 $_POST['email'] == "" || $_POST['address'] == "" || $_POST['postal_code'] == ""
                 || $_POST['province'] == "" || $_POST['card_number'] == ""
                 || $_POST['card_name'] == "" || $_POST['expiration'] == "" || $_POST['security_code'] == ""
