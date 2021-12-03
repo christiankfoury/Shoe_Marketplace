@@ -4,6 +4,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="/app/css/style.css" rel="stylesheet">
 
 <head>
     <title>For You Page</title>
@@ -65,22 +67,28 @@
             </div>
         </div>
     </nav>
-    <div style="margin-top: 150px;">
-        <h1>All listings</h1>
-        <?php foreach ($data['listings'] as $listing) : ?>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-                <div class="card-body">
-                    <?php $shoe = new \app\models\Shoe;
-                    $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-                    <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-                    <p class="card-text">$<?php echo $listing->price ?></p>
-                    <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
+
+    <div class="main">
+        <div style="padding: 20px;">
+            <h1 class="welcome">All listings</h1>
+            <div class="innie">
+                <div class="gray-flex-box">
+                    <?php foreach ($data['listings'] as $listing) : ?>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+                            <div class="card-body">
+                                <?php $shoe = new \app\models\Shoe;
+                                $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+                                <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+                                <p class="card-text">$<?php echo $listing->price ?></p>
+                                <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
                 </div>
             </div>
-        <?php endforeach ?>
+        </div>
     </div>
-
 </body>
 
 </html>
