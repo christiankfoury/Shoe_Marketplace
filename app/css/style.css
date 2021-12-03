@@ -302,6 +302,8 @@ textarea.textarea-review {
     border: 1px solid #fff;
     border-radius: 3px;
     padding: 6px 20px;
+    margin-bottom: 10px;
+    font-size: 2vh;
 }
 td.orders{
     padding-left: 20px;
@@ -311,4 +313,8 @@ td.orders{
 
 span.order-bold {
     font-weight: bold;
+}
+
+.checkout-label {
+    font-size: 2.5vh;
 }

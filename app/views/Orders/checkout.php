@@ -91,25 +91,25 @@
                       <h4>Price per sneaker: $ $listing->price</h4>
                     </div>
                   </div>";
-            echo "Quantity: <select class='listing' name='quantity'>";
+            echo "<label class='checkout-label'>Quantity:</label> <select class='listing' name='quantity'>";
             for ($i = 1; $i <= $listing->stock; $i++) {
               echo "<option value='$i'>$i</option>";
             }
             echo "</select><br>";
             ?>
             <h4 style="margin-top:25px;">Shipping information</h4>
-            Email: <input class='listing' type="email" name="email" placeholder="bob@gmail.com" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"><br>
-            First Name: <input class='listing' disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
-            Last Name: <input class='listing' disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
-            Address: <input class='listing' type="text" name="address" maxlength="50"><br>
-            Address 2: <input class='listing' type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
-            Postal Code: <input class='listing' id="postal_code" type="text" name="postal_code" placeholder="A1A 1A1" minlength="6" maxlength="7"><br>
-            City: <input class='listing' type="text" name="city"><br>
+            <label class="checkout-label">Email:</label> <input class='listing' type="email" name="email" placeholder="bob@gmail.com" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"><br>
+            <label class="checkout-label">First Name:</label> <input class='listing' disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
+            <label class="checkout-label">Last Name:</label> <input class='listing' disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
+            <label class="checkout-label">Address:</label> <input class='listing' type="text" name="address" maxlength="50"><br>
+            <label class="checkout-label">Address 2:</label> <input class='listing' type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
+            <label class="checkout-label">Postal Code:</label> <input class='listing' id="postal_code" type="text" name="postal_code" placeholder="A1A 1A1" minlength="6" maxlength="7"><br>
+            <label class="checkout-label">City:</label> <input class='listing' type="text" name="city"><br>
             <?php
             $provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'];
             echo
             "
-              Province:
+              <label class='checkout-label'>Province:</label>
               <select class='listing' name='province'>";
 
             foreach ($provinces as $province) {
@@ -121,12 +121,12 @@
               </select><br>
               ";
             ?>
-            Country: <input disabled class='listing' value="Canada" type="text" name="country"><br>
+            <label class="checkout-label">Country:</label> <input disabled class='listing' value="Canada" type="text" name="country"><br>
             <h4 style="margin-top:25px;">Payment Information</h4>
-            Card Number: <input class='listing' id="card_number" type="text" name="card_number" placeholder="4519 9999 9999 9999" maxlength="19">
-            Name on Card: <input class='listing' type="text" name="card_name" placeholder="Bob Appleseed"><br>
-            Expiration: <input class='listing' type="month" name="expiration" placeholder="MM/YY">
-            Security Code: <input class='listing' type="text" pattern="^[0-9]*$" name="security_code" placeholder="999" maxlength="3"><br>
+            <label class="checkout-label">Card Number:</label> <input class='listing' id="card_number" type="text" name="card_number" placeholder="4519 9999 9999 9999" maxlength="19">
+            <label class="checkout-label">Name on Card:</label> <input class='listing' type="text" name="card_name" placeholder="Bob Appleseed"><br>
+            <label class="checkout-label">Expiration:</label> <input class='listing' type="month" name="expiration" placeholder="MM/YY">
+            <label class="checkout-label">Security Code:</label> <input class='listing' type="text" pattern="^[0-9]*$" name="security_code" placeholder="999" maxlength="3"><br>
             <input class='button' type="submit" name="action" value="Place Order" style="margin-top:15px;">
           </form>
         </div>
