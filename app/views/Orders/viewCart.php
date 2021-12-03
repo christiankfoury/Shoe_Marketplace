@@ -68,13 +68,36 @@
     </div>
   </nav>
 
-  <h4 style='margin-top:150px;'>Your Cart Contents</h4>
-  <?php
+  <div class="main">
+    <div style="padding: 20px;">
+      <h1 class="welcome">Your Cart Contents</h1>
+      <div class="innie">
+        <?php if ($data == null){echo "<h4>You have nothing in your cart!</h4>";}?>
+          <div class="gray-flex-box">
+            <?php foreach ($data as $items) : ?>
+              <div class="card" style="width: 18rem;">
+                <?php $shoe = new \app\models\Shoe;
+                $listing = new \app\models\Listing();
+                $listing = $listing->get($items->listing_id);
+                $shoe = $shoe->getShoeByShoeId($listing->shoe_id);
+                ?>
+                <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+                <p class="card-text">$<?php echo $listing->price ?></p>
+                <p class="card-text">Size: <?php echo $listing->size ?></p>
+                <a href='/Orders/removeItemFromCart/<?php echo "$items->order_id/$items->listing_id"?>'>Remove</a><br>
+                <a href='/Orders/checkout/<?php echo $items->order_id?>'>Check out</a><br>
+              </div>
+            </div>
+            <?php endforeach ?>
+          </div>
+        </div>
+      </div>
+  </div>  
 
-  if ($data == null) {
-    echo "<h4>You have nothing in your cart!</h4>";
-  } else {
-    $listing = new \app\models\Listing();
+
+    <!-- $listing = new \app\models\Listing();
     foreach ($data as $items) {
       $listing = $listing->get($items->listing_id);
       echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
@@ -85,7 +108,7 @@
     }
   }
 
-  ?>
+  ?> -->
 </body>
 
 </html>

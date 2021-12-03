@@ -71,7 +71,7 @@
         <div style="padding: 20px;">
             <h1 class="welcome">Wishlist</h1>
             <div class="innie">
-              <?php echo "<h4>There are no listings matching your wishlist!";?>
+              <?php if($data==null){echo "<h4>There are no listings matching your wishlist!";}?>
                 <div class="gray-flex-box">
                     <?php foreach ($data as $listing) : ?>
                         <div class="card" style="width: 18rem;">
