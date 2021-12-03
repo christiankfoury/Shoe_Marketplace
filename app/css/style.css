@@ -1,7 +1,7 @@
 /* dont forget to remove body name
 .login-register-body in views */
 body {
-    background: url(/uploads/background.jpg) no-repeat fixed center;
+    background: #212529;
     top: 0;
     bottom: 0;
     right: 0;

@@ -25,7 +25,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="/User/index">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Listing/index">Listings</a>
@@ -40,7 +40,7 @@
               <a class="nav-link" href="/Message/index">Messages</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/User/settings">Settings</a>
+              <a class="nav-link" href="/User/changePassword">Change Password</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/User/logout">Logout</a>
@@ -97,14 +97,14 @@
     Address 2: <input type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
     Postal Code: <input id="postal_code" type="text" name="postal_code" placeholder="A1A 1A1" minlength="6" maxlength="7"><br>
     City: <input type="text" name="city"><br>
-    <?php 
-    $provinces = ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'];
+    <?php
+    $provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'];
     echo
     "
     Province:
     <select name='province'>";
 
-    foreach($provinces as $province){
+    foreach ($provinces as $province) {
       echo "<option value='$province'>$province</option>";
     }
 

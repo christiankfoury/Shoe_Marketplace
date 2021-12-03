@@ -41,7 +41,7 @@
 							<a class="nav-link" href="/Message/index">Messages</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/User/settings">Settings</a>
+							<a class="nav-link" href="/User/changePassword">Change Password</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="/User/logout">Logout</a>
@@ -86,7 +86,7 @@
 
 			<div class="innie">
 				<h3>Some shoes to look out for in the future. <span class="small">Based on your favorite color but not in your size.<span></h3>
-				<div class="gray-flex-box" >
+				<div class="gray-flex-box">
 					<?php foreach ($data['listingsColor'] as $listing) : ?>
 						<div class="card">
 							<img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
@@ -103,10 +103,10 @@
 				<br>
 				<h3>Some listings based your favorite color and available in your size.</h3>
 				<?php
-				if (count($data['listingsColorSize']) == 0 ) {
+				if (count($data['listingsColorSize']) == 0) {
 					echo "<div class=\"alert alert-dark\" role=\"alert\">No listings now! Please try again later.</div>";
-				} 
-					
+				}
+
 				foreach ($data['listingsColorSize'] as $listing) : ?>
 					<div class="card" style="width: 18rem;">
 						<img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">

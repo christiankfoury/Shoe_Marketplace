@@ -25,7 +25,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" aria-current="page" href="/User/index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/Listing/index">Listings</a>
@@ -40,7 +40,7 @@
                             <a class="nav-link" href="/Message/index">Messages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/User/settings">Settings</a>
+                            <a class="nav-link" href="/User/changePassword">Change Password</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/User/logout">Logout</a>
@@ -70,7 +70,9 @@
         <a href="/User/index">Return to For You</a><br>
         <a href="/Listing/allListings">Return to all listings</a>
         <h1>Edit your listing</h1>
-        <?php if(isset($data['error'])){echo "<h4 style='color:red;'>{$data['error']}</h4>";} ?>
+        <?php if (isset($data['error'])) {
+            echo "<h4 style='color:red;'>{$data['error']}</h4>";
+        } ?>
         <form method="post" action="" enctype="multipart/form-data">
             <img src="/uploads/<?php echo $data['listing']->filename; ?>"><br>
             Picture: <input type='file' name='newPicture' /><br>
@@ -78,17 +80,17 @@
             Model: <input disabled type="text" value="<?php echo $data['shoe']->name ?>"><br>
             Color: <input disabled type="text" value="<?php echo $data['listing']->color ?>"><br>
             Size: <select name="size">
-            <?php for ($i = 1; $i <= 35; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
-                <?php if ($i != 35) { ?>
-                <option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
+                <?php for ($i = 1; $i <= 35; $i++) { ?>
+                    <option value="<?php echo $i; ?>"><?php echo "US Size " . $i ?></option>
+                    <?php if ($i != 35) { ?>
+                        <option value="<?php echo $i + .5; ?>"><?php echo "US Size " . $i + .5 ?></option>
+                    <?php } ?>
                 <?php } ?>
-            <?php } ?>
             </select><br>
             Stock: <select name="stock">
-            <?php for ($i = 1; $i <= 9; $i++) { ?>
-                <option value="<?php echo $i; ?>"><?php echo $i ?></option>
-            <?php } ?>
+                <?php for ($i = 1; $i <= 9; $i++) { ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i ?></option>
+                <?php } ?>
             </select><br>
             Price: <input type='number' name='price' step=".01" value="<?php echo $data['listing']->price ?>>" /><br>
             Description <input type='textarea' name='description' value="<?php echo $data['listing']->description ?>" /><br>

@@ -30,7 +30,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" aria-current="page" href="/User/index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/Listing/index">Listings</a>
@@ -45,7 +45,7 @@
                             <a class="nav-link" href="/Message/index">Messages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/User/settings">Settings</a>
+                            <a class="nav-link" href="/User/changePassword">Change Password</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/User/logout">Logout</a>
@@ -71,17 +71,25 @@
             </div>
         </div>
     </nav>
-    <div style="margin-top: 150px;">
-        <h1>Change Password for <?php echo $data['user']->username ?></h1>
-        <form action="" method="post">
-            <label>Current Password: </label>
-            <input type="password" name="current_password"></input><br>
-            <label>New Password: </label>
-            <input type="password" name="new_password"></input><br>
-            <label>Confirm New Password: </label>
-            <input type="password" name="password_confirm"></input><br>
-            <input type="submit" name="action" value="Change"></input><br>
-        </form>
+    <div class="main">
+        <div style="padding: 20px;">
+            <h1 class="welcome">Password Change</h1>
+            <center>
+                <div class="login-register-box" style="margin-bottom: 20px;">
+                    <div style="text-align: left;">
+                        <form class="login-register-form" action="" method="post">
+                            Current Password:<br>
+                            <input class="login-register" type="password" name="current_password"></input><br>
+                            <label>New Password: </label><br>
+                            <input class="login-register" type="password" name="new_password"></input><br>
+                            <label>Confirm New Password: </label><br>
+                            <input class="login-register" type="password" name="password_confirm"></input><br><br>
+                            <input class="login-register-button" type="submit" name="action" value="Change"></input><br>
+                        </form>
+                    </div>
+                </div>
+            </center>
+        </div>
     </div>
 </body>
 
