@@ -69,60 +69,67 @@
     </div>
   </nav>
 
+  <div class="main">
+    <div style="padding: 20px;">
+    <h1 class="welcome">Checkout</h1>
+      <div class="innie">
+        <div class="gray-flex-box">
+          <?php
+            $listing = new \app\models\Listing();
+            $listing = $listing->get($data['order']->listing_id);
+            echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
+                  <h4>size: $listing->size</h4>";
+            ?>
 
-  <h4 style='margin-top:150px;'>Checkout</h4>
-  <?php
-  $listing = new \app\models\Listing();
-  $listing = $listing->get($data['order']->listing_id);
-  echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
-        <h4>size: $listing->size</h4>";
-  ?>
+            <?php
+            if (isset($data['error'])) {
+              echo "<h4>{$data['error']}</h4>";
+            }
+            ?>
+            <form method="post" action="" style="margin-top:50px;margin-bottom:10px;">
+              <h4>Shipping information</h4>
+              <?php
+              echo "Quantity: <select class='listing' name='quantity'>";
+              for ($i = 1; $i <= $listing->stock; $i++) {
+                echo "<option value='$i'>$i</option>";
+              }
+              echo "</select><br>";
+              ?>
+              Email: <input class='listing' type="email" name="email" placeholder="bob@gmail.com" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"><br>
+              First Name: <input class='listing' disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
+              Last Name: <input class='listing' disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
+              Address: <input class='listing' type="text" name="address" maxlength="50"><br>
+              Address 2: <input class='listing' type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
+              Postal Code: <input class='listing' id="postal_code" type="text" name="postal_code" placeholder="A1A 1A1" minlength="6" maxlength="7"><br>
+              City: <input class='listing' type="text" name="city"><br>
+              <?php
+              $provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'];
+              echo
+              "
+              Province:
+              <select class='listing' name='province'>";
 
-  <?php
-  if (isset($data['error'])) {
-    echo "<h4>{$data['error']}</h4>";
-  }
-  ?>
-  <form method="post" action="">
-    <h4>Shipping information</h4>
-    <?php
-    echo "Quantity: <select name='quantity'>";
-    for ($i = 1; $i <= $listing->stock; $i++) {
-      echo "<option value='$i'>$i</option>";
-    }
-    echo "</select><br>";
-    ?>
-    Email: <input type="email" name="email" placeholder="bob@gmail.com" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"><br>
-    First Name: <input disabled value="<?php echo $data['user']->first_name ?>" type="text" name="fName"><br>
-    Last Name: <input disabled value="<?php echo $data['user']->last_name ?>" type="text" name="lName"><br>
-    Address: <input type="text" name="address" maxlength="50"><br>
-    Address 2: <input type="text" name="address2" placeholder="apt,suite,etc." maxlength="50"><br>
-    Postal Code: <input id="postal_code" type="text" name="postal_code" placeholder="A1A 1A1" minlength="6" maxlength="7"><br>
-    City: <input type="text" name="city"><br>
-    <?php
-    $provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'];
-    echo
-    "
-    Province:
-    <select name='province'>";
+              foreach ($provinces as $province) {
+                echo "<option value='$province'>$province</option>";
+              }
 
-    foreach ($provinces as $province) {
-      echo "<option value='$province'>$province</option>";
-    }
-
-    echo
-    "
-    </select><br>
-    ";
-    ?>
-    Country: <input disabled value="Canada" type="text" name="country"><br>
-    <h4>Payment Information</h4>
-    Card Number: <input id="card_number" type="text" name="card_number" placeholder="4519 9999 9999 9999" maxlength="19">
-    Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed"><br>
-    Expiration: <input type="month" name="expiration" placeholder="MM/YY">
-    Security Code: <input type="text" pattern="^[0-9]*$" name="security_code" placeholder="999" maxlength="3"><br>
-    <input type="submit" name="action" value="Place Order">
-  </form>
+              echo
+              "
+              </select><br>
+              ";
+              ?>
+              Country: <input disabled class='listing' value="Canada" type="text" name="country"><br>
+              <h4 style="margin-top:25px;">Payment Information</h4>
+              Card Number: <input class='listing' id="card_number" type="text" name="card_number" placeholder="4519 9999 9999 9999" maxlength="19">
+              Name on Card: <input class='listing' type="text" name="card_name" placeholder="Bob Appleseed"><br>
+              Expiration: <input class='listing' type="month" name="expiration" placeholder="MM/YY">
+              Security Code: <input class='listing' type="text" pattern="^[0-9]*$" name="security_code" placeholder="999" maxlength="3"><br>
+              <input class='button' type="submit" name="action" value="Place Order" style="margin-top:15px;">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
