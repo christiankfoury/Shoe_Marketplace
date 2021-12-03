@@ -115,7 +115,7 @@
     ?>
     Country: <input disabled value="Canada" type="text" name="country"><br>
     <h4>Payment Information</h4>
-    Card Number: <input id="card_number" type="text" name="card_number" placeholder="1111 2222 3333 4444" maxlength="19">
+    Card Number: <input id="card_number" type="text" name="card_number" placeholder="4519 9999 9999 9999" maxlength="19">
     Name on Card: <input type="text" name="card_name" placeholder="Bob Appleseed"><br>
     Expiration: <input type="month" name="expiration" placeholder="MM/YY">
     Security Code: <input type="text" pattern="^[0-9]*$" name="security_code" placeholder="999" maxlength="3"><br>
