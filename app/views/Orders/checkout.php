@@ -75,12 +75,9 @@
       <div class="innie">
         <div class="gray-flex-box">
           <?php
-            $listing = new \app\models\Listing();
-            $listing = $listing->get($data['order']->listing_id);
-            echo "<img src='/uploads/$listing->filename' style='width:150px;height:150px;'><br>
-                  <h4>size: $listing->size</h4>"; 
-            ?>
-
+          $listing = new \app\models\Listing();
+          $listing = $listing->get($data['order']->listing_id);
+          ?>
           <?php
           if (isset($data['error'])) {
             echo "<h4>{$data['error']}</h4>";
