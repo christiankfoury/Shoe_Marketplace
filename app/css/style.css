@@ -141,7 +141,7 @@ div.createListing {
     border-radius: 50px;
     color: white;
     margin-bottom: 5vh;
-    letter-spacing: 0.5vw;
+    letter-spacing: 0.2vw;
 }
 
 div.main {
@@ -190,8 +190,8 @@ span.small {
     max-height: fit-content;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     border-radius: 50px;
+    justify-content: center;
 }
 /*     position: relative;
     display: flex;
