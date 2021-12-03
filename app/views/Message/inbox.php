@@ -11,7 +11,7 @@
 	<title>Your Inbox</title>
 </head>
 
-<body style="background: white;">
+<body>
 	<nav class="navbar navbar-light bg-light fixed-top">
 		<div class="container-fluid">
 			<a class="navbar-brand mx-auto" href="/User/index" style="margin-left: 50px;"><img src="/uploads/monkey.png" style="height: 100px"></a></a>
