@@ -237,3 +237,48 @@ textarea.textarea-review {
 .margin-bottom-button {
     margin-bottom: 15px;
 }
+
+.inbox {
+    flex: 1;
+    background: pink;
+    padding: 2vw;
+}
+
+.outbox {
+    flex: 1;
+    background: rebeccapurple;
+    padding: 2vw;
+}
+
+.inbox-outbox-table {
+    width: 100%;
+    outline: auto;
+    outline-offset: 10px;
+    outline-color: black;
+    outline-style: groove;
+    margin-bottom: 40px;
+}
+
+.reply-button {
+    background: #0d6efd;
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    transform: translateY(50%);
+    display: inline-block;
+}
+
+.reply-div {
+    min-height: 4em;
+}
+
+.left-radius {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.right-radius {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
