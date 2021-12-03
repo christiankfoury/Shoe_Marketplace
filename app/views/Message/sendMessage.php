@@ -81,7 +81,7 @@
                             <input class="login-register" disabled type="text" name="sender" value="<?php echo $data->receiver; ?>"> </input><br>
                             <label>Message</label><br>
                             <textarea style="resize: both; max-width: 500px;" name="message" placeholder="Type your message here..."></textarea><br>
-                            <input class="login-register-button" type="submit" name="action" value="Send"></input>
+                            <input class="login-register-button button" type="submit" name="action" value="Send"></input>
                         </form>
                     </div>
                 </div>

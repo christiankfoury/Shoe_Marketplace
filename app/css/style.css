@@ -156,7 +156,7 @@ nav {
     opacity: 0.9;
 }
 
-a.button {
+.button {
     background: #0d6efd;
     border-radius: 50px;
     text-decoration: none;
@@ -164,7 +164,7 @@ a.button {
     padding: 5px;
 }
 
-a.button:hover {
+.button:hover {
     background: #0a4eb3;
 }
 
