@@ -64,7 +64,7 @@ class Listing extends \app\core\Controller
                 if ($check !== false && isset($mime_type_to_extension[$check['mime']])) {
                     $extension = $mime_type_to_extension[$check['mime']];
                 } else {
-                    $this->view('Picture/newPost', ['error' => "Bad file type", 'pictures' => []]);
+                    $this->view('Listing/createListing', ['error' => "Bad file type", 'pictures' => []]);
                     return;
                 }
 
@@ -72,7 +72,7 @@ class Listing extends \app\core\Controller
                 $filepath = $this->folder . $filename;
 
                 if ($_FILES['newPicture']['size'] > 4000000) {
-                    $this->view('Picture/newPost', ['error' => "File too large", 'pictures' => []]);
+                    $this->view('Listing/createListing', ['error' => "File too large", 'pictures' => []]);
                     return;
                 }
                 if (move_uploaded_file($_FILES['newPicture']['tmp_name'], $filepath)) {
@@ -178,7 +178,7 @@ class Listing extends \app\core\Controller
                 if ($check !== false && isset($mime_type_to_extension[$check['mime']])) {
                     $extension = $mime_type_to_extension[$check['mime']];
                 } else {
-                    $this->view('Picture/newPost', ['error' => "Bad file type", 'pictures' => []]);
+                    $this->view('Listing/createListings', ['error' => "Bad file type", 'pictures' => []]);
                     return;
                 }
 
@@ -186,7 +186,7 @@ class Listing extends \app\core\Controller
                 $filepath = $this->folder . $filename;
 
                 if ($_FILES['newPicture']['size'] > 4000000) {
-                    $this->view('Picture/newPost', ['error' => "File too large", 'pictures' => []]);
+                    $this->view('Listing/createListings', ['error' => "File too large", 'pictures' => []]);
                     return;
                 }
                 if (move_uploaded_file($_FILES['newPicture']['tmp_name'], $filepath)) {

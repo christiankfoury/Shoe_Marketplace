@@ -150,10 +150,17 @@
                 }
                 ?>
 
-                <form action="" method="post">
-                    <textarea class="textarea-review" placeholder="Write a review" name="message" id="message" cols="30" rows="10"></textarea>
-                    <input type="submit" name="actionReview" value="Submit">
-                </form>
+                <?php
+                if ($_SESSION['username'] != $data['listing']->seller_username) {
+                    echo "
+                    <form action=\"\" method=\"post\">
+                        <textarea class=\"textarea-review\" placeholder=\"Write a review\" name=\"message\" id=\"message\" cols=\"30\" rows=\"10\"></textarea>
+                        <input type=\"submit\" name=\"actionReview\" value=\"Submit\">
+                    </form>";
+                } else {
+                    echo "<div style='height: 200px'></div";
+                }
+                ?>
             </div>
 
         </div>

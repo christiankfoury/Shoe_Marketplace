@@ -9,11 +9,6 @@
 
 <head>
     <title>Change Password</title>
-    <?php
-    if (isset($data['error'])) {
-        echo $data['error'];
-    }
-    ?>
 </head>
 
 <body>
@@ -77,6 +72,11 @@
             <h1 class="welcome">Password Change</h1>
             <center>
                 <div class="login-register-box" style="margin-bottom: 20px;">
+                    <?php
+                    if (isset($data['error'])) {
+                        echo "<div class=\"alert alert-danger\" role=\"alert\" style=\"width: 400px; height: 50px;\">{$data['error']}</div>";
+                    }
+                    ?>
                     <div style="text-align: left;">
                         <form class="login-register-form" action="" method="post">
                             Current Password:<br>

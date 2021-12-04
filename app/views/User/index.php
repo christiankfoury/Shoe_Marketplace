@@ -86,25 +86,35 @@
 
 			<div class="innie">
 				<h3>Some shoes to look out for in the future. <span class="small">Based on your favorite color but not in your size.<span></h3>
-				<div class="gray-flex-box">
-					<?php foreach ($data['listingsColor'] as $listing) : ?>
-						<div class="card">
-							<img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-							<div class="card-body">
-								<?php $shoe = new \app\models\Shoe;
-								$shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-								<h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-								<p class="card-text">$<?php echo $listing->price ?></p>
-								<a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
-							</div>
+				<?php
+				if (count($data['listingsColor']) == 0) {
+					echo "<div class=\"alert alert-dark\" role=\"alert\">No listings now! Please try again later.</div>";
+				} else {
+					echo "<div class=\"gray-flex-box\">";
+				}
+				?>
+				<?php foreach ($data['listingsColor'] as $listing) : ?>
+					<div class="card">
+						<img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+						<div class="card-body">
+							<?php $shoe = new \app\models\Shoe;
+							$shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+							<h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+							<p class="card-text">$<?php echo $listing->price ?></p>
+							<a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
 						</div>
-					<?php endforeach ?>
-				</div>
+					</div>
+				<?php endforeach ?>
+				<?php if (count($data['listingsColor']) > 0) {
+					echo "</div>";
+				} ?>
 				<br>
 				<h3>Some listings based your favorite color and available in your size.</h3>
 				<?php
 				if (count($data['listingsColorSize']) == 0) {
 					echo "<div class=\"alert alert-dark\" role=\"alert\">No listings now! Please try again later.</div>";
+				} else {
+					echo "<div class=\"gray-flex-box\">";
 				}
 
 				foreach ($data['listingsColorSize'] as $listing) : ?>
@@ -119,6 +129,9 @@
 						</div>
 					</div>
 				<?php endforeach ?>
+				<?php if (count($data['listingsColor']) > 0) {
+					echo "</div>";
+				} ?>
 			</div>
 		</div>
 	</div>

@@ -8,15 +8,18 @@
 </head>
 
 <body class="login-register-body">
-	<?php
-	if ($data != null) {
-		echo $data;
-	}
-	?>
 	<h1 class="login-h">Sneaker Marketplace</h1>
 	<h3 class="login-h">Login</h3>
 	<center>
 		<div class="login-register-box">
+			<?php
+			if ($data != null) {
+				echo "<div class=\"alert alert-danger\" role=\"alert\" style=\"width: 400px; height: 50px;\">$data</div>";
+			} else {
+				// echo "<div class=\"alert alert-light\" role=\"alert\">Registration</div>";
+				echo "<br><br>";
+			}
+			?>
 			<div style="text-align: left;">
 				<form class="login-register-form" action='' method='post'>
 					Username: <br><input class="login-register" type='text' name='username' /><br>
