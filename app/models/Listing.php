@@ -51,10 +51,14 @@ class Listing extends \app\core\Model{
 			'stock'=>$this->stock, 'price'=>$this->price, 'description'=>$this->description, 'color'=>$this->color, 'filename'=>$this->filename]);
 	}
 
-	public function delete(){//delete a message record
-		$SQL = 'DELETE FROM `listing` WHERE listing_id = :listing_id';
+	public function deleteAvailable(){//delete a message record
+		$SQL = 'UPDATE `listing` SET available = :available WHERE listing_id = :listing_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['listing_id'=>$this->listing_id]);//associative array with key => value pairs
+		$STMT->execute(['available'=>'no', 'listing_id'=>$this->listing_id]); //associative array with key => value pairs
+
+		$SQL = 'DELETE FROM `orders` WHERE listing_id = :listing_id AND timestamp is NULL';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['listing_id' => $this->listing_id]);//associative array with key => value pairs
 	}
 
 	public function getListingsByColor() {
