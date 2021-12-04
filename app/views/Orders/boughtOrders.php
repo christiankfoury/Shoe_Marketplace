@@ -92,7 +92,8 @@
 									<td class='orders'><span class='order-bold'>Shoe:</span> $shoe->brand $shoe->name<br>
 									<span class='order-bold'>Seller:</span> $orders->seller_username<br>
 									<span class='order-bold'>Quantity:</span> $orders->quantity<br>
-									<span class='order-bold'>Ordered at:</span> {$time::convertDateTime($orders->timestamp)}</td>
+									<span class='order-bold'>Ordered at:</span> {$time::convertDateTime($orders->timestamp)}<br>
+									<span class='order-bold'>Total:</span> $ {$orders->total_price}</td>
 									<td class='orders'><span class='order-bold'>Email:</span> $orders->email<br>
 									<span class='order-bold'>Address:</span> $orders->address<br>
 									<span class='order-bold'>Address 2:</span> $orders->address2<br>

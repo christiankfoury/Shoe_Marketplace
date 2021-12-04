@@ -5,6 +5,7 @@ namespace app\controllers;
 class Orders extends \app\core\Controller
 {
 
+    #[\app\filters\Login]
     public function addToCart($listing_id)
     {
         $listing = new \app\models\Listing();
@@ -23,6 +24,7 @@ class Orders extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function viewCart()
     {
         if (isset($_POST['search'])) {
@@ -40,6 +42,7 @@ class Orders extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function boughtOrders()
     {
         if (isset($_POST['search'])) {
@@ -61,6 +64,7 @@ class Orders extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function soldOrders()
     {
         if (isset($_POST['search'])) {
@@ -83,6 +87,7 @@ class Orders extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function removeFromCart($order_id, $listing_id)
     {
         $order = new \app\models\Orders();
@@ -91,6 +96,7 @@ class Orders extends \app\core\Controller
         header("Location:/Listing/viewListing/$listing_id");
     }
 
+    #[\app\filters\Login]
     public function removeItemFromCart($order_id, $listing_id)
     {
         $order = new \app\models\Orders();
@@ -99,6 +105,7 @@ class Orders extends \app\core\Controller
         header("Location:/Orders/viewCart");
     }
 
+    #[\app\filters\Login]
     public function checkout($order_id)
     {
         $order = new \app\models\Orders();
@@ -137,6 +144,9 @@ class Orders extends \app\core\Controller
                 $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the card number only contains digits and that it is the correct format! (EX: 1111 2222 3333 4444)"]);
                 return;
             } else {
+                $listing = new \app\models\Listing();
+                $listing = $listing->get($order->listing_id);
+
                 $order = new \app\models\Orders();
                 $order = $order->get($order_id);
                 $order->quantity = $_POST['quantity'];
@@ -146,6 +156,7 @@ class Orders extends \app\core\Controller
                 $order->postal_code = $_POST['postal_code'];
                 $order->province = $_POST['province'];
                 $order->city = $_POST['city'];
+                $order->total_price = $listing->price * $order->quantity;
                 $order->update();
 
                 $listing = new \app\models\Listing();

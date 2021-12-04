@@ -4,6 +4,7 @@ namespace app\controllers;
 
 class Wishlist extends \app\core\Controller
 {
+    #[\app\filters\Login]
     public function index()
     {
         if (isset($_POST['search'])) {
@@ -38,6 +39,7 @@ class Wishlist extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function add($shoe_id, $color, $listing_id)
     {
         $wishlist = new \app\models\Wishlist();
@@ -48,6 +50,7 @@ class Wishlist extends \app\core\Controller
         header("Location:/Listing/viewListing/$listing_id");
     }
 
+    #[\app\filters\Login]
     public function remove($shoe_id, $color, $listing_id)
     {
         $wishlist = new \app\models\Wishlist();

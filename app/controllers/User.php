@@ -5,6 +5,7 @@ namespace app\controllers;
 class User extends \app\core\Controller
 {
 
+	#[\app\filters\Login]
 	public function index()
 	{
 		if (isset($_POST['search'])) {
@@ -90,6 +91,7 @@ class User extends \app\core\Controller
 			$this->view('User/register');
 	}
 
+	#[\app\filters\Login]
 	public function settings()
 	{
 		if (isset($_POST['search'])) {
@@ -136,6 +138,7 @@ class User extends \app\core\Controller
 		}
 	}
 
+	#[\app\filters\Login]
 	public function search($search)
 	{
 		$listing = new \app\models\Listing();
@@ -143,6 +146,7 @@ class User extends \app\core\Controller
 		$this->view('Listing/searchResults', $listing);
 	}
 
+	#[\app\filters\Login]
 	public function searchBrand($brand)
 	{
 		$shoe = new \app\models\Shoe();

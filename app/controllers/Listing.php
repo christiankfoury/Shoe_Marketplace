@@ -6,6 +6,7 @@ class Listing extends \app\core\Controller
 {
     private $folder = 'uploads/';
 
+    #[\app\filters\Login]
     public function index()
     {
         if (isset($_POST['search'])) {
@@ -37,6 +38,7 @@ class Listing extends \app\core\Controller
     //     header("Location:/Listing/index/$listing");
     // }
 
+    #[\app\filters\Login]
     public function createListing()
     {
         if (isset($_POST['search'])) {
@@ -102,6 +104,7 @@ class Listing extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function viewListing($listing_id)
     {
         if (isset($_POST['search'])) {
@@ -130,6 +133,7 @@ class Listing extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function allListings()
     {
         if (isset($_POST['search'])) {
@@ -147,6 +151,7 @@ class Listing extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function editListing($listing_id){
 
         $listing = new \app\models\Listing();
@@ -219,6 +224,7 @@ class Listing extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function deleteListing($listing_id){
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);

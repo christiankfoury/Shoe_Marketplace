@@ -7,14 +7,8 @@ namespace app\filters;
 class Login	{
 	function execute(){
 		if (!isset($_SESSION['username'])) {
-			header('location:/Profile/login');
+			header('location:/User/login');
 			return true;
-		}
-		if (isset($_SESSION['isAuthenticated'])) {
-			if ($_SESSION['isAuthenticated'] == 'false') {
-				header('location:/Profile/authenticate');
-				return true;
-			}
 		}
 		return false;
 	}

@@ -14,6 +14,7 @@ class Review extends \app\core\Controller
     //     $this->view('Review/viewReviews', ['reviews' => $reviews]);
     // }
 
+    #[\app\filters\Login]
     public function editReview($listing_id, $review_id) {
         if (isset($_POST['search'])) {
             if ($_POST['searchBox'] == "") {
@@ -36,6 +37,7 @@ class Review extends \app\core\Controller
         }
     }
 
+    #[\app\filters\Login]
     public function deleteReview($listing_id, $review_id) {
         $review = new \app\models\Review();
         $review->deleteReview($review_id);
