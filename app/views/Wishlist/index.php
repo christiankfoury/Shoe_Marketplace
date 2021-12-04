@@ -80,6 +80,8 @@
                                 <?php $shoe = new \app\models\Shoe;
                                 $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
                                 <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+                                <p class="card-text">Color: <?php echo $listing->color;?></p>
+                                <p class="card-text">Size: US Men's <?php echo $listing->size;?></p>
                                 <p class="card-text">$<?php echo $listing->price ?></p>
                                 <a href="/Listing/viewListing/<?php echo $listing->listing_id ?>" class="btn btn-primary">View</a>
                             </div>

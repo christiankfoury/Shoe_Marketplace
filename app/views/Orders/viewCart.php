@@ -84,8 +84,9 @@
                 <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
                 <div class="card-body">
                 <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+                <p class="card-text">Color: <?php echo $listing->color;?></p>
+                <p class="card-text">Size: US Men's <?php echo $listing->size;?></p>
                 <p class="card-text">$<?php echo $listing->price ?></p>
-                <p class="card-text">Size: <?php echo $listing->size ?></p>
                 <a href='/Orders/removeItemFromCart/<?php echo "$items->order_id/$items->listing_id"?>'>Remove</a><br>
                 <a href='/Orders/checkout/<?php echo $items->order_id?>'>Check out</a><br>
               </div>
