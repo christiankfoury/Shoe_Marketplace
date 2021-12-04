@@ -143,6 +143,10 @@ class Orders extends \app\core\Controller
             else if($card_number == false){
                 $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the card number only contains digits and that it is the correct format! (EX: 1111 2222 3333 4444)"]);
                 return;
+            }
+            else if(strlen($_POST['security_code']) < 3){
+                $this->view("\Orders\checkout", ['order' => $order, 'user' => $user, "error" => "Please make sure that the security code format is correct!"]);
+                return;
             } else {
                 $listing = new \app\models\Listing();
                 $listing = $listing->get($order->listing_id);
