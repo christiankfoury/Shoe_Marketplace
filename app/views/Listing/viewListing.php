@@ -83,12 +83,19 @@
                 "
                 <div class='picture-left'><img src='/uploads/{$data['listing']->filename}' style='width: 600px; height: 600px'></div>
                 <div class='text-right'><h4>Shoe: {$shoe->brand} {$shoe->name}</h4>
+                <h4>Color: {$data['listing']->color}</h4>
                 <h4>Seller username: {$data['listing']->seller_username}</h4>
                 <h4>Shoe size: {$data['listing']->size}</h4>
                 <h4>Stock left: {$data['listing']->stock}</h4>
-                <h4>Price: $ {$data['listing']->price}</h4>
-                <h4>Reviews ($count)</h4><br>
-                ";
+                <h4>Price: $ {$data['listing']->price}</h4>";
+
+                if($shoe->previously_sold_price != ""){
+                    echo"<h4>This model was previously sold for: $$shoe->previously_sold_price</h4>";
+                }
+                else{
+                    echo"<h4>This model has not been sold yet on the website</h4>";
+                }
+                echo "<h4>Reviews ($count)</h4><br>";
                 if ($_SESSION['username'] != $data['listing']->seller_username) {
                     $username = $_SESSION['username'];
                     echo
@@ -114,6 +121,8 @@
                     } else {
                         echo "<h4 class='margin-bottom-button'><a class='button' href='/Wishlist/remove/{$data['listing']->shoe_id}/{$data['listing']->color}/{$data['listing']->listing_id}'>Remove from Wishlist</a></h4>";
                     }
+
+                    echo "<br><h4>Description: {$data['listing']->description}";
                 }
                 if (count($data['reviews']) > 0) {
                     echo "<div class='reviews-list'>";
