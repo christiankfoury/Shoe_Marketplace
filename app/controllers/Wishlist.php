@@ -25,7 +25,6 @@ class Wishlist extends \app\core\Controller
             $listing = new \app\models\Listing();
 
             $wishlistListings = [];
-            echo "heloo";
             foreach ($wishlists as $wishlist) {
                 $listing->shoe_id = $wishlist->shoe_id;
                 $listing->color = $wishlist->color;

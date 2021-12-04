@@ -82,7 +82,7 @@ class Listing extends \app\core\Model{
 	}
 
 	public function getBySearch($search){
-		$SQL = 'SELECT * FROM listing WHERE seller_username LIKE :seller_username OR size LIKE :size OR price LIKE :price OR description LIKE :description OR color LIKE :color AND available = :available';
+		$SQL = 'SELECT * FROM listing WHERE (seller_username LIKE :seller_username OR size LIKE :size OR price LIKE :price OR description LIKE :description OR color LIKE :color) AND available = :available';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['seller_username' => "%$search%", 'size'=> "%$search%", 'price'=> "%$search%", 'description' => "%$search%", 'color' => "%$search%", 'available' => "yes"]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');

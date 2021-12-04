@@ -81,7 +81,6 @@ class Orders extends \app\core\Controller
             $orders = new \app\models\Orders();
             $orders->seller_username = $_SESSION['username'];
             $orders = $orders->getBySeller();
-            print_r($orders);
 
             $this->view("\Orders\soldOrders", ["user" => $user, "orders" => $orders]);
         }
