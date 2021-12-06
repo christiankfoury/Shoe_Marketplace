@@ -156,6 +156,7 @@ class User extends \app\core\Controller
 			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
 		} else {
 			$listing = new \app\models\Listing();
+			$search = str_replace('%20', ' ', $search);
 			$listing = $listing->getBySearch($search);
 			$this->view('Listing/searchResults', $listing);
 		}
@@ -175,6 +176,7 @@ class User extends \app\core\Controller
 			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
 		} else {
 			$shoe = new \app\models\Shoe();
+			$brand = str_replace('%20', ' ', $brand);
 			$shoes = $shoe->getByBrand($brand);
 			$listing = new \app\models\Listing();
 			$listings = [];
