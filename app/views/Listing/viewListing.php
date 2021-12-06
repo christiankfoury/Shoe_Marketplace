@@ -63,6 +63,17 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
                         <button class="btn btn-outline-success" type="submit" name="search">Search</button>
                     </form>
+                    <br>
+                    <form class="d-flex" method="post">
+                        <select class="custom-select mr-sm-2 me-2" style="flex: 1;" placeholder="Search by brand" name="searchBrand">
+                            <option value="Jordan">Jordan</option>
+                            <option value="Nike">Nike</option>
+                            <option value="Adidas">Adidas</option>
+                            <option value="Vans">Vans</option>
+                            <option value="New Balance">New Balance</option>
+                        </select>
+                        <button class="btn btn-outline-success" type="submit" name="searchBrandButton">Search by brand</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -89,11 +100,10 @@
                 <h4>Stock left: {$data['listing']->stock}</h4>
                 <h4>Price: $ {$data['listing']->price}</h4>";
 
-                if($shoe->previously_sold_price != ""){
-                    echo"<h4>This model was previously sold for: $$shoe->previously_sold_price</h4>";
-                }
-                else{
-                    echo"<h4>This model has not been sold yet on the website</h4>";
+                if ($shoe->previously_sold_price != "") {
+                    echo "<h4>This model was previously sold for: $$shoe->previously_sold_price</h4>";
+                } else {
+                    echo "<h4>This model has not been sold yet on the website</h4>";
                 }
                 echo "<h4>Reviews ($count)</h4><br>";
                 if ($_SESSION['username'] != $data['listing']->seller_username) {

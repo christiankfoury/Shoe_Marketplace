@@ -39,22 +39,22 @@ class User extends \app\core\Controller
 		if (isset($_POST['action'])) { //verify that the user clicked the submit button
 			$user = new \app\models\User();
 
-			if(trim($_POST['password']) == '' || trim($_POST['username']) == ''){
+			if (trim($_POST['password']) == '' || trim($_POST['username']) == '') {
 				$this->view('User/login', 'Username and Password can not be empty!');
 				return;
 			}
 
-				$user = $user->get($_POST['username']);
+			$user = $user->get($_POST['username']);
 
-				if ($user != false && password_verify($_POST['password'], $user->password_hash)) {
-					$_SESSION['username'] = $user->username;
+			if ($user != false && password_verify($_POST['password'], $user->password_hash)) {
+				$_SESSION['username'] = $user->username;
 
-					$username = new \app\models\User();
-					$username = $username->get($_SESSION['username']);
-					header("Location:/User/index");
-				} else {
-					$this->view('User/login', 'Wrong username and password combination!');
-				}
+				$username = new \app\models\User();
+				$username = $username->get($_SESSION['username']);
+				header("Location:/User/index");
+			} else {
+				$this->view('User/login', 'Wrong username and password combination!');
+			}
 		} else //1 present a form to the user
 			$this->view('User/login');
 	}
@@ -101,6 +101,8 @@ class User extends \app\core\Controller
 				$search = $_POST['searchBox'];
 				header("Location:/User/search/$search");
 			}
+		} else if (isset($_POST['searchBrandButton'])) {
+			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
 		} else {
 			$user = new \app\models\User();
 			$user = $user->get($_SESSION['username']);
@@ -120,6 +122,8 @@ class User extends \app\core\Controller
 				$search = $_POST['searchBox'];
 				header("Location:/User/search/$search");
 			}
+		} else if (isset($_POST['searchBrandButton'])) {
+			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
 		} else if (isset($_POST['action'])) {
 			if ($_POST['new_password'] == '' || $_POST['password_confirm'] == '') {
 				$this->view('User/changePassword', ['user' => $user, 'error' => 'The new password must not be empty']);
@@ -141,30 +145,52 @@ class User extends \app\core\Controller
 	#[\app\filters\Login]
 	public function search($search)
 	{
-		$listing = new \app\models\Listing();
-		$listing = $listing->getBySearch($search);
-		$this->view('Listing/searchResults', $listing);
+		if (isset($_POST['search'])) {
+			if ($_POST['searchBox'] == "") {
+				header("Location:/User/index");
+			} else {
+				$search = $_POST['searchBox'];
+				header("Location:/User/search/$search");
+			}
+		} else if (isset($_POST['searchBrandButton'])) {
+			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
+		} else {
+			$listing = new \app\models\Listing();
+			$listing = $listing->getBySearch($search);
+			$this->view('Listing/searchResults', $listing);
+		}
 	}
 
 	#[\app\filters\Login]
 	public function searchBrand($brand)
 	{
-		$shoe = new \app\models\Shoe();
-		$shoes = $shoe->getByBrand($brand);
-		$listing = new \app\models\Listing();		
-		$listings = [];
+		if (isset($_POST['search'])) {
+			if ($_POST['searchBox'] == "") {
+				header("Location:/User/index");
+			} else {
+				$search = $_POST['searchBox'];
+				header("Location:/User/search/$search");
+			}
+		} else if (isset($_POST['searchBrandButton'])) {
+			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
+		} else {
+			$shoe = new \app\models\Shoe();
+			$shoes = $shoe->getByBrand($brand);
+			$listing = new \app\models\Listing();
+			$listings = [];
 
-		foreach ($shoes as $shoe) {
-			$listingsToAdd = $listing->getByShoeId($shoe->shoe_id);
-			if ($listingsToAdd != false && count($listingsToAdd) > 0) {
-				foreach ($listingsToAdd as $listingToAdd) {
-					array_push($listings, $listingToAdd);
+			foreach ($shoes as $shoe) {
+				$listingsToAdd = $listing->getByShoeId($shoe->shoe_id);
+				if ($listingsToAdd != false && count($listingsToAdd) > 0) {
+					foreach ($listingsToAdd as $listingToAdd) {
+						array_push($listings, $listingToAdd);
+					}
 				}
 			}
-		}
 
-		// $listing = $listing->getByBrand($brand);
-		$this->view('Listing/searchResults', $listings);
+			// $listing = $listing->getByBrand($brand);
+			$this->view('Listing/searchResults', $listings);
+		}
 	}
 
 	public function logout()

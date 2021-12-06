@@ -34,6 +34,8 @@ class Orders extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $orders = new \app\models\Orders();
             $orders->buyer_username = $_SESSION['username'];
@@ -52,6 +54,8 @@ class Orders extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $user = new \app\models\User();
             $user = $user->get($_SESSION['username']);
@@ -74,6 +78,8 @@ class Orders extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $user = new \app\models\User();
             $user = $user->get($_SESSION['username']);
@@ -118,6 +124,8 @@ class Orders extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else if (isset($_POST['action'])) {
 
             

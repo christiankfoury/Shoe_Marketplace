@@ -15,6 +15,8 @@ class Message extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $messagesReceived = new \app\models\Message();
             $messagesReceived->receiver = $_SESSION["username"];
@@ -36,6 +38,8 @@ class Message extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else if (isset($_POST['action'])) {
             $message = new \app\models\Message();
             $message->sender = $sender;

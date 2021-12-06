@@ -63,6 +63,17 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBox">
             <button class="btn btn-outline-success" type="submit" name="search">Search</button>
           </form>
+          <br>
+          <form class="d-flex" method="post">
+            <select class="custom-select mr-sm-2 me-2" style="flex: 1;" placeholder="Search by brand" name="searchBrand">
+              <option value="Jordan">Jordan</option>
+              <option value="Nike">Nike</option>
+              <option value="Adidas">Adidas</option>
+              <option value="Vans">Vans</option>
+              <option value="New Balance">New Balance</option>
+            </select>
+            <button class="btn btn-outline-success" type="submit" name="searchBrandButton">Search by brand</button>
+          </form>
         </div>
       </div>
     </div>
@@ -73,21 +84,21 @@
       <div class="innie">
         <a href="/Listing/createListing" style="" class="button">Create a new listing</a><br>
         <div class="gray-flex-box">
-        <?php
-        foreach ($data['listings'] as $listing) : ?>
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
-            <div class="card-body">
-              <?php $shoe = new \app\models\Shoe;
-              $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
-              <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
-              <p class="card-text">$<?php echo $listing->price ?></p>
-              <a class="button" href='/Listing/viewListing/<?php echo $listing->listing_id?>'>View</a>
-              <a class="button" href='/Listing/editListing/<?php echo $listing->listing_id?>'>Edit</a>
-              <a class="button" href='/Listing/deleteListing/<?php echo $listing->listing_id?>'>Delete</a>
+          <?php
+          foreach ($data['listings'] as $listing) : ?>
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="/uploads/<?php echo $listing->filename ?>" alt="Card image cap">
+              <div class="card-body">
+                <?php $shoe = new \app\models\Shoe;
+                $shoe = $shoe->getShoeByShoeId($listing->shoe_id) ?>
+                <h5 class="card-title"><?php echo $shoe->brand . " " . $shoe->name ?></h5>
+                <p class="card-text">$<?php echo $listing->price ?></p>
+                <a class="button" href='/Listing/viewListing/<?php echo $listing->listing_id ?>'>View</a>
+                <a class="button" href='/Listing/editListing/<?php echo $listing->listing_id ?>'>Edit</a>
+                <a class="button" href='/Listing/deleteListing/<?php echo $listing->listing_id ?>'>Delete</a>
+              </div>
             </div>
-        </div>
-        <?php endforeach ?>
+          <?php endforeach ?>
         </div>
       </div>
     </div>

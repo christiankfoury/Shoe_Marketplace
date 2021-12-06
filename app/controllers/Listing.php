@@ -16,6 +16,8 @@ class Listing extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $user = new \app\models\User();
             $user = $user->get($_SESSION['username']);
@@ -48,6 +50,8 @@ class Listing extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else if (isset($_POST['action'])) {
             //get the form data and process it
             if (isset($_FILES['newPicture']) && $_FILES['newPicture']['size'] != 0 && trim($_POST['size']) != "" && trim($_POST['stock']) != "" && trim($_POST['price']) != "" 
@@ -114,6 +118,8 @@ class Listing extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $listing = new \app\models\Listing();
             $listing = $listing->get($listing_id);
@@ -143,6 +149,8 @@ class Listing extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $listing = new \app\models\Listing();
             $listing->seller_username = $_SESSION['username'];
@@ -159,7 +167,16 @@ class Listing extends \app\core\Controller
         $shoe = new \app\models\Shoe();
         $shoe = $shoe->getShoeByShoeId($listing->shoe_id);
 
-        if(isset($_POST['edit'])){
+        if (isset($_POST['search'])) {
+            if ($_POST['searchBox'] == "") {
+                header("Location:/User/index");
+            } else {
+                $search = $_POST['searchBox'];
+                header("Location:/User/search/$search");
+            }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
+        } else if(isset($_POST['edit'])){
             if(trim($_POST['price']) <= 0 || trim($_POST['description']) == ""){
                  $this->view('Listing/editListing', ['listing'=>$listing,'shoe'=>$shoe,'error'=>'Make sure that everything is filled out!']);
                  return;

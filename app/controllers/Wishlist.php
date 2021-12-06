@@ -14,6 +14,8 @@ class Wishlist extends \app\core\Controller
                 $search = $_POST['searchBox'];
                 header("Location:/User/search/$search");
             }
+        } else if (isset($_POST['searchBrandButton'])) {
+            header("Location:/User/searchBrand/{$_POST['searchBrand']}");
         } else {
             $wishlist = new \app\models\Wishlist();
             $wishlist->username = $_SESSION['username'];
