@@ -84,7 +84,7 @@
 									<th style='text-align:right; white-space:nowrap;'>At $messages->timestamp</th>
 								</tr>
 								<tr>
-									<td>$messages->message</td>
+									<td>$messages->message Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut, repellat ipsum facere voluptate dicta obcaecati deserunt nobis suscipit eaque?</td>
 									<td style='text-align:right'><div class='reply-div'><a class='reply-button' href='\Message\createMessage\\$messages->receiver\\$messages->sender'>Reply</a></div></td>
 								</tr>
 							</table>

@@ -228,7 +228,7 @@ class Listing extends \app\core\Controller
     public function deleteListing($listing_id){
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
-        $listing->deleteAvailable();
+        $listing->delete();
         header("Location:/Listing/index");
     }
 }
