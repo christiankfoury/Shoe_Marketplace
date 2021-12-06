@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 08:22 PM
+-- Generation Time: Dec 06, 2021 at 06:11 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -43,6 +43,23 @@ CREATE TABLE `listing` (
   `filename` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `listing`
+--
+
+INSERT INTO `listing` (`listing_id`, `shoe_id`, `seller_username`, `size`, `stock`, `price`, `description`, `color`, `available`, `filename`) VALUES
+(1, 2, 'fet', 11, 3, 1500, 'Canary', 'Yellow', 'no', '61ad899be59da.jpg'),
+(2, 2, 'fet', 10, 8, 1500, 'Canary', 'Yellow', 'no', '61ad8b8b9c76b.jpg'),
+(3, 2, 'fet', 10, 9, 150, 'Canary', 'Yellow', 'no', '61ad8bf0b1db2.jpg'),
+(4, 3, 'fet', 10, 3, 500, 'UNC', 'Blue', 'yes', '61ad8c4c7c02e.jpg'),
+(5, 2, 'fet', 4, 9, 500, 'Duck', 'Yellow', 'no', '61ad8c6832cdc.jpg'),
+(6, 10, 'fet', 30, 9, 125.24, 'white dunks', 'White', 'yes', '61ad8cb91e16d.jpg'),
+(7, 19, 'fet', 10, 1, 100, 'Aime Leon Dore', 'Red', 'yes', '61ad8cf6d70c3.jpg'),
+(8, 3, 'fet', 27, 3, 1250, 'Red 11s', 'Red', 'yes', '61ad98c013470.jpg'),
+(9, 4, 'fet', 32, 5, 120, '12 ovo', 'Black', 'yes', '61ad9947c727c.jpg'),
+(10, 3, 'fet', 33, 4, 155000, 'Black 11s', 'Black', 'yes', '61ad998fb7301.jpg'),
+(11, 13, 'fet', 10, 8, 350, 'highlighter 350s', 'Yellow', 'yes', '61ad9a2a46526.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +74,15 @@ CREATE TABLE `message` (
   `message` varchar(150) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `sender`, `receiver`, `message`, `timestamp`) VALUES
+(1, 'hacker', 'fet', 'kespass renceur', '2021-12-06 04:11:55'),
+(2, 'hacker', 'fet', 'Ta pas repondu g.', '2021-12-06 04:12:04'),
+(3, 'fet', 'hacker', 'Tgl donkey', '2021-12-06 04:12:26');
 
 -- --------------------------------------------------------
 
@@ -82,6 +108,14 @@ CREATE TABLE `orders` (
   `total_price` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `seller_username`, `buyer_username`, `listing_id`, `quantity`, `email`, `address`, `address2`, `postal_code`, `city`, `province`, `country`, `timestamp`, `total_price`) VALUES
+(3, 'fet', 'hacker', 4, 5, 'bob@gmail.com', 'asdf', 'asdf', 'L8D 1J2', 'Montreal', 'AB', 'Canada', '2021-12-06 09:56:49', 2500),
+(4, 'fet', 'hacker', 8, 2, 'bob@gmail.com', 'asdf', 'asdf', 'L8D 1J2', 'Montreal', 'AB', 'Canada', '2021-12-06 10:00:22', 2500);
+
 -- --------------------------------------------------------
 
 --
@@ -95,6 +129,13 @@ CREATE TABLE `review` (
   `shoe_id` int(11) NOT NULL,
   `message` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`review_id`, `username`, `shoe_id`, `message`) VALUES
+(2, 'hacker', 2, 'e.');
 
 -- --------------------------------------------------------
 
@@ -117,7 +158,7 @@ CREATE TABLE `shoe` (
 INSERT INTO `shoe` (`shoe_id`, `brand`, `name`, `previously_sold_price`) VALUES
 (1, 'Nike', 'Air Force 1', NULL),
 (2, 'Jordan', 'Retro 1', NULL),
-(3, 'Jordan', 'Retro 11', NULL),
+(3, 'Jordan', 'Retro 11', 1250),
 (4, 'Jordan', 'Retro 12', NULL),
 (5, 'Jordan', 'Retro 13', NULL),
 (6, 'Nike', 'Air Max 90', NULL),
@@ -153,6 +194,14 @@ CREATE TABLE `user` (
   `favorite_color` varchar(50) NOT NULL,
   `size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `first_name`, `last_name`, `password_hash`, `favorite_color`, `size`) VALUES
+('fet', 'Mankirat', 'Sarwara', '$2y$10$I7mamGx.YdVIVd93ywkvY.S7kByerT8noDtA2ScwQnrT9TrF8b662', 'Yellow', 11),
+('hacker', 'Impersonator', 'Singh', '$2y$10$4d9b7SZMXbADXE0PP/R5D.6/l1SLGb6jdflsyIVGoELeO9tev52hS', 'Yellow', 10);
 
 -- --------------------------------------------------------
 
@@ -233,25 +282,25 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
-  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `listing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shoe`
@@ -263,7 +312,7 @@ ALTER TABLE `shoe`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

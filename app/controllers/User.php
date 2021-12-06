@@ -176,7 +176,7 @@ class User extends \app\core\Controller
 			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
 		} else {
 			$shoe = new \app\models\Shoe();
-			$brand = str_replace('%20', ' ', $brand);
+			if($brand == "NewBalance"){$brand = "New Balance";}
 			$shoes = $shoe->getByBrand($brand);
 			$listing = new \app\models\Listing();
 			$listings = [];
