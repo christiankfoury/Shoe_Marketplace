@@ -162,7 +162,6 @@ class User extends \app\core\Controller
 				}
 			}
 		}
-		print_r($listings);
 
 		// $listing = $listing->getByBrand($brand);
 		$this->view('Listing/searchResults', $listings);

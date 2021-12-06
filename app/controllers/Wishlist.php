@@ -25,13 +25,16 @@ class Wishlist extends \app\core\Controller
             $listing = new \app\models\Listing();
 
             $wishlistListings = [];
-            echo "heloo";
             foreach ($wishlists as $wishlist) {
                 $listing->shoe_id = $wishlist->shoe_id;
                 $listing->color = $wishlist->color;
                 $listing->size = $user->size;
                 $listing->seller_username = $user->username;
-                $wishlistListings = $listing->getByWishlist();
+                // $wishlistListings = $listing->getByWishlist();
+                $listingsToAdd = $listing->getByWishlist();
+                foreach ($listingsToAdd as $listingToAdd) {
+                    array_push($wishlistListings, $listingToAdd);
+                }
             }
             // 2 listings: same color, same size, same shoe_id
 

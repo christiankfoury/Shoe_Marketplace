@@ -78,11 +78,6 @@
           $listing = new \app\models\Listing();
           $listing = $listing->get($data['order']->listing_id);
           ?>
-          <?php
-          if (isset($data['error'])) {
-            echo "<h4>{$data['error']}</h4>";
-          }
-          ?>
           <form method="post" action="" style="margin-top:50px;margin-bottom:10px;">
             <?php
             echo "<div style='margin-bottom:20px; margin-top:20px;'><img src='/uploads/$listing->filename' style='width:150px;height:150px;'>
@@ -91,6 +86,9 @@
                       <h4>Price per sneaker: $ $listing->price</h4>
                     </div>
                   </div>";
+            if (isset($data['error'])) {
+              echo "<h4 style='color: red;'>{$data['error']}</h4>";
+            }
             echo "<label class='checkout-label'>Quantity:</label> <select class='listing' name='quantity'>";
             for ($i = 1; $i <= $listing->stock; $i++) {
               echo "<option value='$i'>$i</option>";
