@@ -175,20 +175,23 @@ class User extends \app\core\Controller
 		} else if (isset($_POST['searchBrandButton'])) {
 			header("Location:/User/searchBrand/{$_POST['searchBrand']}");
 		} else {
-			$shoe = new \app\models\Shoe();
+			// $shoe = new \app\models\Shoe();
 			if($brand == "NewBalance"){$brand = "New Balance";}
-			$shoes = $shoe->getByBrand($brand);
 			$listing = new \app\models\Listing();
-			$listings = [];
+			$listings = $listing->getByShoeBrand($brand);
 
-			foreach ($shoes as $shoe) {
-				$listingsToAdd = $listing->getByShoeId($shoe->shoe_id);
-				if ($listingsToAdd != false && count($listingsToAdd) > 0) {
-					foreach ($listingsToAdd as $listingToAdd) {
-						array_push($listings, $listingToAdd);
-					}
-				}
-			}
+			// $shoes = $shoe->getByBrand($brand);
+			// $listing = new \app\models\Listing();
+			// $listings = [];
+
+			// foreach ($shoes as $shoe) {
+			// 	$listingsToAdd = $listing->getByShoeId($shoe->shoe_id);
+			// 	if ($listingsToAdd != false && count($listingsToAdd) > 0) {
+			// 		foreach ($listingsToAdd as $listingToAdd) {
+			// 			array_push($listings, $listingToAdd);
+			// 		}
+			// 	}
+			// }
 
 			// $listing = $listing->getByBrand($brand);
 			$this->view('Listing/searchResults', $listings);

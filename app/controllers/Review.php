@@ -4,16 +4,6 @@ namespace app\controllers;
 
 class Review extends \app\core\Controller
 {
-    // public function viewReviews($shoe_id) {
-    //     $user = new \app\models\User();
-    //     $user = $user->get($_SESSION['username']);
-
-    //     $review = new \app\models\Review();
-    //     $reviews = $review->getByShoeId($shoe_id);
-
-    //     $this->view('Review/viewReviews', ['reviews' => $reviews]);
-    // }
-
     #[\app\filters\Login]
     public function editReview($listing_id, $review_id) {
         if (isset($_POST['search'])) {
@@ -42,7 +32,14 @@ class Review extends \app\core\Controller
     #[\app\filters\Login]
     public function deleteReview($listing_id, $review_id) {
         $review = new \app\models\Review();
-        $review->deleteReview($review_id);
+        $reviewDelete = $review->get($review_id);
+
+        if ($_SESSION['username'] != $reviewDelete->username) {
+            header("Location:/Listing/viewListing/$listing_id");
+            return;
+        }
+
+        $reviewDelete->deleteReview($review_id);
 
         header("Location:/Listing/viewListing/$listing_id");
     }

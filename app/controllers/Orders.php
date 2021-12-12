@@ -97,6 +97,11 @@ class Orders extends \app\core\Controller
     {
         $order = new \app\models\Orders();
         $order = $order->get($order_id);
+
+        if ($_SESSION['username'] != $order->buyer_username) {
+            header("Location:/Listing/viewListing/$listing_id");
+        }
+        
         $order->delete();
         header("Location:/Listing/viewListing/$listing_id");
     }
@@ -106,6 +111,12 @@ class Orders extends \app\core\Controller
     {
         $order = new \app\models\Orders();
         $order = $order->get($order_id);
+
+        if ($_SESSION['username'] != $order->buyer_username) {
+            header("Location:/Orders/viewCart");
+            return;
+        }
+
         $order->delete();
         header("Location:/Orders/viewCart");
     }
@@ -115,6 +126,12 @@ class Orders extends \app\core\Controller
     {
         $order = new \app\models\Orders();
         $order = $order->get($order_id);
+
+        if ($_SESSION['username'] != $order->buyer_username) {
+            header("Location:/Orders/viewCart");
+            return;
+        }
+
         $user = new \app\models\User();
         $user = $user->get($_SESSION['username']);
         if (isset($_POST['search'])) {
@@ -185,13 +202,5 @@ class Orders extends \app\core\Controller
         } else {
             $this->view('/Orders/checkout', ['order' => $order, 'user' => $user]);
         }
-    }
-
-    public function createOrder()
-    {
-    }
-
-    public function viewOrder()
-    {
     }
 }

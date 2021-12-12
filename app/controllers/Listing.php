@@ -29,17 +29,6 @@ class Listing extends \app\core\Controller
         }
     }
 
-    // public function getListingsByUsername()
-    // {
-    //     $user = new \app\models\User();
-    //     $user = $user->get($_SESSION['username']);
-
-    //     $listing = new \app\models\Listing();
-    //     $listing = $listing->getBySeller($user->username);
-
-    //     header("Location:/Listing/index/$listing");
-    // }
-
     #[\app\filters\Login]
     public function createListing()
     {
@@ -161,9 +150,12 @@ class Listing extends \app\core\Controller
 
     #[\app\filters\Login]
     public function editListing($listing_id){
-
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
+        if ($_SESSION['username'] != $listing->seller_username) {
+            header("Location:/Listing/viewListing/$listing_id");
+            return;
+        }
         $shoe = new \app\models\Shoe();
         $shoe = $shoe->getShoeByShoeId($listing->shoe_id);
 
@@ -245,6 +237,12 @@ class Listing extends \app\core\Controller
     public function deleteListing($listing_id){
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
+
+        if ($_SESSION['username'] != $listing->seller_username) {
+            header("Location:/Listing/viewListing/$listing_id");
+            return;
+        }
+
         $listing->deleteAvailable();
         header("Location:/Listing/index");
     }

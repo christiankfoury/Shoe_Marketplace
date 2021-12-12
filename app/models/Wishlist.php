@@ -20,14 +20,6 @@ class Wishlist extends \app\core\Model{
 		return $STMT->fetchAll();//returns an array of all the records
     }
 
-    // public function get($wishlist_id){
-    //     $SQL = 'SELECT * FROM listing WHERE listing_id = :listing_id';
-	// 	$STMT = self::$_connection->prepare($SQL);
-	// 	$STMT->execute(['listing_id'=>$listing_id]);
-	// 	$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
-	// 	return $STMT->fetch();//return the record
-    // }
-
     public function getByUsername(){
         $SQL = 'SELECT * FROM wishlist WHERE username = :username';
 		$STMT = self::$_connection->prepare($SQL);

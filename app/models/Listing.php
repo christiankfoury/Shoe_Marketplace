@@ -94,9 +94,9 @@ class Listing extends \app\core\Model{
 	}
 
 	public function getByWishlist(){
-		$SQL = 'SELECT * FROM listing WHERE shoe_id = :shoe_id AND size = :size AND color = :color AND available = :available AND seller_username != :seller_username';
+		$SQL = 'SELECT * FROM listing JOIN wishlist ON listing.shoe_id = wishlist.shoe_id WHERE wishlist.username = :username AND listing.size = :size AND listing.color = :color AND listing.available = :available AND listing.seller_username != :seller_username';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['shoe_id'=>$this->shoe_id, 'size' => $this->size, 'color' => $this->color, 'available'=>'yes', 'seller_username' => $this->seller_username]);
+		$STMT->execute(['size' => $this->size, 'color' => $this->color, 'available' => 'yes', 'seller_username' => $this->seller_username, 'username' => $this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
@@ -126,4 +126,12 @@ class Listing extends \app\core\Model{
         $STMT->setFetchMode(\PDO::FETCH_CLASS,'app\models\Listing');
         return $STMT->fetchAll();//return the record
     }
+
+	public function getByShoeBrand($brand) {
+		$SQL = 'SELECT * FROM listing JOIN shoe ON listing.shoe_id = shoe.shoe_id WHERE shoe.brand = :brand AND listing.available = :available';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['brand'=>$brand, 'available'=>'yes']);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
+		return $STMT->fetchAll();//return the record
+	}
 }
