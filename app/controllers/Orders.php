@@ -100,6 +100,7 @@ class Orders extends \app\core\Controller
 
         if ($_SESSION['username'] != $order->buyer_username) {
             header("Location:/Listing/viewListing/$listing_id");
+            return;
         }
         
         $order->delete();

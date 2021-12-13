@@ -39,7 +39,7 @@ class Orders extends \app\core\Model{
     }
 
     public function getBySeller(){
-        $SQL = 'SELECT * FROM orders WHERE seller_username = :seller_username';
+        $SQL = 'SELECT * FROM orders WHERE seller_username = :seller_username AND timestamp IS NOT NULL';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['seller_username'=>$this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Orders');

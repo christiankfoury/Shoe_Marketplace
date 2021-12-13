@@ -6,6 +6,13 @@ class Review extends \app\core\Controller
 {
     #[\app\filters\Login]
     public function editReview($listing_id, $review_id) {
+        $review = new \app\models\Review();
+        $review = $review->get($review_id);
+        if ($review->username != $_SESSION['username']) {
+            header("Location:/Listing/viewListing/$listing_id");
+            return;
+        }
+
         if (isset($_POST['search'])) {
             if ($_POST['searchBox'] == "") {
                 header("Location:/User/index");
@@ -39,7 +46,7 @@ class Review extends \app\core\Controller
             return;
         }
 
-        $reviewDelete->deleteReview($review_id);
+        $review->deleteReview($review_id);
 
         header("Location:/Listing/viewListing/$listing_id");
     }

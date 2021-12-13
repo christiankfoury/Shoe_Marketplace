@@ -153,7 +153,7 @@ class Listing extends \app\core\Controller
         $listing = new \app\models\Listing();
         $listing = $listing->get($listing_id);
         if ($_SESSION['username'] != $listing->seller_username) {
-            header("Location:/Listing/viewListing/$listing_id");
+            header("Location:/Listing/index");
             return;
         }
         $shoe = new \app\models\Shoe();
@@ -239,7 +239,7 @@ class Listing extends \app\core\Controller
         $listing = $listing->get($listing_id);
 
         if ($_SESSION['username'] != $listing->seller_username) {
-            header("Location:/Listing/viewListing/$listing_id");
+            header("Location:/Listing/index");
             return;
         }
 

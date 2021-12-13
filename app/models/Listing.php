@@ -94,9 +94,9 @@ class Listing extends \app\core\Model{
 	}
 
 	public function getByWishlist(){
-		$SQL = 'SELECT * FROM listing JOIN wishlist ON listing.shoe_id = wishlist.shoe_id WHERE wishlist.username = :username AND listing.size = :size AND listing.color = :color AND listing.available = :available AND listing.seller_username != :seller_username';
+		$SQL = 'SELECT * FROM listing JOIN wishlist ON listing.shoe_id = wishlist.shoe_id WHERE wishlist.username = :username AND listing.size = :size AND listing.color = wishlist.color AND listing.available = :available AND listing.seller_username != :seller_username';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['size' => $this->size, 'color' => $this->color, 'available' => 'yes', 'seller_username' => $this->seller_username, 'username' => $this->seller_username]);
+		$STMT->execute(['size' => $this->size, 'available' => 'yes', 'seller_username' => $this->seller_username, 'username' => $this->seller_username]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Listing');
 		return $STMT->fetchAll();//return the record
 	}
